@@ -4,7 +4,10 @@ const user = require('./routes/user');
 const post = require('./routes/post');
 const app = express();
 
-// Middlewares
+// ----------------------------------------
+// MIDDLEWARES
+
+// Headers configuration
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -14,7 +17,9 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
+// Routes
 app.use('/api/user', user);
 app.use('/api/post', post);
+// ----------------------------------------
 
 module.exports = app;

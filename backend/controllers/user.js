@@ -1,3 +1,6 @@
+// ----------------------------------------
+// CONTROLLER User
+
 require('dotenv').config();
 const Sequelize = require('sequelize');
 const { User } = require('../models/index');

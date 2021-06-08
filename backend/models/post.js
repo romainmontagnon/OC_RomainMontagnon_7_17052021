@@ -1,3 +1,6 @@
+// ----------------------------------------
+// MODEL Post
+
 const Sequelize = require('sequelize');
 const database = require('./connexion');
 

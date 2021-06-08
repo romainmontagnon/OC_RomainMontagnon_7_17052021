@@ -1,3 +1,6 @@
+// ----------------------------------------
+// MODEL User
+
 const Sequelize = require('sequelize');
 const database = require('./connexion');
 

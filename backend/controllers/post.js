@@ -1,3 +1,6 @@
+// ----------------------------------------
+// CONTROLLER Post
+
 const Sequelize = require('sequelize');
 const {Post, User} = require('../models/index');
 

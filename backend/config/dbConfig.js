@@ -1,3 +1,6 @@
+// ----------------------------------------
+// Databases configuration file
+
 require('dotenv').config();
 module.exports = {
     HOST: process.env.DB_HOST,
