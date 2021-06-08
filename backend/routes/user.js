@@ -9,6 +9,6 @@ router.get('/', userCtrl.getAllUser);
 // Inscription
 router.post('/signup', userCtrl.userSignUp);
 // Identification
-router.post('/signin', userCtrl.userLogin);
+router.post('/login', userCtrl.userLogin);
 
 module.exports = router;
