@@ -26,4 +26,11 @@ nodemon start
 | DB_USERNAME | Utilisateur                 |
 | DB_PASSWORD | Mot de passe                |
 
+### Routes
+
+|Requete|URI|Description|
+|-|-|-|
+|`'GET'`|`/api/user`||
+|`'POST'`|`/api/user`||
+
 ## FRONTEND

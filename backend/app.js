@@ -1,22 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const user = require('./routes/user');
+const post = require('./routes/post');
 const app = express();
-
-// Connexion a la base de données
-// const Sequelize = require('sequelize');
-// const dbConfig = require('./config/dbConfig');
-// const database = new Sequelize(`${dbConfig.DATABASE}`, `${dbConfig.USERNAME}`, `${dbConfig.PASSWORD}`, {
-//     host: `${dbConfig.HOST}`,
-//     dialect: `${dbConfig.DIALECT}`
-// });
-// database.authenticate()
-//     .then(() => {
-//         console.log('Connection established successfully to the database via app.js');
-//     })
-//     .catch(err => {
-//         console.error('Unable to connect to the database via app.js:', err);
-//     });
 
 // Middlewares
 app.use((req, res, next) => {
@@ -29,5 +15,6 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use('/api/user', user);
+app.use('/api/post', post);
 
 module.exports = app;
