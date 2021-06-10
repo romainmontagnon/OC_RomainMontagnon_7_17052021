@@ -6,7 +6,9 @@ const postCtrl = require('../controllers/post');
 // ----------------------------------------
 // ROUTES Post (publication)
 router.get('/', postCtrl.getAllPost);
-// router.post('/', userCtrl.postUser);
+router.get('/postdetails', postCtrl.getOnePost);
+
+router.post('/', postCtrl.postUser);
 // ----------------------------------------
 
 module.exports = router;
