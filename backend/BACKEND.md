@@ -4,6 +4,8 @@
 
 [Return to README](../README.md)
 
+[TOC]
+
 ## Installation/Lancement
 
 ```bash
@@ -45,9 +47,10 @@ nodemon start
 
 | Requete    | URI                     | API                    | Description |
 |------------|-------------------------|------------------------|-------------|
-| `'GET'`    | `/api/post`             | `postCtrl.getAllPost` | Afficher toutes les publications |
-| `'GET'`    | `/api/post/postdetails` | `postCtrl.getOnePost` | Afficher une publication via ID de la publication |
-| `'POST'`   | `/api/post`             | `postCtrl.postUser`   | Publier un commentaire|
+| `'GET'`    | `/api/post`             | `postCtrl.getAllPost`  | Afficher toutes les publications |
+| `'GET'`    | `/api/post/postdetails` | `postCtrl.getOnePost`  | Afficher une publication via ID de la publication |
+| `'GET'`    | `/api/post/userpost`    | `postCtrl.getUserPost` | Afficher les publications d'un uitilisateur |
+| `'POST'`   | `/api/post`             | `postCtrl.postUser`    | Publier un commentaire|
 | `'PUT'`    | `/api/` |  ||
 | `'DELETE'` | `/api/` |  ||
 
@@ -117,7 +120,7 @@ nodemon start
 
 | Requete    | URI                     | API                    | Description |
 |------------|-------------------------|------------------------|-------------|
-| `'GET'`    | `/api/post`             | `postCtrl.getAllPost` | Afficher toutes les publications |
+| `'GET'`    | `/api/post`             | `postCtrl.getAllPost`  | Afficher toutes les publications |
 
 - Requete :
 
@@ -172,7 +175,7 @@ empty
 
 | Requete    | URI                     | API                    | Description |
 |------------|-------------------------|------------------------|-------------|
-| `'GET'`    | `/api/post/postdetails` | `postCtrl.getOnePost` | Afficher une publication via ID de la publication |
+| `'GET'`    | `/api/post/postdetails` | `postCtrl.getOnePost`  | Afficher une publication via ID de la publication |
 
 - Requete :
 
@@ -197,11 +200,50 @@ empty
 }
 ```
 
+##### POST `'GET'` `/api/post/userpost`
+
+| Requete    | URI                     | API                    | Description |
+|------------|-------------------------|------------------------|-------------|
+| `'GET'`    | `/api/post/userpost`    | `postCtrl.getUserPost` | Afficher les publications d'un uitilisateur |
+
+- Requete :
+
+```json
+{
+    "post": {
+        "UserId": "25"
+    }
+}
+```
+
+- Reponse :
+
+```json
+[
+    {
+        "id": 28,
+        "message": "essai via postman pour test 'Post.findOne()'",
+        "image": null,
+        "createdAt": "2021-06-10T06:57:09.000Z",
+        "updatedAt": "2021-06-10T06:57:09.000Z",
+        "UserId": 25
+    },
+    {
+        "id": 29,
+        "message": "Publication pour la doc",
+        "image": null,
+        "createdAt": "2021-06-10T07:49:38.000Z",
+        "updatedAt": "2021-06-10T07:49:38.000Z",
+        "UserId": 25
+    }
+]
+```
+
 ##### POST `'POST'` `/api/post`
 
 | Requete    | URI                     | API                    | Description |
 |------------|-------------------------|------------------------|-------------|
-| `'POST'`   | `/api/post`             | `postCtrl.postUser`   | Publier un commentaire|
+| `'POST'`   | `/api/post`             | `postCtrl.postUser`    | Publier un commentaire|
 
 - Requete :
 
