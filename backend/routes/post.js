@@ -8,9 +8,11 @@ const auth = require('../middleware/auth');
 // ROUTES Post (publication)
 router.get('/', postCtrl.getAllPost);
 router.get('/:id', postCtrl.getOnePost);
-router.get('/user/:id', postCtrl.getUserPost);
+router.get('/user/:UserId', postCtrl.getUserPost);
 
-router.post('/', auth, postCtrl.postUser);
+router.post('/:UserId', auth, postCtrl.postUser);
+router.put('/:id', auth, postCtrl.modifyPost);
+router.delete('/:id', auth, postCtrl.deletePost);
 // ----------------------------------------
 
 module.exports = router;
