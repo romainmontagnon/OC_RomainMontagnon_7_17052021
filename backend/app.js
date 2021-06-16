@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const user = require('./routes/user');
 const post = require('./routes/post');
+const com = require('./routes/com');
 const app = express();
 
 // ----------------------------------------
@@ -20,6 +21,7 @@ app.use(express.json());
 // Routes
 app.use('/api/user', user);
 app.use('/api/post', post);
+app.use('/api/com', com);
 // ----------------------------------------
 
 module.exports = app;

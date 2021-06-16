@@ -9,12 +9,11 @@ const Com = require('../models/com');
 // fonction async avec await ???
 
 Post.belongsTo(User);
-Com.belongTo(User);
+Com.belongsTo(User);
+Post.hasMany(Com);
 
-// Post.hasMany(Com);
-
-User.sync(/*{alter:true}*/);
-Post.sync(/*{alter:true}*/);
-Com.sync(/*{alter:true}*/);
+User.sync({alter:true});
+Post.sync({alter:true});
+Com.sync({alter:true});
 
 module.exports = {User, Post, Com};

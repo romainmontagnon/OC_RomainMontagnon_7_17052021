@@ -11,7 +11,7 @@ const database = new Sequelize(`${dbConfig.DATABASE}`, `${dbConfig.USERNAME}`, `
 });
 database.authenticate()
     .then(() => {
-        console.log('Connection established successfully to the database via cnonnexio.js');
+        console.log('Connection established successfully to the database via connexion.js');
     })
     .catch(err => {
         console.error('Unable to connect to the database via connexion.js:', err);

@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const userCtrl = require('../controllers/user');
+const auth = require('../middleware/auth');
 
 // ----------------------------------------
-// ROUTES DE TEST a supprimer en fin de dev
-router.get('/', userCtrl.getAllUser);
-//router.post('/', userCtrl.postUser);
+// ROUTES Admin
+router.get('/', auth, userCtrl.getAllUser);
 // ----------------------------------------
 
 // ----------------------------------------
