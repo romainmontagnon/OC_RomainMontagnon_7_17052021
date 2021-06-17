@@ -15,6 +15,7 @@ router.get('/', auth, userCtrl.getAllUser);
 router.post('/signup', userCtrl.userSignUp);
 // Identification
 router.post('/login', userCtrl.userLogin);
+// router.delete('/userdelete', userCtrl.)
 // ----------------------------------------
 
 module.exports = router;

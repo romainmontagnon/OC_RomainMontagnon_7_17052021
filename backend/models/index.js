@@ -12,8 +12,8 @@ Post.belongsTo(User);
 Com.belongsTo(User);
 Post.hasMany(Com);
 
-User.sync({alter:true});
-Post.sync({alter:true});
-Com.sync({alter:true});
+User.sync(/*{alter:true}*/);
+Post.sync(/*{alter:true}*/);
+Com.sync(/*{alter:true}*/);
 
 module.exports = {User, Post, Com};
