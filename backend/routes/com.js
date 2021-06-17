@@ -6,10 +6,9 @@ const auth = require('../middleware/auth');
 
 // ----------------------------------------
 // ROUTES Post (publication)
-
 router.post('/', auth, comCtrl.postCom);
 // router.put('/:id', auth, comCtrl.modifyPost);
-// router.delete('/:id', auth, comCtrl.deletePost);
+router.delete('/:id', auth, comCtrl.deleteCom);
 // ----------------------------------------
 
 module.exports = router;

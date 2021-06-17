@@ -17,18 +17,6 @@ exports.getAllUser = (req, res, next) => {
         });
 };
 
-// exports.postUser = (req, res, next) => {
-//     User.create({
-//         ...req.body.user
-//     })
-//     .then((user) => {
-//         res.status(200).json(user)
-//     })
-//     .catch((error) => {
-//         res.status(404).json({error: error})
-//     });
-// };
-
 exports.userSignUp = (req, res, next) => {
     bcrypt.hash(req.body.user.password, parseInt(process.env.HASH_ROUND))
         .then(hash => {
@@ -78,3 +66,6 @@ exports.userLogin = (req, res, next) => {
             res.status(404).json({ error: 'erreur A103' })
         });
 };
+
+// suppression de compte
+// modification de compte

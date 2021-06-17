@@ -14,12 +14,12 @@ exports.getAllPost = (req, res, next) => {
             }
         ]
     })
-        .then((post) => {
-            res.status(200).json(post)
-        })
-        .catch((error) => {
-            res.status(404).json({ error: error })
-        });
+    .then((post) => {
+        res.status(200).json(post)
+    })
+    .catch((error) => {
+        res.status(404).json({ error: error })
+    });
 };
 
 exports.getOnePost = (req, res, next) => {
@@ -62,12 +62,12 @@ exports.postUser = (req, res, next) => {
         ...req.body.post,
         UserId: req.token.userId
     })
-        .then((post) => {
-            res.status(200).json(post)
-        })
-        .catch((error) => {
-            res.status(404).json({ error: error })
-        })
+    .then((post) => {
+        res.status(200).json(post)
+    })
+    .catch((error) => {
+        res.status(404).json({ error: error })
+    })
 };
 
 exports.modifyPost = (req, res, next) => {
@@ -76,43 +76,54 @@ exports.modifyPost = (req, res, next) => {
             id: req.params.id
         }
     })
-        .then((onePost) => {
-            if (req.token.userId == onePost.UserId /*|| req.token.admin*/) {
-                Post.update({
-                    ...req.body.post
-                }, {
-                    where: {
-                        id: req.params.id
-                    }
-                })
-                    .then((update) => {
-                        res.status(200).json(update)
-                    })
-                    .catch((error) => {
-                        res.status(404).json({ error: error })
-                    })
-            } else {
-                res.status(403).json({ message: "vous n'avez pas les droits pour cette action" });
-            }
-        })
-        .catch((error) => {
-            res.status(404).json({ error: error })
-        });
+    .then((onePost) => {
+        if (req.token.userId == onePost.UserId /*|| req.token.admin*/) {
+            Post.update({
+                ...req.body.post
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((update) => {
+                res.status(200).json(update)
+            })
+            .catch((error) => {
+                res.status(404).json({ error: error })
+            })
+        } else {
+            res.status(403).json({ message: "vous n'avez pas les droits pour cette action" });
+        }
+    })
+    .catch((error) => {
+        res.status(404).json({ error: error })
+    });
 };
 
 exports.deletePost = (req, res, next) => {
-
-    //refaire test ci dessus (avec findOne et if)
-
-    Post.destroy({
+    Post.findOne({
         where: {
             id: req.params.id
         }
     })
-        .then(() => {
-            res.status(200).json({message: "Post supprimé"})
-        })
-        .catch((error) => {
-            res.status(404).json({ error: error })
-        })
+    .then((deletePost) => {
+        if(req.token.userId == deletePost.UserId /* || req.token.admin*/) {
+            Post.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(() => {
+                res.status(200).json({message: "Post supprimé"})
+            })
+            .catch((error) => {
+                res.status(404).json({ error: error })
+            })
+        } else {
+            res.status(403).json({message: "vous n'avez pas les droits pour cette action"});
+        }
+    })
+    .catch((error) => {
+        res.status(404).json({error: error})
+    })
 };
