@@ -120,7 +120,7 @@ exports.deletePost = (req, res, next) => {
                 res.status(404).json({ error: error })
             })
         } else {
-            res.status(403).json({message: "vous n'avez pas les droits pour cette action"});
+            res.status(403).json({message: "vous n'avez pas les droits pour cette action sur les publications"});
         }
     })
     .catch((error) => {

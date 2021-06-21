@@ -16,7 +16,12 @@ router.post('/signup', userCtrl.userSignUp);
 
 // Identification
 router.post('/login', userCtrl.userLogin);
-// router.delete('/userdelete', userCtrl.)
+
+// Modifcation
+router.put('/modifyuser/:id', auth, userCtrl.userUpdate);
+
+// Suppression
+router.delete('/delete/:id', auth, userCtrl.userDelete);
 // ----------------------------------------
 
 module.exports = router;
