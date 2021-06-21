@@ -6,9 +6,9 @@ const auth = require('../middleware/auth');
 
 // ----------------------------------------
 // ROUTES Post (publication)
-router.get('/', postCtrl.getAllPost);
-router.get('/:id', postCtrl.getOnePost);
-router.get('/user/:UserId', postCtrl.getUserPost);
+router.get('/', auth, postCtrl.getAllPost);
+router.get('/:id', auth, postCtrl.getOnePost);
+router.get('/user/:UserId', auth, postCtrl.getUserPost);
 
 router.post('/', auth, postCtrl.postUser);
 router.put('/:id', auth, postCtrl.modifyPost);

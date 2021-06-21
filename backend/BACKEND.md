@@ -6,7 +6,7 @@
 
 [TOC]
 
-## Installation/Lancement
+## 1. Installation/Lancement
 
 ```bash
 cd backend
@@ -20,49 +20,56 @@ node server.js
 nodemon start
 ```
 
-### Variable d'environnement
+## 2. Variable d'environnement
 
-| Variables   | Description                 |
-|-------------|-----------------------------|
-| DB_HOST     | Base de donnée HOST         |
-| DB_DIALECT  | Type de base de donnée      |
-| DB_DATABASE | Nom de la base de donnée    |
-| DB_USERNAME | Utilisateur                 |
-| DB_PASSWORD | Mot de passe                |
+| Variables   | Description              |
+| ----------- | ------------------------ |
+| DB_HOST     | Base de donnée HOST      |
+| DB_DIALECT  | Type de base de donnée   |
+| DB_DATABASE | Nom de la base de donnée |
+| DB_USERNAME | Utilisateur              |
+| DB_PASSWORD | Mot de passe             |
 
-### Routes
+## 3. Routes
 
-#### Vue générale des routes
+### 3.1 USER
 
-##### USER
+| Requete | URI         | Description                                 |
+| ------- | ----------- | ------------------------------------------- |
+| `'GET'` | `/api/user` | Route de test, A SUPPRIMER en fin de projet |
 
-| Requete    | URI                | Description |
-|------------|--------------------|-------------|
-| `'GET'`    | `/api/user`        | Route de test, A SUPPRIMER en fin de projet |
-| `'POST'`   | `/api/user`        | Route de test, A SUPPRIMER en fin de projet |
-| `'POST'`   | `/api/user/signup` | Route de création de compte |
-| `'POST'`   | `/api/user/login`  | Route d'authentification |
+##### 3.1.1 USER `'POST'` `/api/user/login`
 
-##### POST
+| Requete  | URI               | Description              |
+| -------- | ----------------- | ------------------------ |
+| `'POST'` | `/api/user/login` | Route d'authentification |
 
-| Requete    | URI                     | API                    | Description |
-|------------|-------------------------|------------------------|-------------|
-| `'GET'`    | `/api/post`             | `postCtrl.getAllPost`  | Afficher toutes les publications |
-| `'GET'`    | `/api/post/postdetails` | `postCtrl.getOnePost`  | Afficher une publication via ID de la publication |
-| `'GET'`    | `/api/post/userpost`    | `postCtrl.getUserPost` | Afficher les publications d'un uitilisateur |
-| `'POST'`   | `/api/post`             | `postCtrl.postUser`    | Publier un commentaire|
-| `'PUT'`    | `/api/` |  ||
-| `'DELETE'` | `/api/` |  ||
+- req.body :
 
-#### Détails des routes
+```json
+{
+    "user": {
+        "emailAdress": "test2@test.com",
+        "password": "123"
+    }
+}
+```
 
-##### USER `'POST'` `/api/user/signup`
+- Reponse :
 
-| Requete    | URI                | Description |
-|------------|--------------------|-------------|
-| `'POST'`   | `/api/user/signup` | Route de création de compte |
+```json
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjMzMTA2MTYsImV4cCI6MTYyMzM5NzAxNn0.K3GzBVIwYJ-WPxm4MubOqPe1xxpDdV_qufLJvEsKar0"
+}
+```
 
-- Requete :
+##### 3.1.2 USER `'POST'` `/api/user/signup`
+
+| Requete  | URI                | Description                 |
+| -------- | ------------------ | --------------------------- |
+| `'POST'` | `/api/user/signup` | Route de création de compte |
+
+- req.body :
 
 ```json
 {
@@ -88,130 +95,18 @@ nodemon start
     "createdAt": "2021-06-10T07:36:36.708Z"
 }
 ```
+##### 3.1.3 USER `'PUT'` `/api/user//modifyuser/:id`
 
-##### USER `'POST'` `/api/user/login`
+| Requete | URI                         | Description                                    |
+| ------- | --------------------------- | ---------------------------------------------- |
+| `'PUT'` | `/api/user//modifyuser/:id` | Route de modifcation de mot de passe d'un user |
 
-| Requete    | URI                | Description |
-|------------|--------------------|-------------|
-| `'POST'`   | `/api/user/login`  | Route d'authentification |
-
-- Requete :
+- req.body :
 
 ```json
 {
     "user": {
-        "emailAdress": "test2@test.com",
-        "password": "123"
-    }
-}
-```
-
-- Reponse :
-
-```json
-{
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjMzMTA2MTYsImV4cCI6MTYyMzM5NzAxNn0.K3GzBVIwYJ-WPxm4MubOqPe1xxpDdV_qufLJvEsKar0"
-}
-```
-
-#### POST (publication)
-
-##### POST `'GET'` `/api/post`
-
-| Requete    | URI                     | API                    | Description |
-|------------|-------------------------|------------------------|-------------|
-| `'GET'`    | `/api/post`             | `postCtrl.getAllPost`  | Afficher toutes les publications |
-
-- Requete :
-
-```json
-empty
-
-```
-
-- Reponse :
-
-```json
-[
-    {
-        "id": 28,
-        "message": "essai via postman pour test 'Post.findOne()'",
-        "image": null,
-        "createdAt": "2021-06-10T06:57:09.000Z",
-        "updatedAt": "2021-06-10T06:57:09.000Z",
-        "UserId": 25,
-        "User": {
-            "id": 25,
-            "emailAdress": "test1@test.com",
-            "firstName": "Courri",
-            "lastName": "Elle",
-            "password": "$2b$10$NjXN1iOun4vX4.fpPPyseusYTRTpmeUjT1xFr8iCGDllCaGaotmKO",
-            "createdAt": "2021-06-08T08:24:10.000Z",
-            "updatedAt": "2021-06-08T08:24:10.000Z"
-        }
-    },
-    {
-        "id": 29,
-        "message": "Publication pour la doc",
-        "image": null,
-        "createdAt": "2021-06-10T07:49:38.000Z",
-        "updatedAt": "2021-06-10T07:49:38.000Z",
-        "UserId": 25,
-        "User": {
-            "id": 25,
-            "emailAdress": "test1@test.com",
-            "firstName": "Courri",
-            "lastName": "Elle",
-            "password": "$2b$10$NjXN1iOun4vX4.fpPPyseusYTRTpmeUjT1xFr8iCGDllCaGaotmKO",
-            "createdAt": "2021-06-08T08:24:10.000Z",
-            "updatedAt": "2021-06-08T08:24:10.000Z"
-        }
-    }
-]
-
-```
-
-##### POST `'GET'` `/api/post/postdetails`
-
-| Requete    | URI                     | API                    | Description |
-|------------|-------------------------|------------------------|-------------|
-| `'GET'`    | `/api/post/postdetails` | `postCtrl.getOnePost`  | Afficher une publication via ID de la publication |
-
-- Requete :
-
-```json
-{
-    "post": {
-        "id": "29"
-    }
-}
-```
-
-- Reponse :
-
-```json
-{
-    "id": 29,
-    "message": "Publication pour la doc",
-    "image": null,
-    "createdAt": "2021-06-10T07:49:38.000Z",
-    "updatedAt": "2021-06-10T07:49:38.000Z",
-    "UserId": 25
-}
-```
-
-##### POST `'GET'` `/api/post/userpost`
-
-| Requete    | URI                     | API                    | Description |
-|------------|-------------------------|------------------------|-------------|
-| `'GET'`    | `/api/post/userpost`    | `postCtrl.getUserPost` | Afficher les publications d'un uitilisateur |
-
-- Requete :
-
-```json
-{
-    "post": {
-        "UserId": "25"
+        "password": "new password"
     }
 }
 ```
@@ -220,39 +115,23 @@ empty
 
 ```json
 [
-    {
-        "id": 28,
-        "message": "essai via postman pour test 'Post.findOne()'",
-        "image": null,
-        "createdAt": "2021-06-10T06:57:09.000Z",
-        "updatedAt": "2021-06-10T06:57:09.000Z",
-        "UserId": 25
-    },
-    {
-        "id": 29,
-        "message": "Publication pour la doc",
-        "image": null,
-        "createdAt": "2021-06-10T07:49:38.000Z",
-        "updatedAt": "2021-06-10T07:49:38.000Z",
-        "UserId": 25
-    }
+    1
 ]
 ```
 
-##### POST `'POST'` `/api/post`
+##### 3.1.4 USER `'DELETE'` `/api/user/delete/:id`
 
-| Requete    | URI                     | API                    | Description |
-|------------|-------------------------|------------------------|-------------|
-| `'POST'`   | `/api/post`             | `postCtrl.postUser`    | Publier un commentaire|
+| Requete    | URI                    | Description                    |
+| ---------- | ---------------------- | ------------------------------ |
+| `'DELETE'` | `/api/user/delete/:id` | Route de suppression d'un user |
 
-- Requete :
+- req.body :
 
 ```json
 {
-    "post": {
-        "message": "Publication pour la doc",
-        "image": null,
-        "UserId": 25
+    "user": {
+        "emailAdress": "user@email.com",
+        "password": "password"
     }
 }
 ```
@@ -261,22 +140,180 @@ empty
 
 ```json
 {
-    "id": 29,
-    "message": "Publication pour la doc",
+    "message": "User supprimé"
+}
+```
+
+### 3.2 POST (publications)
+
+#### 3.2.1 POST `'GET'` `/api/post`
+
+| Requete | URI           | Description                      |
+| ------- | ------------- | -------------------------------- |
+| `'GET'` | ``/api/post`` | Afficher toutes les publications |
+
+#### 3.2.2 POST `'GET'` `/api/post/:id`
+
+| Requete | URI             | Description                             |
+| ------- | --------------- | --------------------------------------- |
+| `'GET'` | `/api/post/:id` | Afficher une publication en particulier |
+
+#### 3.2.3 POST `'GET'` `/api/post/user/:UserId`
+
+| Requete | URI                      | Description                                      |
+| ------- | ------------------------ | ------------------------------------------------ |
+| `'GET'` | `/api/post/user/:UserId` | Afficher toute les publications d'un utilisateur |
+
+#### 3.2.4 POST `'GET'` `/api/post`
+
+| Requete  | URI           | Description            |
+| -------- | ------------- | ---------------------- |
+| `'POST'` | ``/api/post`` | Poster une publication |
+
+- req.body :
+
+```json
+{
+    "post": {
+        "message": "creation d'un post",
+        "image": null
+    }
+}
+```
+
+- Reponse :
+
+```json
+{
+    "id": 55,
+    "message": "creation d'un post pour test de suppression",
     "image": null,
     "UserId": 25,
-    "updatedAt": "2021-06-10T07:49:38.906Z",
-    "createdAt": "2021-06-10T07:49:38.906Z"
+    "updatedAt": "2021-06-21T12:57:07.300Z",
+    "createdAt": "2021-06-21T12:57:07.300Z"
 }
 ```
 
-### Codes Erreur
+#### 3.2.5 POST `'PUT'` `/api/post`
 
-| Code | Scope        | Description |
-|------|--------------|-------------|
-| A100 | Connect user | User non valide |
-| A101 | Connect user | Password non valide |
-| A102 | Connect user | Bcrypt compare non valide |
-| A103 | Connect user | `User.findOne()` erreur |
-| A200 | Post publication | |
-| A201 | Post publication | |
+| Requete | URI             | Description                    |
+| ------- | --------------- | ------------------------------ |
+| `'PUT'` | `/api/post/:id` | Route de modifcation d'un post |
+
+- req.body :
+
+```json
+{
+    "post": {
+        "message": "modifcation d'un post existant",
+        "image": null
+    }
+}
+```
+
+- Reponse :
+
+```json
+[
+    1
+]
+```
+
+#### 3.2.6 POST `'DELETE'` `/api/post/:id`
+
+| Requete    | URI                     | Description                   |
+| ---------- | ----------------------- | ----------------------------- |
+| `'DELETE'` | `/api/post/:id` | Suppression d'une publication |
+
+- Reponse :
+
+```json
+{
+    "message": "Post supprimé"
+}
+```
+
+### 3.3 COM (commentaires)
+
+#### 3.3.1 COM `'POST'` `/api/com/:id`
+
+| Requete    | URI                     | Description                   |
+| ---------- | ----------------------- | ----------------------------- |
+| `'POST'` | `/api/com/` | Publication d'un commentaire |
+
+- req.body :
+
+```json
+{
+    "com": {
+        "message": "ceci est mon N eme commentaire",
+        "image": null,
+        "PostId": 30
+    }
+}
+```
+
+- Reponse :
+
+```json
+{
+    "id": 11,
+    "message": "ceci est mon N eme commentaire",
+    "image": null,
+    "PostId": 30,
+    "UserId": 25,
+    "updatedAt": "2021-06-21T13:06:53.454Z",
+    "createdAt": "2021-06-21T13:06:53.454Z"
+}
+```
+
+#### 3.3.2 COM `'PUT'` `/api/com/:id`
+
+| Requete    | URI                     | Description                   |
+| ---------- | ----------------------- | ----------------------------- |
+| `'PUT'` | `/api/com/:id` | Modification d'un commentaire |
+
+- req.body :
+
+```json
+{
+    "com": {
+        "message": "modifcation d'un commentaire",
+        "image": null
+    }
+}
+```
+
+- Reponse :
+
+```json
+[
+    1
+]
+```
+
+#### 3.3.3 COM `'DELETE'` `/api/com/:id`
+
+| Requete    | URI                     | Description                   |
+| ---------- | ----------------------- | ----------------------------- |
+| `'DELETE'` | `/api/com/:id` | Suppression d'un commentaire |
+
+
+- Reponse :
+
+```json
+{
+    "message": "Commentaire supprimé"
+}
+```
+
+## 4. Codes Erreur
+
+| Code | Scope            | Description               |
+| ---- | ---------------- | ------------------------- |
+| A100 | Connect user     | User non valide           |
+| A101 | Connect user     | Password non valide       |
+| A102 | Connect user     | Bcrypt compare non valide |
+| A103 | Connect user     | `User.findOne()` erreur   |
+| A200 | Post publication |                           |
+| A201 | Post publication |                           |
