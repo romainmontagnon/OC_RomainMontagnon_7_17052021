@@ -6,6 +6,7 @@ const Sequelize = require('sequelize');
 const { User } = require('../models/index');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const fs = require('fs-extra');
 
 exports.getAllUser = (req, res, next) => {
     User.findAll()
