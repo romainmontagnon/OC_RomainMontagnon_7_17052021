@@ -9,6 +9,7 @@ const fs = require('fs-extra');
 exports.postCom = (req, res, next) => {
     Com.create({
             ...req.body.com,
+            image: `${req.protocol}://${req.get('host')}/uploads/com/${req.file.filename}`,
             UserId: req.token.userId
         })
         .then((com) => {
@@ -28,7 +29,8 @@ exports.modifyCom = (req, res, next) => {
         .then((modifyCom) => {
             if (req.token.userId == modifyCom.UserId /* || req.token.admin*/ ) {
                 Com.update({
-                        ...req.body.com
+                        ...req.body.com,
+                        image: `${req.protocol}://${req.get('host')}/uploads/com/${req.file.filename}`
                     }, {
                         where: {
                             id: req.params.id

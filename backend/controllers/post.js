@@ -61,6 +61,8 @@ exports.getUserPost = (req, res, next) => {
 exports.postUser = (req, res, next) => {
     Post.create({
             ...req.body.post,
+            // image: `${req.protocol}://${req.get('host')}/uploads/post/${req.file.filename}`,
+            image: `${req.protocol}://${req.host}/uploads/post/${req.body.post.image}`,
             UserId: req.token.userId
         })
         .then((post) => {
@@ -80,7 +82,8 @@ exports.modifyPost = (req, res, next) => {
         .then((onePost) => {
             if (req.token.userId == onePost.UserId /*|| req.token.admin*/ ) {
                 Post.update({
-                        ...req.body.post
+                        ...req.body.post,
+                        image: `${req.protocol}://${req.get('host')}/uploads/post/${req.file.filename}`
                     }, {
                         where: {
                             id: req.params.id
@@ -109,6 +112,9 @@ exports.deletePost = (req, res, next) => {
         })
         .then((deletePost) => {
             if (req.token.userId == deletePost.UserId /* || req.token.admin*/ ) {
+                // fs.remove('')
+                //     .then()
+                //     .catch()
                 Post.destroy({
                         where: {
                             id: req.params.id
