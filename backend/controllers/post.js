@@ -66,18 +66,32 @@ exports.postUser = (req, res, next) => {
     // img ?
     // post.image = ligne 71
     // Post.create(post)
-    Post.create({
-            //PARSE la chaine de caracter pour la convertir en objet
-            ...JSON.parse(req.body.post),
-            image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`,
-            UserId: req.token.userId
-        })
-        .then((post) => {
-            res.status(200).json(post)
-        })
-        .catch((error) => {
-            res.status(404).json({ error: error })
-        })
+    if (req.body.post.image == null) {
+        Post.create({
+                ...req.body.post,
+                UserId: req.token.userId
+            })
+            .then((post) => {
+                res.status(200).json(post)
+            })
+            .catch((error) => {
+                res.status(404).json({ error: error })
+            })
+    } else {
+        Post.create({
+                //PARSE la chaine de caracter pour la convertir en objet
+                ...JSON.parse(req.body.post),
+                image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`,
+                UserId: req.token.userId
+            })
+            .then((post) => {
+                res.status(200).json(post)
+            })
+            .catch((error) => {
+                res.status(404).json({ error: error })
+            })
+    };
+
 };
 
 exports.modifyPost = (req, res, next) => {
@@ -121,8 +135,10 @@ exports.deletePost = (req, res, next) => {
         })
         .then(async(deletePost) => {
             if (req.token.userId == deletePost.UserId /* || req.token.admin*/ ) {
-                const filename = deletePost.image.split('/uploads/')[1];
-                await fs.unlink(`uploads/${filename}`);
+                if (deletePost.image != null) {
+                    const filename = deletePost.image.split('/uploads/')[1];
+                    await fs.unlink(`uploads/${filename}`);
+                }
                 Post.destroy({
                         where: {
                             id: req.params.id
