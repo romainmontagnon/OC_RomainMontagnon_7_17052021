@@ -1,5 +1,6 @@
 .env
 nodes_modules
+./backend/uploads
 
 # Logs
 logs
