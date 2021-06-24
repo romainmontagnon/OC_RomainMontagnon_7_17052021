@@ -7,10 +7,17 @@ const { modifyPost } = require('./post');
 const fs = require('fs-extra');
 
 exports.postCom = (req, res, next) => {
+    let postComReq = req.file ? {
+        // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
+        ...JSON.parse(req.body.com),
+        image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+    } : {
+        // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
+        ...JSON.parse(req.body.com)
+    };
     Com.create({
-            //PARSE la chaine de caracter pour la convertir en objet
-            ...JSON.parse(req.body.com),
-            image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`,
+            // on destrcuture postReq avec les ...
+            ...postComReq,
             UserId: req.token.userId
         })
         .then((com) => {
@@ -29,10 +36,18 @@ exports.modifyCom = (req, res, next) => {
         })
         .then((modifyCom) => {
             if (req.token.userId == modifyCom.UserId /* || req.token.admin*/ ) {
+                let modifyComReq = req.file ? {
+                    // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
+                    ...JSON.parse(req.body.com),
+                    image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+                } : {
+                    // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
+                    ...JSON.parse(req.body.com),
+                    image: null
+                };
                 Com.update({
-                        //PARSE la chaine de caracter pour la convertir en objet
-                        ...JSON.parse(req.body.com),
-                        image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`,
+                        // on destrcuture postReq avec les ...
+                        ...modifyComReq
                     }, {
                         where: {
                             id: req.params.id
@@ -61,8 +76,10 @@ exports.deleteCom = (req, res, next) => {
         })
         .then(async(deleteCom) => {
             if (req.token.userId == deleteCom.UserId /*|| req.token.admin */ ) {
-                const filename = deleteCom.image.split('/uploads/')[1];
-                await fs.unlink(`uploads/${filename}`);
+                if (deleteCom.image != null) {
+                    const filename = deleteCom.image.split('/uploads/')[1];
+                    await fs.unlink(`uploads/${filename}`);
+                }
                 Com.destroy({
                         where: {
                             id: req.params.id

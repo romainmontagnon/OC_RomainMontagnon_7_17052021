@@ -59,38 +59,25 @@ exports.getUserPost = (req, res, next) => {
 }
 
 exports.postUser = (req, res, next) => {
-    // let post = {
-    //     ...JSON.parse(req.body.post),
-    //     UserId: req.token.userId
-    // };
-    // img ?
-    // post.image = ligne 71
-    // Post.create(post)
-    if (req.body.post.image == null) {
-        Post.create({
-                ...req.body.post,
-                UserId: req.token.userId
-            })
-            .then((post) => {
-                res.status(200).json(post)
-            })
-            .catch((error) => {
-                res.status(404).json({ error: error })
-            })
-    } else {
-        Post.create({
-                //PARSE la chaine de caracter pour la convertir en objet
-                ...JSON.parse(req.body.post),
-                image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`,
-                UserId: req.token.userId
-            })
-            .then((post) => {
-                res.status(200).json(post)
-            })
-            .catch((error) => {
-                res.status(404).json({ error: error })
-            })
+    let postUserReq = req.file ? {
+        // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
+        ...JSON.parse(req.body.post),
+        image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+    } : {
+        // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
+        ...JSON.parse(req.body.post)
     };
+    Post.create({
+            // on destrcuture postReq avec les ...
+            ...postUserReq,
+            UserId: req.token.userId
+        })
+        .then((post) => {
+            res.status(200).json(post)
+        })
+        .catch((error) => {
+            res.status(404).json({ error: error })
+        })
 
 };
 
@@ -102,10 +89,18 @@ exports.modifyPost = (req, res, next) => {
         })
         .then((onePost) => {
             if (req.token.userId == onePost.UserId /*|| req.token.admin*/ ) {
+                let modifyPostReq = req.file ? {
+                    // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
+                    ...JSON.parse(req.body.post),
+                    image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+                } : {
+                    // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
+                    ...JSON.parse(req.body.post),
+                    image: null
+                };
                 Post.update({
-                        //PARSE la chaine de caracter pour la convertir en objet
-                        ...JSON.parse(req.body.post),
-                        image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`,
+                        // on destrcuture postReq avec les ...
+                        ...modifyPostReq,
                         UserId: req.token.userId
                     }, {
                         where: {
