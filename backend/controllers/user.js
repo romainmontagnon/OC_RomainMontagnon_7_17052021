@@ -9,13 +9,17 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs-extra');
 
 exports.getAllUser = (req, res, next) => {
-    User.findAll()
-        .then((user) => {
-            res.status(200).json(user)
-        })
-        .catch((error) => {
-            res.status(404).json({ error: error })
-        });
+    if (req.token.isAdmin == true) {
+        User.findAll()
+            .then((user) => {
+                res.status(200).json(user)
+            })
+            .catch((error) => {
+                res.status(404).json({ error: error })
+            });
+    } else {
+        res.status(405).json({ message: 'it is forbiden' })
+    }
 };
 
 exports.userSignUp = (req, res, next) => {
@@ -54,7 +58,7 @@ exports.userLogin = (req, res, next) => {
                     }
                     res.status(200).json({
                         userId: user.id,
-                        token: jwt.sign({ userId: user.id },
+                        token: jwt.sign({ userId: user.id, isAdmin: user.isAdmin },
                             process.env.TOKEN_KEY, { expiresIn: '24h' }
                         ),
                     });
@@ -79,7 +83,7 @@ exports.userDelete = (req, res, next) => {
                 .then((valid) => {
                     if (!valid) {
                         return res.status(401).json({ error: 'Utilisateur ou mot de passe non valide, erreur A201!' })
-                    } else if (req.token.userId == userToDelete.id && req.body.user.emailAdress == userToDelete.emailAdress) {
+                    } else if (req.token.userId == userToDelete.id && req.body.user.emailAdress == userToDelete.emailAdress || req.token.isAdmin == true) {
                         User.destroy({
                                 where: {
                                     id: req.params.id
@@ -111,11 +115,13 @@ exports.userUpdate = (req, res, next) => {
             }
         })
         .then((user) => {
-            if (req.token.userId == user.id /*|| req.token.admin*/ ) {
+            if (req.token.userId == user.id || req.token.isAdmin == true) {
                 bcrypt.hash(req.body.user.password, parseInt(process.env.HASH_ROUND))
                     .then((hash) => {
                         User.update({
-                                password: hash
+                                password: hash,
+                                firstName: req.body.user.firstName,
+                                lastName: req.body.user.lastName
                             }, {
                                 where: {
                                     id: req.params.id

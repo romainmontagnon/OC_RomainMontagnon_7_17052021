@@ -88,7 +88,7 @@ exports.modifyPost = (req, res, next) => {
             }
         })
         .then((onePost) => {
-            if (req.token.userId == onePost.UserId /*|| req.token.admin*/ ) {
+            if (req.token.userId == onePost.UserId || req.token.isAdmin == true) {
                 let modifyPostReq = req.file ? {
                     // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
                     ...JSON.parse(req.body.post),
@@ -129,7 +129,7 @@ exports.deletePost = (req, res, next) => {
             }
         })
         .then(async(deletePost) => {
-            if (req.token.userId == deletePost.UserId /* || req.token.admin*/ ) {
+            if (req.token.userId == deletePost.UserId || req.token.isAdmin == true) {
                 if (deletePost.image != null) {
                     const filename = deletePost.image.split('/uploads/')[1];
                     await fs.unlink(`uploads/${filename}`);

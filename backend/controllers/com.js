@@ -35,7 +35,7 @@ exports.modifyCom = (req, res, next) => {
             }
         })
         .then((modifyCom) => {
-            if (req.token.userId == modifyCom.UserId /* || req.token.admin*/ ) {
+            if (req.token.userId == modifyCom.UserId || req.token.isAdmin == true) {
                 let modifyComReq = req.file ? {
                     // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
                     ...JSON.parse(req.body.com),
@@ -75,7 +75,7 @@ exports.deleteCom = (req, res, next) => {
             }
         })
         .then(async(deleteCom) => {
-            if (req.token.userId == deleteCom.UserId /*|| req.token.admin */ ) {
+            if (req.token.userId == deleteCom.UserId || req.token.isAdmin == true) {
                 if (deleteCom.image != null) {
                     const filename = deleteCom.image.split('/uploads/')[1];
                     await fs.unlink(`uploads/${filename}`);
