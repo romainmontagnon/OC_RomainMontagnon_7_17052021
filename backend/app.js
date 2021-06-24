@@ -4,6 +4,7 @@ const user = require('./routes/user');
 const post = require('./routes/post');
 const com = require('./routes/com');
 const app = express();
+const path = require('path');
 
 // ----------------------------------------
 // MIDDLEWARES
@@ -17,6 +18,9 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+
+//chemin d'affichage des images
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
 app.use('/api/user', user);

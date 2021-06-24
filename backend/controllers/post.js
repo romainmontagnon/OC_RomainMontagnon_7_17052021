@@ -59,10 +59,17 @@ exports.getUserPost = (req, res, next) => {
 }
 
 exports.postUser = (req, res, next) => {
+    // let post = {
+    //     ...JSON.parse(req.body.post),
+    //     UserId: req.token.userId
+    // };
+    // img ?
+    // post.image = ligne 71
+    // Post.create(post)
     Post.create({
-            ...req.body.post,
-            // image: `${req.protocol}://${req.get('host')}/uploads/post/${req.file.filename}`,
-            image: `${req.protocol}://${req.host}/uploads/post/${req.body.post.image}`,
+            //PARSE la chaine de caracter pour la convertir en objet
+            ...JSON.parse(req.body.post),
+            image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`,
             UserId: req.token.userId
         })
         .then((post) => {
@@ -82,8 +89,10 @@ exports.modifyPost = (req, res, next) => {
         .then((onePost) => {
             if (req.token.userId == onePost.UserId /*|| req.token.admin*/ ) {
                 Post.update({
-                        ...req.body.post,
-                        image: `${req.protocol}://${req.get('host')}/uploads/post/${req.file.filename}`
+                        //PARSE la chaine de caracter pour la convertir en objet
+                        ...JSON.parse(req.body.post),
+                        image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`,
+                        UserId: req.token.userId
                     }, {
                         where: {
                             id: req.params.id
@@ -110,11 +119,10 @@ exports.deletePost = (req, res, next) => {
                 id: req.params.id
             }
         })
-        .then((deletePost) => {
+        .then(async(deletePost) => {
             if (req.token.userId == deletePost.UserId /* || req.token.admin*/ ) {
-                // fs.remove('')
-                //     .then()
-                //     .catch()
+                const filename = deletePost.image.split('/uploads/')[1];
+                await fs.unlink(`uploads/${filename}`);
                 Post.destroy({
                         where: {
                             id: req.params.id

@@ -8,8 +8,9 @@ const fs = require('fs-extra');
 
 exports.postCom = (req, res, next) => {
     Com.create({
-            ...req.body.com,
-            image: `${req.protocol}://${req.get('host')}/uploads/com/${req.file.filename}`,
+            //PARSE la chaine de caracter pour la convertir en objet
+            ...JSON.parse(req.body.com),
+            image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`,
             UserId: req.token.userId
         })
         .then((com) => {
@@ -29,8 +30,9 @@ exports.modifyCom = (req, res, next) => {
         .then((modifyCom) => {
             if (req.token.userId == modifyCom.UserId /* || req.token.admin*/ ) {
                 Com.update({
-                        ...req.body.com,
-                        image: `${req.protocol}://${req.get('host')}/uploads/com/${req.file.filename}`
+                        //PARSE la chaine de caracter pour la convertir en objet
+                        ...JSON.parse(req.body.com),
+                        image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`,
                     }, {
                         where: {
                             id: req.params.id
@@ -57,8 +59,10 @@ exports.deleteCom = (req, res, next) => {
                 id: req.params.id
             }
         })
-        .then((deleteCom) => {
+        .then(async(deleteCom) => {
             if (req.token.userId == deleteCom.UserId /*|| req.token.admin */ ) {
+                const filename = deleteCom.image.split('/uploads/')[1];
+                await fs.unlink(`uploads/${filename}`);
                 Com.destroy({
                         where: {
                             id: req.params.id
