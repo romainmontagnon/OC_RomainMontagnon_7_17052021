@@ -5,9 +5,14 @@ const post = require('./routes/post');
 const com = require('./routes/com');
 const app = express();
 const path = require('path');
+const helmet = require('helmet');
+const xss = require('xss-advanced');
 
 // ----------------------------------------
 // MIDDLEWARES
+
+app.use(helmet());
+app.disable('x-powered-by');
 
 // Headers configuration
 app.use((req, res, next) => {
@@ -17,9 +22,12 @@ app.use((req, res, next) => {
     next();
 });
 
+// body parser
 app.use(express.json());
 
-//chemin d'affichage des images
+app.use(xss());
+
+// chemin d'affichage des images
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
