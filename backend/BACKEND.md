@@ -221,8 +221,8 @@ nodemon start
 
 #### 3.2.6 POST `'DELETE'` `/api/post/:id`
 
-| Requete    | URI                     | Description                   |
-| ---------- | ----------------------- | ----------------------------- |
+| Requete    | URI             | Description                   |
+| ---------- | --------------- | ----------------------------- |
 | `'DELETE'` | `/api/post/:id` | Suppression d'une publication |
 
 - Reponse :
@@ -237,8 +237,8 @@ nodemon start
 
 #### 3.3.1 COM `'POST'` `/api/com/:id`
 
-| Requete    | URI                     | Description                   |
-| ---------- | ----------------------- | ----------------------------- |
+| Requete  | URI         | Description                  |
+| -------- | ----------- | ---------------------------- |
 | `'POST'` | `/api/com/` | Publication d'un commentaire |
 
 - req.body :
@@ -269,8 +269,8 @@ nodemon start
 
 #### 3.3.2 COM `'PUT'` `/api/com/:id`
 
-| Requete    | URI                     | Description                   |
-| ---------- | ----------------------- | ----------------------------- |
+| Requete | URI            | Description                   |
+| ------- | -------------- | ----------------------------- |
 | `'PUT'` | `/api/com/:id` | Modification d'un commentaire |
 
 - req.body :
@@ -294,8 +294,8 @@ nodemon start
 
 #### 3.3.3 COM `'DELETE'` `/api/com/:id`
 
-| Requete    | URI                     | Description                   |
-| ---------- | ----------------------- | ----------------------------- |
+| Requete    | URI            | Description                  |
+| ---------- | -------------- | ---------------------------- |
 | `'DELETE'` | `/api/com/:id` | Suppression d'un commentaire |
 
 
@@ -317,3 +317,8 @@ nodemon start
 | A103 | Connect user     | `User.findOne()` erreur   |
 | A200 | Post publication |                           |
 | A201 | Post publication |                           |
+
+## 5. Compte Admin et variable `isAdmin`
+
+Une variable `isAdmin` est initialisé a `false` pour chaque création de nouveau user et ne peut être modifié via l'API.
+La modification de la variable  est possible, en manipulant directement la variable dans la base de données via un compte `admin`.
