@@ -43,9 +43,9 @@ app.use(xss());
 // chemin d'affichage des images
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
-});
+// app.get('/', (req, res) => {
+//     res.send('Hello World');
+// });
 
 // Routes
 app.use('/api/user', user);

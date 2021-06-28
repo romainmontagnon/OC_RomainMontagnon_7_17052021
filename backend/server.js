@@ -1,6 +1,4 @@
-require('dotenv').config();
 const http = require('http');
-const https = require('https');
 const fs = require('fs-extra');
 const app = require('./app');
 
@@ -39,11 +37,7 @@ const errorHandler = error => {
 };
 
 
-// const server = http.createServer(app);
-const server = https.createServer({
-    key: fs.readFileSync(process.env.SSL_KEY),
-    cert: fs.readFileSync(process.env.SSL_CERTIFICATE)
-}, app);
+const server = http.createServer(app);
 
 server.on('error', errorHandler);
 server.on('listening', () => {
