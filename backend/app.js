@@ -11,8 +11,21 @@ const xss = require('xss-advanced');
 // ----------------------------------------
 // MIDDLEWARES
 
-app.use(helmet());
-app.disable('x-powered-by');
+app.use(helmet({
+    crossOriginEmbedderPolicy: true,
+    crossOriginOpenerPolicy: {
+        policy: "same-origin-allow-popups"
+    },
+    expectCt: ({
+        maxAge: 86400
+            /* maxAge: 1 day */
+    }),
+    htsts: ({
+        maxAge: 15552000,
+        /* maxAge: 180 days */
+        includeSubDomains: true
+    })
+}));
 
 // Headers configuration
 app.use((req, res, next) => {
