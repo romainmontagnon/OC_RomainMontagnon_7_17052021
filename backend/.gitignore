@@ -1,8 +1,6 @@
 .env
 nodes_modules
 uploads/
-server.key
-server.cert
 
 # Logs
 logs

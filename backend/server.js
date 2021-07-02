@@ -1,5 +1,4 @@
 const http = require('http');
-const fs = require('fs-extra');
 const app = require('./app');
 
 const normalizePort = val => {
@@ -35,7 +34,6 @@ const errorHandler = error => {
             throw error;
     }
 };
-
 
 const server = http.createServer(app);
 
