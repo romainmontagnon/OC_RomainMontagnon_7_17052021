@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs-extra');
 
 exports.getAllUser = (req, res, next) => {
-    if (req.token.isAdmin == true) {
+    if (req.token.isAdmin) {
         User.findAll()
             .then((user) => {
                 res.status(200).json(user)
