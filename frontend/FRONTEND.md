@@ -15,6 +15,7 @@
 
 - Frameworks CSS :
   [Install Tailwind CSS for REACT]([../README.md](https://tailwindcss.com/docs/guides/create-react-app))
+`npx tailwindcss-cli -i index.css -o build_style.css`
 
 ### Installation du frontend
 
@@ -22,4 +23,3 @@
   ```bash
   npm start
   ```
-
