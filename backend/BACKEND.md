@@ -29,8 +29,6 @@ nodemon start
 | DB_DATABASE     | Nom de la base de donnée    |
 | DB_USERNAME     | Utilisateur                 |
 | DB_PASSWORD     | Mot de passe                |
-| SSL_CERTIFICATE | chemin vers certificat SSL  |
-| SSL_KEY         | chemin vers clef privée SSL |
 
 ## 3. Routes
 
@@ -323,4 +321,4 @@ nodemon start
 ## 5. Compte Admin et variable `isAdmin`
 
 Une variable `isAdmin` est initialisé a `false` pour chaque création de nouveau user et ne peut être modifié via l'API.
-La modification de la variable  est possible, en manipulant directement la variable dans la base de données via un compte `admin`.
+La modification de la variable  est possible uniquement en manipulant la variable dans la base de données via un compte `admin` de la base de donnée.
