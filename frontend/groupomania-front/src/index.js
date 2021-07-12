@@ -1,24 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './styles/index.css';
-// import './styles/build_style.css';
+import loadFromSessionStorage from './js/loadFromSession';
+
+// import './styles/tailwind.css';
+import './styles/style_build.css';
 
 import Navbar from './components/Navbar';
-import Test from './components/Test';
+import SignInUp from './components/Sign-in-up';
 
 import reportWebVitals from './reportWebVitals';
 
-
 ReactDOM.render(
     <React.StrictMode>
-        <Navbar />
+        <Navbar isLoggedIn={loadFromSessionStorage('logged')}/>
     </React.StrictMode>, document.getElementById('landing')
 );
 
 ReactDOM.render(
     <React.StrictMode>
-        <Test />
+        <SignInUp isLoggedIn={loadFromSessionStorage('logged')} />
     </React.StrictMode>, document.getElementById('login')
 );
 

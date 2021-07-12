@@ -1,13 +1,26 @@
-import NavLogo from './Nav_Logo.jsx';
-import NavMenu from './Nav_Menu.jsx';
+import NavLogo from './Nav/Nav_Logo.jsx';
+import NavGlobal from './Nav/Nav_Global.jsx';
 
-function Nav() {
-    return (
-        <div className="flex flex-row justify-between items-center" >
-            <NavLogo />
-            <NavMenu />
-        </div>
-    );
+const Navbar = (props) => {
+    const isLoggedIn = props.isLoggedIn
+    if (isLoggedIn) {
+        return (
+            <div className="flex flex-row justify-between items-center" >
+                <NavLogo />
+                <nav>
+                    <NavGlobal />
+                </nav>
+            </div>
+        );
+    } else {
+        return (
+            <div className="flex flex-row justify-between items-center" >
+                <NavLogo />
+                <nav>
+                </nav>
+            </div>
+        );
+    }
 }
 
-export default Nav;
+export default Navbar;
