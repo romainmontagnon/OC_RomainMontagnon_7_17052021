@@ -14,7 +14,7 @@ const SearchBar = () => (
                 name="search"
                 className='bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl w-60 text-center'
             />
-            <button type="submit" className='mx-1'>< FontAwesomeIcon icon={faSearch} /></button>
+            <button type="submit" className='mx-1' onClick={ () => {console.log(('hello wolrd !'))}}>< FontAwesomeIcon icon={faSearch} /></button>
         </label>
     </form>
 );

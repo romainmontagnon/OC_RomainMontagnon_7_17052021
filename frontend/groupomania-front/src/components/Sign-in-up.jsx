@@ -39,7 +39,7 @@ const SignInUp = (props) => {
     if (!isLoggedIn) {
         return <SignInUpButton />
     } else if (isLoggedIn) {
-        return <p>You are logged in !!!</p>
+        return <h3>Bonjour, User</h3>
     }
 };
 
