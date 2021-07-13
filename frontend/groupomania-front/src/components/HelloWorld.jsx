@@ -1,9 +1,15 @@
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHamburger } from '@fortawesome/free-solid-svg-icons'
+// import { fa500px } from '@fortawesome/free-brands-svg-icons'
+// import { faPaperPlane } from '@fortawesome/free-regular-svg-icons'
+
 const HelloWorld = () => {
     return (
-        <div className='w-2/4 mx-auto rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 uppercase'>
-            <h1>Hello world</h1>
+        <div className=''>
+            <h1>Hello World</h1>
+            < FontAwesomeIcon icon={faHamburger} />
         </div>
     )
 };

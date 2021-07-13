@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SignInForm from "./sign-in-up/SignInForm";
 import SignUpForm from "./sign-in-up/SignUpForm";
+import HelloWorldForm from './HelloWorldForm';
 
 const SignInUpButton = () => {
     const [showSignIn, setshowSignIn] = useState(false);
@@ -26,7 +27,8 @@ const SignInUpButton = () => {
                 </button>
             </div>
             <div className='my-auto'>
-                {showSignUp && <SignUpForm />}
+                {/* {showSignUp && <SignUpForm />} */}
+                {showSignUp && <HelloWorldForm />}
                 {showSignIn && <SignInForm />}
             </div>
         </div>

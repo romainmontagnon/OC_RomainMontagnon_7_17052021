@@ -1,35 +1,44 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircle } from '@fortawesome/free-solid-svg-icons'
-// import { fa500px } from '@fortawesome/free-brands-svg-icons'
-// import { faPaperPlane } from '@fortawesome/free-regular-svg-icons'
-// import timeline from '../../js/timeline';
+import React, { useState } from 'react';
+
 import NavFooterLogo from './NavFooter';
-import account from '../../js/account';
+import CGU from '../CGU';
+import Contact from '../Contact';
 
 const NavFooterMenu = () => {
+    const [showCGU, setshowCGU] = useState(false);
+    const [showContact, setshowContact] = useState(false);
     return (
-        <ul className='mr-2 flex flex-row items-center'>
-            <li>
-                <NavFooterLogo />
-            </li>
-            
-            <li>
-                <button type="submit"
-                    className='mx-2  text-center text-mandy-600 font-semibold hover:text-mandy-100'
-                    onClick={() => { console.log('timeline') }}>CGI</button>
-            </li>
-            {/* <li>
-                <div className='text-xs text-mandy-600'>
-                    <FontAwesomeIcon icon={faCircle} />
+        <div>
+            <ul className='mr-2 flex flex-row items-center'>
+                <li>
+                    <NavFooterLogo />
+                </li>
+                <li>
+                    <button type="submit"
+                        className='mx-2  text-center text-mandy-600 font-semibold hover:text-mandy-100'
+                        onClick={() => {
+                            setshowCGU(!showCGU)
+                            setshowContact(false)
+                        }}>
+                        CGU
+                    </button>
+                </li>
+                <li>
+                    <button type="submit"
+                        className='mx-2  text-center text-mandy-600 font-semibold hover:text-mandy-100'
+                        onClick={() => {
+                            setshowCGU(false)
+                            setshowContact(!showContact)
+                        }}>
+                        Contact
+                    </button>
+                </li>
+            </ul>
+                <div className='my-auto'>
+                    {showCGU && <CGU />}
+                    {showContact && <Contact />}
                 </div>
-            </li> */}
-            <li>
-                <button type="submit"
-                    className='mx-2  text-center text-mandy-600 font-semibold hover:text-mandy-100'
-                    onClick={account}>Contact</button>
-            </li>
-        </ul>
+        </div>
     )
 };
 

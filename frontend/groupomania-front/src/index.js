@@ -10,8 +10,6 @@ import './styles/style_build.css';
 import Navbar from './components/Navbar';
 import SignInUp from './components/Sign-in-up';
 import Timeline from './components/Timeline';
-import HelloWorld from './components/HelloWorld'
-import NavFooterLogo from './components/Nav/NavFooter';
 import NavFooterMenu from './components/Nav/NavFooterMenu'
 
 ReactDOM.render(
