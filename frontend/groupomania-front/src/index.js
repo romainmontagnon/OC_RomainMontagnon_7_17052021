@@ -6,6 +6,7 @@ import loadFromSessionStorage from './js/loadFromSession';
 
 // import './styles/tailwind.css';
 import './styles/style_build.css';
+import './styles/style.css';
 
 import Navbar from './components/Navbar';
 import SignInUp from './components/Sign-in-up';

@@ -27,8 +27,8 @@ const SignInUpButton = () => {
                 </button>
             </div>
             <div className='my-auto'>
-                {/* {showSignUp && <SignUpForm />} */}
-                {showSignUp && <HelloWorldForm />}
+                {showSignUp && <SignUpForm />}
+                {/* {showSignUp && <HelloWorldForm />} */}
                 {showSignIn && <SignInForm />}
             </div>
         </div>
