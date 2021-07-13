@@ -49,7 +49,7 @@ class NavFooterMenu extends React.Component {
                     </li>
                 </ul>
                 <div className='my-auto'>
-                    {this.state.showCGU && <CGU />}
+                    {this.state.showCGU && <CGU handler={this.handleShowCGU}/>}
                     {this.state.showContact && <Contact handler={this.handleShowContact} />}
                     {/* {this.state.showContact.toString()} */}
                 </div>
