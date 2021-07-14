@@ -2,41 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 
-import { loadFromSessionStorage } from './js/sesssion';
 
 // import './styles/tailwind.css';
 import './styles/style_build.css';
 import './styles/style.css';
 
-import Navbar from './components/Navbar';
-import SignInUp from './components/Sign-in-up';
-import Timeline from './components/Timeline';
-import NavFooterMenu from './components/Nav/NavFooterMenu'
+import App from './components/App'
 
 ReactDOM.render(
     <React.StrictMode>
-        <Navbar isLoggedIn={loadFromSessionStorage('loggedIn')} />
-    </React.StrictMode>, document.getElementById('landing')
-);
-
-ReactDOM.render(
-    <React.StrictMode>
-        <SignInUp isLoggedIn={loadFromSessionStorage('loggedIn')} />
-    </React.StrictMode>, document.getElementById('login')
-);
-
-ReactDOM.render(
-    <React.StrictMode>
-        <Timeline isLoggedIn={loadFromSessionStorage('loggedIn')} />
-    </React.StrictMode>, document.getElementById('timeline')
-);
-
-ReactDOM.render(
-    <React.StrictMode>
-        <nav>
-            <NavFooterMenu />
-        </nav>
-    </React.StrictMode>, document.getElementById('footer')
+        <App />
+    </React.StrictMode>, document.getElementById('root')
 );
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

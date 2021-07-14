@@ -1,4 +1,4 @@
-import { loadFromSessionStorage, storeToSessionStorage } from "./sesssion";
+import { /*loadFromSessionStorage,*/ storeToSessionStorage } from "./sesssion";
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
@@ -53,11 +53,11 @@ const postLogin = (data, url) => {
 
     fetch(url, requestOptions)
         .then((response) => {
-            if (response.status != 200) {
-                storeToSessionStorage('loggedIn', false)
-            } else if (response.status == 200) {
+            if (response.status !== 200) {
+                storeToSessionStorage('isLoggedIn', false)
+            } else if (response.status === 200) {
                 console.log("loggedIn");
-                storeToSessionStorage('loggedIn', true)
+                storeToSessionStorage('isLoggedIn', true)
             }
             return response.json();
         })
@@ -69,14 +69,6 @@ const postLogin = (data, url) => {
         .catch((error) => {
             console.log('error', error)
         });
-
-
-
-
-    // fetch(url, requestOptions)
-    //     .then(response => response.text())
-    //     .then(result => console.log(result))
-    //     .catch(error => console.log('error', error));
 }
 
 export {

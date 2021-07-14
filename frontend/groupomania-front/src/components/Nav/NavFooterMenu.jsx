@@ -16,12 +16,12 @@ class NavFooterMenu extends React.Component {
         this.handleShowCGU = this.handleShowCGU.bind(this);
     }
 
-    handleShowCGU(e) {
+    handleShowCGU() {
         this.setState({showCGU: !this.state.showCGU})
         this.setState({showContact: false})
     }
 
-    handleShowContact(e) {
+    handleShowContact() {
         this.setState({showCGU: false})
         this.setState({showContact: !this.state.showContact})
     }
