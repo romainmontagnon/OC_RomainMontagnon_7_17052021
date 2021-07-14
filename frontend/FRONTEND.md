@@ -23,3 +23,8 @@
   ```bash
   npm start
   ```
+
+### Route vers l'API
+
+Le fichier `/src/js/routes.js` permet de modifier les routes vers l'API grâce aux variables `baseUrl` et `port`.
+Par défaut le chemin vers l'API est : `http://localhost:3001/api/`

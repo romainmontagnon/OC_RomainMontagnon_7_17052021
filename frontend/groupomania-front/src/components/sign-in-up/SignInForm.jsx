@@ -1,5 +1,6 @@
 import React from 'react';
-import { postLoginData } from '../../js/fetchRequest'
+import { postLogin } from '../../js/fetchRequest';
+import { routes } from '../../js/routes';
 
 class SignInForm extends React.Component {
     constructor(props) {
@@ -13,7 +14,8 @@ class SignInForm extends React.Component {
         event.preventDefault();
         if (this.state != null) {
             console.log(this.state)
-            postLoginData(this.state, 'url://');
+            console.log(routes.urlLogin);
+            postLogin(this.state, routes.urlLogin);
         } else {
             console.log(this.state)
         }

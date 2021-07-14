@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 
-import loadFromSessionStorage from './js/loadFromSession';
+import { loadFromSessionStorage } from './js/sesssion';
 
 // import './styles/tailwind.css';
 import './styles/style_build.css';
@@ -15,19 +15,19 @@ import NavFooterMenu from './components/Nav/NavFooterMenu'
 
 ReactDOM.render(
     <React.StrictMode>
-        <Navbar isLoggedIn={loadFromSessionStorage('logged')} />
+        <Navbar isLoggedIn={loadFromSessionStorage('loggedIn')} />
     </React.StrictMode>, document.getElementById('landing')
 );
 
 ReactDOM.render(
     <React.StrictMode>
-        <SignInUp isLoggedIn={loadFromSessionStorage('logged')} />
+        <SignInUp isLoggedIn={loadFromSessionStorage('loggedIn')} />
     </React.StrictMode>, document.getElementById('login')
 );
 
 ReactDOM.render(
     <React.StrictMode>
-        <Timeline isLoggedIn={loadFromSessionStorage('logged')} />
+        <Timeline isLoggedIn={loadFromSessionStorage('loggedIn')} />
     </React.StrictMode>, document.getElementById('timeline')
 );
 

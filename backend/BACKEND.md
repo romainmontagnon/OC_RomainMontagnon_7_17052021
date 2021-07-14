@@ -20,6 +20,10 @@ node server.js
 nodemon start
 ```
 
+### Chemin et port de l'api
+
+`http://localhost:3001/api/`
+
 ## 2. Variable d'environnement
 
 | Variables       | Description                 |
