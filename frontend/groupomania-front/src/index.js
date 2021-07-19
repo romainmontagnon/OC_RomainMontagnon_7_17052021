@@ -7,12 +7,20 @@ import reportWebVitals from './reportWebVitals';
 import './styles/style_build.css';
 import './styles/style.css';
 
-import App from './components/App'
+// import App from './components/App'
+import App2 from './components/App';
+import UserProvider from './components/context/UserProvider';
+
+// ReactDOM.render(
+//     <React.StrictMode>
+//         <App />
+//     </React.StrictMode>, document.getElementById('root')
+// );
 
 ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>, document.getElementById('root')
+    <UserProvider>
+        <App2 />
+    </UserProvider>, document.getElementById('test')
 );
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -3,8 +3,7 @@ import Publish from './Publish';
 import Feeds from './Feeds';
 
 const Timeline = (props) => {
-    const isLoggedIn = props.isLoggedIn;
-    if (isLoggedIn) {
+    if (props.isLoggedIn) {
         return (
         <div>
             <p>This the begining of the timeline</p>

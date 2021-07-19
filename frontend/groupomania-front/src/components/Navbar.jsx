@@ -2,8 +2,7 @@ import NavLogo from './Nav/Nav_Logo.jsx';
 import NavGlobal from './Nav/Nav_Global.jsx';
 
 const Navbar = (props) => {
-    const isLoggedIn = props.isLoggedIn
-    if (isLoggedIn) {
+    if (props.isLoggedIn) {
         return (
             <div className="flex flex-row justify-between items-center" >
                 <NavLogo />

@@ -5,11 +5,11 @@ import SignUpForm from "./sign-in-up/SignUpForm";
 class SignInUpButton extends React.Component {
     state = {
         showSignIn: true,
-        showSignUp: false
+        showSignUp: false,
     }
     constructor(props) {
         super(props);
-
+        const isLoggedIn = this.isLoggedIn;
         this.handleShowSignIn = this.handleShowSignIn.bind(this);
         this.handleShowSignUp = this.handleShowSignUp.bind(this);
     }
@@ -23,6 +23,7 @@ class SignInUpButton extends React.Component {
         this.setState({ showSignIn: false })
         this.setState({ showSignUp: true })
     }
+
     render() {
         return (
             <div className='h-80 flex flex-row bg-white bg-opacity-40 pr-10 rounded-3xl'>
@@ -47,20 +48,11 @@ class SignInUpButton extends React.Component {
     }
 }
 
-class SignInUp extends React.Component {
-    state = {
-        SignInUp: true,
-    }
-    constructor(props) {
-        super(props);
-        this.state = this.props.isLoggedIn;
-    }
-    render() {
-        if (!this.state || this.state==='undefined') {
-            return <SignInUpButton />
-        } else if (this.state) {
-            return <h3>Bonjour, User</h3>
-        }
+const SignInUp = (props) => {
+    if (!props.isLoggedIn || props.isLoggedIn === 'undefined') {
+        return <SignInUpButton />
+    } else if (props.isLoggedIn) {
+        return <h3>Bonjour, User</h3>
     }
 };
 

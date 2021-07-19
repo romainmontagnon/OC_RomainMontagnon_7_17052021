@@ -1,4 +1,7 @@
 import { /*loadFromSessionStorage,*/ storeToSessionStorage } from "./sesssion";
+
+import { UserContext } from "../components/context/UserProvider";
+
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
@@ -57,7 +60,7 @@ const postLogin = (data, url) => {
                 storeToSessionStorage('isLoggedIn', false)
             } else if (response.status === 200) {
                 console.log("loggedIn");
-                storeToSessionStorage('isLoggedIn', true)
+
             }
             return response.json();
         })
