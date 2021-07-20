@@ -3,9 +3,14 @@ import { loadFromSessionStorage } from '../js/sesssion';
 
 class WelcomeUser extends React.Component{
     render(){
-        const user = `User ${loadFromSessionStorage('userId')}`
+        const user = `${loadFromSessionStorage('firstName')} ${loadFromSessionStorage('lastName')}`
+        const userId = `userId ${loadFromSessionStorage('userId')}`
         return (
-            <h3>Bonjour, {user}</h3>
+            <div>
+                <h3>Bonjour, {user} !</h3>
+                <p>{userId}<span className='text-xs'> (span a supprimer pour la prod)</span></p>
+                
+            </div>
         )
     }
 }

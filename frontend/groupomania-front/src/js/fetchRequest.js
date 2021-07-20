@@ -41,6 +41,8 @@ const postSignUp = (data, url) => {
             console.log(result);
             storeToSessionStorage('userId', result.userId);
             storeToSessionStorage('token', result.token)
+            storeToSessionStorage('firstName', result.firstName)
+            storeToSessionStorage('lastName', result.lastName)
         })
         .catch((error) => {
             console.log('error', error);
@@ -84,6 +86,8 @@ const postLogin = (data, url) => {
             console.log(result);
             storeToSessionStorage('userId', result.userId);
             storeToSessionStorage('token', result.token)
+            storeToSessionStorage('firstName', result.firstName)
+            storeToSessionStorage('lastName', result.lastName)
         })
         .catch((error) => {
             console.log('error', error)
