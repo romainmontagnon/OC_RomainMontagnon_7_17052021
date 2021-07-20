@@ -1,5 +1,6 @@
 import React from 'react';
-import {postSignUp} from '../../js/fetchRequest'
+import { postSignUp } from '../../js/fetchRequest'
+import { routes } from '../../js/routes';
 
 class SignUpForm extends React.Component {
     state = {
@@ -16,9 +17,14 @@ class SignUpForm extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log(this.state);
         event.preventDefault();
-        postSignUp();
+        if (this.state != null) {
+            console.log(this.state)
+            console.log(routes.urlLogin);
+            postSignUp(this.state, routes.urlSignUp);
+        } else {
+            console.log(this.state);
+        }
     }
 
     handleInputChange(event) {
@@ -35,8 +41,8 @@ class SignUpForm extends React.Component {
         return (
             <div className='flex flex-col justify-around'>
                 <h2 className='uppercase font-semi-bold text-2xl text-center text-midnight-500 mb-10'>Inscription</h2>
-                <form 
-                className='flex flex-col justify-around my-1'
+                <form
+                    className='flex flex-col justify-around my-1'
                     onSubmit={this.handleSubmit}>
                     <input
                         type="text"
