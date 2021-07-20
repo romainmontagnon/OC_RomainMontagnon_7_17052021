@@ -1,6 +1,12 @@
 #!/bin/zsh
 
-echo "go to Front"
+echo "
+*************************
+
+let's start FRONTEND !!!
+
+*************************
+"
 
 cd frontend/groupomania-front/
 npm start

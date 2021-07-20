@@ -1,6 +1,7 @@
 import React from 'react';
 import SignInForm from "./sign-in-up/SignInForm";
 import SignUpForm from "./sign-in-up/SignUpForm";
+import WelcomeUser from "./WelcomeUser";
 
 class SignInUpButton extends React.Component {
     state = {
@@ -52,7 +53,9 @@ const SignInUp = (props) => {
     if (!props.isLoggedIn || props.isLoggedIn === 'undefined') {
         return <SignInUpButton />
     } else if (props.isLoggedIn) {
-        return <h3>Bonjour, User</h3>
+        return (
+            <WelcomeUser />
+        )
     }
 };
 

@@ -2,10 +2,10 @@ import { /*loadFromSessionStorage,*/ storeToSessionStorage } from "./sesssion";
 
 import { UserContext } from "../components/context/UserProvider";
 
-var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
-
 const postSignUp = (data, url) => {
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
     let dataToRaw = {
         user: {
             emailAdress: data.emailAdress,
@@ -49,6 +49,9 @@ const postSignUp = (data, url) => {
 };
 
 const postLogin = (data, url) => {
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
     let dataToRaw = {
         user: {
             emailAdress: data.emailAdress,
@@ -87,14 +90,69 @@ const postLogin = (data, url) => {
         });
 }
 
-const getAllPost = (data, url) => {
-    console.log('all post');
+const getAllPost = (token, url) => {
+    let myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    let requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    fetch(url, requestOptions)
+        .then((response) => {
+            return response.json()
+        })
+        .then((result) => {
+            console.table(result)
+            storeToSessionStorage('feeds')
+            for (let i = 0; i < result.length; i++) {
+                console.log(result[i].message)
+                console.log(result[i].image)
+                console.log(result[i].userId)
+            }
+        })
+        .catch(error => console.log('error', error));
+}
+
+const postAPost = (token, data, url) => {
+    console.log(token)
+    console.log(data.image)
+    console.log(url)
+    if (data.image != undefined) {
+        let filename = (data.image).split("C:\\fakepath\\");
+        console.log(filename[1]);
+    };
+
+    let myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    let formdata = new FormData();
+    // formdata.append("file", fileInput.files[0], "m-4_M8uIfPEZw-unsplash.jpg");
+    formdata.append("post", `{"message": "${data.message}"}`);
+
+
+    // formdata.append("file", fileInput.files[0], "m-4_M8uIfPEZw-unsplash.jpg");
+
+    //     let requestOptions = {
+    //         method: 'POST',
+    //         headers: myHeaders,
+    //         body: formdata,
+    //         redirect: 'follow'
+    //     };
+
+    //     fetch(url, requestOptions)
+    //         .then(response => response.text())
+    //         .then(result => console.log(result))
+    //         .catch(error => console.log('error', error));
 }
 
 export {
     postLogin,
     postSignUp,
-    getAllPost
+    getAllPost,
+    postAPost
 };
 
 

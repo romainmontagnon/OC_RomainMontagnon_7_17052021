@@ -1,6 +1,12 @@
 #!/bin/zsh
 
-echo "go to Backend"
+echo "
+***********************
+
+let's start BACKEND !!!
+
+***********************
+"
 
 cd backend/
 npm start
