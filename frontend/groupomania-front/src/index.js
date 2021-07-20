@@ -18,9 +18,9 @@ import UserProvider from './components/context/UserProvider';
 // );
 
 ReactDOM.render(
-    <UserProvider>
+    <React.StrictMode>
         <App2 />
-    </UserProvider>, document.getElementById('test')
+    </React.StrictMode>, document.getElementById('test')
 );
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

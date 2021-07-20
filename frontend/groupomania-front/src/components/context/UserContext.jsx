@@ -1,6 +1,7 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 
-// export default React.Component({
-//     logedIn: "",
-//     updateLogin: name => { },
-// })
+export const user = {
+    isLoggedIn: false
+};
+
+export const UserContext = React.createContext(user)

@@ -26,6 +26,7 @@ class SignInUpButton extends React.Component {
     }
 
     render() {
+        let user = this.context;
         return (
             <div className='h-80 flex flex-row bg-white bg-opacity-40 pr-10 rounded-3xl'>
                 <div className='flex flex-col justify-around'>
@@ -42,20 +43,25 @@ class SignInUpButton extends React.Component {
                 </div>
                 <div className='my-auto'>
                     {this.state.showSignUp && <SignUpForm handler={this.handleShowSignUp} />}
-                    {this.state.showSignIn && <SignInForm handler={this.handleShowSignIn} />}
+                    {this.state.showSignIn && <SignInForm handler={this.handleShowSignIn} {...this.props} />}
                 </div>
             </div>
         )
     }
 }
 
-const SignInUp = (props) => {
-    if (!props.isLoggedIn || props.isLoggedIn === 'undefined') {
-        return <SignInUpButton />
-    } else if (props.isLoggedIn) {
-        return (
-            <WelcomeUser />
-        )
+class SignInUp extends React.Component {
+    constructor(props){
+        super(props)
+    }
+    render() {
+        if (!this.props.isLoggedIn || this.props.isLoggedIn === 'undefined') {
+            return <SignInUpButton {...this.props} />
+        } else if (this.props.isLoggedIn) {
+            return (
+                <WelcomeUser />
+            )
+        }
     }
 };
 

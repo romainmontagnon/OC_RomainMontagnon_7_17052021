@@ -76,6 +76,7 @@ const postLogin = (data, url) => {
         .then((response) => {
             if (response.status !== 200) {
                 storeToSessionStorage('isLoggedIn', false)
+                return false
             } else if (response.status === 200) {
                 console.log("loggedIn");
                 storeToSessionStorage('isLoggedIn', true)
@@ -88,6 +89,7 @@ const postLogin = (data, url) => {
             storeToSessionStorage('token', result.token)
             storeToSessionStorage('firstName', result.firstName)
             storeToSessionStorage('lastName', result.lastName)
+            return true
         })
         .catch((error) => {
             console.log('error', error)
