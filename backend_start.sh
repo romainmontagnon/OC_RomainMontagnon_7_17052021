@@ -9,4 +9,4 @@ let's start BACKEND !!!
 "
 
 cd backend/
-npm start
+nodemon start

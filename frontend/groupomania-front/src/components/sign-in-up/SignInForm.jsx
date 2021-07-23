@@ -1,6 +1,7 @@
 import React from 'react';
 import { postLogin } from '../../js/fetchRequest';
 import { routes } from '../../js/routes';
+import { storeToSessionStorage } from '../../js/sesssion';
 
 class SignInForm extends React.Component {
     constructor(props) {
@@ -10,17 +11,79 @@ class SignInForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    // async handleSubmit(event) {
+    //     event.preventDefault();
+    //     if (this.state != null) {
+    //         console.log(this.state)
+    //         console.log(routes.urlLogin);
+    //         let logged = await postLogin(this.state, routes.urlLogin);
+    //         // this.props.login(true)
+    //         this.props.login(logged)
+
+    //     } else {
+    //         console.log(this.state)
+    //     }
+    // }
+
     async handleSubmit(event) {
         event.preventDefault();
-        if (this.state != null) {
+        if (this.state === null) {
             console.log(this.state)
-            console.log(routes.urlLogin);
-            let data = this.state;
-            let logged = await postLogin(data, routes.urlLogin);
-            this.props.login(true)
-            // this.props.login(logged)
+            alert(`Merci de saisir un identifiant et un mot de passe`)
         } else {
             console.log(this.state)
+            console.log(routes.urlLogin);
+            // let logged = await postLogin(this.state, routes.urlLogin);
+            // this.props.login(true);
+            // this.props.login(logged);
+            // console.log(logged);
+
+            let myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            let dataToRaw = {
+                user: {
+                    emailAdress: this.state.emailAdress,
+                    password: this.state.password
+                }
+            };
+            console.log(JSON.stringify(dataToRaw));
+            console.log(routes.urlLogin);
+
+            let raw = JSON.stringify(dataToRaw);
+
+            let requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            let logged = await fetch(routes.urlLogin, requestOptions)
+                // .then((response) => response.json())
+                .then((response) => {
+                    if (response.status !== 200) {
+                        storeToSessionStorage('isLoggedIn', false)
+                        return response.json();
+                    } else if (response.status === 200) {
+                        console.log("loggedIn");
+                        storeToSessionStorage('isLoggedIn', true)
+                        return response.json();
+                    }
+                })
+                .then((result) => {
+                    console.log(result);
+                    storeToSessionStorage('userId', result.userId);
+                    storeToSessionStorage('token', result.token)
+                    storeToSessionStorage('firstName', result.firstName)
+                    storeToSessionStorage('lastName', result.lastName)
+                    return result.logged
+                })
+                .catch((error) => {
+                    console.log('error', error)
+                });
+            console.log(logged)
+            this.props.login(logged);
         }
     }
 
@@ -33,7 +96,6 @@ class SignInForm extends React.Component {
             [name]: value
         });
     }
-
     render() {
         return (
             <div className='flex flex-col justify-around'>

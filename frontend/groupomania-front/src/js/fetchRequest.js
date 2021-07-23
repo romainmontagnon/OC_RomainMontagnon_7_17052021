@@ -70,24 +70,48 @@ const postLogin = (data, url) => {
         redirect: 'follow'
     };
 
+    // fetch(url, requestOptions)
+    //     .then((response) => {
+    //         if (response.status !== 200) {
+    //             storeToSessionStorage('isLoggedIn', false)
+    //             return false
+    //         } else if (response.status === 200) {
+    //             console.log("loggedIn");
+    //             storeToSessionStorage('isLoggedIn', true)
+    //             return true
+    //         }
+    //         return response.json();
+    //     })
+    //     .then((result) => {
+    //         console.log(result);
+    //         storeToSessionStorage('userId', result.userId);
+    //         storeToSessionStorage('token', result.token)
+    //         storeToSessionStorage('firstName', result.firstName)
+    //         storeToSessionStorage('lastName', result.lastName)
+    //     })
+    //     .catch((error) => {
+    //         console.log('error', error)
+    //     });
+
     fetch(url, requestOptions)
+        // .then((response) => response.json())
         .then((response) => {
             if (response.status !== 200) {
                 storeToSessionStorage('isLoggedIn', false)
-                return false
+                return response.json();
             } else if (response.status === 200) {
                 console.log("loggedIn");
                 storeToSessionStorage('isLoggedIn', true)
+                return response.json();
             }
-            return response.json();
         })
         .then((result) => {
             console.log(result);
-            storeToSessionStorage('userId', result.userId);
-            storeToSessionStorage('token', result.token)
-            storeToSessionStorage('firstName', result.firstName)
-            storeToSessionStorage('lastName', result.lastName)
-            return true
+            // storeToSessionStorage('userId', result.userId);
+            // storeToSessionStorage('token', result.token)
+            // storeToSessionStorage('firstName', result.firstName)
+            // storeToSessionStorage('lastName', result.lastName)
+            return 'crap'
         })
         .catch((error) => {
             console.log('error', error)
