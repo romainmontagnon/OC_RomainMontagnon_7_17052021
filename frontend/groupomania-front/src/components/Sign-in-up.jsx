@@ -42,7 +42,7 @@ class SignInUpButton extends React.Component {
                     </button>
                 </div>
                 <div className='my-auto'>
-                    {this.state.showSignUp && <SignUpForm handler={this.handleShowSignUp} />}
+                    {this.state.showSignUp && <SignUpForm handler={this.handleShowSignUp} {...this.props} />}
                     {this.state.showSignIn && <SignInForm handler={this.handleShowSignIn} {...this.props} />}
                 </div>
             </div>

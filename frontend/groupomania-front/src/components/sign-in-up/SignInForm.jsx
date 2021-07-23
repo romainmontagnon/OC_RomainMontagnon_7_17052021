@@ -41,16 +41,7 @@ class SignInForm extends React.Component {
             };
 
             let logged = await fetch(routes.urlLogin, requestOptions)
-                .then((response) => {
-                    if (response.status !== 200) {
-                        storeToSessionStorage('isLoggedIn', false)
-                        return response.json();
-                    } else if (response.status === 200) {
-                        console.log("loggedIn");
-                        storeToSessionStorage('isLoggedIn', true)
-                        return response.json();
-                    }
-                })
+                .then(response => response.json())
                 .then((result) => {
                     console.log(result);
                     storeToSessionStorage('userId', result.userId);

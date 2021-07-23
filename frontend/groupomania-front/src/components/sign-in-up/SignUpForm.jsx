@@ -1,14 +1,8 @@
 import React from 'react';
-import { postSignUp } from '../../js/fetchRequest'
 import { routes } from '../../js/routes';
+import { storeToSessionStorage } from '../../js/sesssion';
 
 class SignUpForm extends React.Component {
-    state = {
-        firstName: '',
-        lastName: '',
-        emailAdress: '',
-        password: ''
-    };
     constructor(props) {
         super(props);
 
@@ -16,14 +10,69 @@ class SignUpForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
-        if (this.state != null) {
+        if (this.state === null) {
+            console.log(this.state)
+            alert(`Merci de saisir un identifiant et un mot de passe`)
+        } else {
             console.log(this.state)
             console.log(routes.urlLogin);
-            postSignUp(this.state, routes.urlSignUp);
-        } else {
-            console.log(this.state);
+
+            let myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            let dataToRaw = {
+                user: {
+                    emailAdress: this.state.emailAdress,
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    password: this.state.password,
+                    isAdmin: this.state.isAdmin
+                }
+            };
+            console.log(JSON.stringify(dataToRaw));
+            console.log(routes.urlLogin);
+
+            let raw = JSON.stringify(dataToRaw);
+
+            let requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            let signUp = await fetch(routes.urlSignUp, requestOptions)
+                .then(response => response.json())
+                .then((result) => {
+                    console.log(result);
+                    return result.signUp
+                })
+                .catch((error) => {
+                    console.log('error', error);
+                });
+            console.log(signUp)
+            console.log(this.state)
+            if (signUp) {
+                let logged = await fetch(routes.urlLogin, requestOptions)
+                    .then(response => response.json())
+                    .then((result) => {
+                        console.log(result);
+                        storeToSessionStorage('userId', result.userId);
+                        storeToSessionStorage('token', result.token)
+                        storeToSessionStorage('firstName', result.firstName)
+                        storeToSessionStorage('lastName', result.lastName)
+                        return result.logged
+                    })
+                    .catch((error) => {
+                        console.log('error', error)
+                    });
+                console.log(logged)
+                this.props.login(logged);
+            } else {
+                alert('Erreur lors de la creation de votre compte')
+            }
         }
     }
 
