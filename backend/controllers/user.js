@@ -32,13 +32,22 @@ exports.userSignUp = (req, res, next) => {
                     password: hash
                 })
                 .then((user) => {
-                    res.status(200).json(user)
+                    res.status(200).json({
+                        ...user,
+                        logged: true
+                    })
                 })
                 .catch((error) => {
-                    res.status(404).json({ error: error })
+                    res.status(404).json({
+                        error: error,
+                        logged: false
+                    })
                 });
         })
-        .catch(error => res.status(500).json({ error }));
+        .catch(error => res.status(500).json({
+            error,
+            logged: false
+        }));
 };
 
 exports.userLogin = (req, res, next) => {
@@ -58,8 +67,8 @@ exports.userLogin = (req, res, next) => {
                 .then(valid => {
                     if (!valid) {
                         return res.status(401).json({
-                            logged: false,
-                            error: 'Utilisateur ou mot de passe non valide, erreur A101!'
+                            error: 'Utilisateur ou mot de passe non valide, erreur A101!',
+                            logged: false
                         })
                     }
                     res.status(200).json({
@@ -73,11 +82,17 @@ exports.userLogin = (req, res, next) => {
                     });
                 })
                 .catch((error) => {
-                    res.status(401).json({ error: 'erreur A102' })
+                    res.status(401).json({
+                        error: 'erreur A102',
+                        logged: false
+                    })
                 });
         })
         .catch((error) => {
-            res.status(404).json({ error: 'erreur A103' })
+            res.status(404).json({
+                error: 'erreur A103',
+                logged: false
+            })
         });
 };
 
