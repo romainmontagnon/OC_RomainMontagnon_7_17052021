@@ -49,12 +49,18 @@ exports.userLogin = (req, res, next) => {
         })
         .then((user) => {
             if (!user) {
-                return res.status(401).json({ error: 'Utilisateur ou mot de passe non valide, erreur A100!' })
+                return res.status(401).json({
+                    logged: false,
+                    error: 'Utilisateur ou mot de passe non valide, erreur A100!'
+                })
             }
             bcrypt.compare(req.body.user.password, user.password)
                 .then(valid => {
                     if (!valid) {
-                        return res.status(401).json({ error: 'Utilisateur ou mot de passe non valide, erreur A101!' })
+                        return res.status(401).json({
+                            logged: false,
+                            error: 'Utilisateur ou mot de passe non valide, erreur A101!'
+                        })
                     }
                     res.status(200).json({
                         userId: user.id,
@@ -63,6 +69,7 @@ exports.userLogin = (req, res, next) => {
                         ),
                         firstName: user.firstName,
                         lastName: user.lastName,
+                        logged: true,
                     });
                 })
                 .catch((error) => {
