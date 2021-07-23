@@ -1,5 +1,4 @@
 import React from 'react';
-import { postLogin } from '../../js/fetchRequest';
 import { routes } from '../../js/routes';
 import { storeToSessionStorage } from '../../js/sesssion';
 
@@ -11,20 +10,6 @@ class SignInForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // async handleSubmit(event) {
-    //     event.preventDefault();
-    //     if (this.state != null) {
-    //         console.log(this.state)
-    //         console.log(routes.urlLogin);
-    //         let logged = await postLogin(this.state, routes.urlLogin);
-    //         // this.props.login(true)
-    //         this.props.login(logged)
-
-    //     } else {
-    //         console.log(this.state)
-    //     }
-    // }
-
     async handleSubmit(event) {
         event.preventDefault();
         if (this.state === null) {
@@ -33,10 +18,6 @@ class SignInForm extends React.Component {
         } else {
             console.log(this.state)
             console.log(routes.urlLogin);
-            // let logged = await postLogin(this.state, routes.urlLogin);
-            // this.props.login(true);
-            // this.props.login(logged);
-            // console.log(logged);
 
             let myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -60,7 +41,6 @@ class SignInForm extends React.Component {
             };
 
             let logged = await fetch(routes.urlLogin, requestOptions)
-                // .then((response) => response.json())
                 .then((response) => {
                     if (response.status !== 200) {
                         storeToSessionStorage('isLoggedIn', false)
