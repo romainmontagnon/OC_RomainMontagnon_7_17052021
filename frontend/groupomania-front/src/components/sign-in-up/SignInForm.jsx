@@ -10,13 +10,15 @@ class SignInForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    async handleSubmit(event) { //async
+    async handleSubmit(event) {
         event.preventDefault();
         if (this.state != null) {
             console.log(this.state)
             console.log(routes.urlLogin);
-            let logged = await postLogin(this.state, routes.urlLogin); // await
-            this.props.login(logged)
+            let data = this.state;
+            let logged = await postLogin(data, routes.urlLogin);
+            this.props.login(true)
+            // this.props.login(logged)
         } else {
             console.log(this.state)
         }

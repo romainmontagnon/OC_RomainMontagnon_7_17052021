@@ -9,7 +9,6 @@ import './styles/style.css';
 
 // import App from './components/App'
 import App2 from './components/App';
-import UserProvider from './components/context/UserProvider';
 
 // ReactDOM.render(
 //     <React.StrictMode>

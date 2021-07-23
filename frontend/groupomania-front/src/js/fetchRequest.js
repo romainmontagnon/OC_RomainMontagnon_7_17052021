@@ -1,7 +1,5 @@
 import { /*loadFromSessionStorage,*/ storeToSessionStorage } from "./sesssion";
 
-import { UserContext } from "../components/context/UserProvider";
-
 const postSignUp = (data, url) => {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -126,7 +124,7 @@ const postAPost = (token, data, url) => {
     console.log(token)
     console.log(data.image)
     console.log(url)
-    if (data.image != undefined) {
+    if (data.image !== undefined) {
         let filename = (data.image).split("C:\\fakepath\\");
         console.log(filename[1]);
     };
