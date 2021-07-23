@@ -34,19 +34,19 @@ exports.userSignUp = (req, res, next) => {
                 .then((user) => {
                     res.status(200).json({
                         ...user,
-                        logged: true
+                        signUp: true
                     })
                 })
                 .catch((error) => {
                     res.status(404).json({
                         error: error,
-                        logged: false
+                        signUp: false
                     })
                 });
         })
         .catch(error => res.status(500).json({
             error,
-            logged: false
+            signUp: false
         }));
 };
 
