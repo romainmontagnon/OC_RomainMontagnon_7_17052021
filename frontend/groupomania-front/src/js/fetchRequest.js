@@ -70,31 +70,7 @@ const postLogin = (data, url) => {
         redirect: 'follow'
     };
 
-    // fetch(url, requestOptions)
-    //     .then((response) => {
-    //         if (response.status !== 200) {
-    //             storeToSessionStorage('isLoggedIn', false)
-    //             return false
-    //         } else if (response.status === 200) {
-    //             console.log("loggedIn");
-    //             storeToSessionStorage('isLoggedIn', true)
-    //             return true
-    //         }
-    //         return response.json();
-    //     })
-    //     .then((result) => {
-    //         console.log(result);
-    //         storeToSessionStorage('userId', result.userId);
-    //         storeToSessionStorage('token', result.token)
-    //         storeToSessionStorage('firstName', result.firstName)
-    //         storeToSessionStorage('lastName', result.lastName)
-    //     })
-    //     .catch((error) => {
-    //         console.log('error', error)
-    //     });
-
     fetch(url, requestOptions)
-        // .then((response) => response.json())
         .then((response) => {
             if (response.status !== 200) {
                 storeToSessionStorage('isLoggedIn', false)
@@ -107,11 +83,7 @@ const postLogin = (data, url) => {
         })
         .then((result) => {
             console.log(result);
-            // storeToSessionStorage('userId', result.userId);
-            // storeToSessionStorage('token', result.token)
-            // storeToSessionStorage('firstName', result.firstName)
-            // storeToSessionStorage('lastName', result.lastName)
-            return 'crap'
+            return result
         })
         .catch((error) => {
             console.log('error', error)
@@ -177,7 +149,7 @@ const postAPost = (token, data, url) => {
 }
 
 export {
-    postLogin,
+    //postLogin,
     postSignUp,
     getAllPost,
     postAPost
