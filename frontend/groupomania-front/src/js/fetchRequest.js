@@ -149,7 +149,7 @@ const postAPost = (token, data, url) => {
 }
 
 export {
-    //postLogin,
+    postLogin,
     postSignUp,
     getAllPost,
     postAPost

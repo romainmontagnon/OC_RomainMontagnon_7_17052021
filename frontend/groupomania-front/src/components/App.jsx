@@ -1,10 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 
 import NavFooterMenu from './Nav/NavFooterMenu';
-
-// import NavbarContext from './context/NavbarContext';
-// import SignInUpContext from './context/Sign-in-up-Context';
-// import TimelineContext from './context/TimelineContext';
 
 import Navbar from './Navbar';
 import SignInUp from './Sign-in-up';
