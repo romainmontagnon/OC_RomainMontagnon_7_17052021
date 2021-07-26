@@ -6,19 +6,20 @@ class Feed extends React.Component {
         super(props)
         this.feed = this.props.oneFeed
         this.allComments = this.props.oneFeed.Coms
-        this.setStateOnMount = this.setStateOnMount.bind(this)
+        // this.setStateOnMount = this.setStateOnMount.bind(this)
+        this.componentDidMount = this.componentDidMount.bind(this)
     }
 
-    // componentDidMount(){
-    //     this.setState({
-    //         allComments:  [...this.props.oneFeed.Coms]
-    //     })
-    // }
-    setStateOnMount(){
+    componentDidMount(){
         this.setState({
             allComments:  [...this.props.oneFeed.Coms]
         })
     }
+    // setStateOnMount(){
+    //     this.setState({
+    //         allComments:  [...this.props.oneFeed.Coms]
+    //     })
+    // }
 
     render() {
         let date = new Date(this.feed.createdAt)
@@ -32,7 +33,7 @@ class Feed extends React.Component {
                         <p className='text-sm underline text-mandy-900 my-2'>{date}</p>
                     </div>
                     <div className='my-1'>
-                        <ShowComments allComments={this.state}/>
+                        <ShowComments allComments={[...this.props.oneFeed.Coms]}/>
                     </div>
                 </div>
                 <div className='my-1 divide-y-4 divide-mandy-700 divide-solid antialiased'>

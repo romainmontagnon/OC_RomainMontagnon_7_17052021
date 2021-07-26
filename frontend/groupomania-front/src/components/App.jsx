@@ -7,6 +7,7 @@ import SignInUp from './Sign-in-up';
 import Timeline from './Timeline';
 
 import { user, UserContext } from './context/UserContext';
+import AfterLog from './AfterLog';
 
 class App extends React.Component {
     constructor(props) {
@@ -35,7 +36,8 @@ class App extends React.Component {
                             </UserContext.Provider>
                         </section>
                         <section>
-                            <Timeline isLoggedIn={this.state.user.isLoggedIn} /*isAdmin={isAdmin}*/ />
+                            {/* <Timeline isLoggedIn={this.state.user.isLoggedIn} isAdmin={isAdmin} /> */}
+                            <AfterLog isLoggedIn={this.state.user.isLoggedIn} />
                         </section>
                     </main>
                     <footer className="bg-white bg-opacity-40 flex flex-col pb-5 mt-10">

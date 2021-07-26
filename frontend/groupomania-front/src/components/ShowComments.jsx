@@ -6,31 +6,32 @@ class ShowComments extends React.Component {
         super(props)
         // this.isLoggedIn = this.state.user.isLoggedIn;
         this.componentRenderCall = this.componentRenderCall.bind(this)
-        // this.comment = this.props.allComments.allComments
-        this.comment = null
+        this.comment = this.props.allComments
     }
 
     componentRenderCall() {
         // let comment = this.props.allComments.allComments
-            if (this.comment !== null) {
-                return (
-                    <ul>
-                        {this.comment.map((oneComment, index) =>
-                            <li>
-                                <ShowComment key={`${index + 1000}`} oneComment={oneComment} comment={true} />
-                            </li>
-                        )}
-                    </ul>
-                )
-            } else {
-                return (
-                    <ul>
+        console.log(this.comment)
+        if (this.comment.length != 0) {
+            return (
+                <ul>
+                    {this.comment.map((oneComment, index) =>
                         <li>
-                            <ShowComment key={999} oneComment={'Aucun commentaire pour le moment'} comment={false} />
+                            <ShowComment key={`${index + 1000}`} oneComment={oneComment} comment={true} />
                         </li>
-                    </ul>
-                )
-            }
+                    )}
+                </ul>
+            )
+            
+        } else {
+            return (
+                <ul>
+                    <li>
+                        <ShowComment key={999} oneComment={'Aucuns commentaires pour le moment'} comment={false} />
+                    </li>
+                </ul>
+            )
+        }
     }
 
     render() {

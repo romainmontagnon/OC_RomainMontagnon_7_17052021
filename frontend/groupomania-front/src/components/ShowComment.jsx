@@ -7,6 +7,8 @@ class ShowComment extends React.Component {
         this.bool = this.props.comment
     }
     componentDidMount() {
+        console.log(this.comment)
+        console.log(typeof (this.comment))
         if (this.bool) {
             return (
                 <div className='my-1 py-2 px-4 bg-mandy-300 rounded-3xl bg-opacity-80'>
@@ -16,24 +18,25 @@ class ShowComment extends React.Component {
                     <p className='antialiased text-base font-normal'>{this.comment.message}</p>
                 </div>
             )
-        } else {
-            <div className='my-1 py-2 px-4 bg-mandy-300 rounded-3xl bg-opacity-80'>
-                <h2 className='antialiased text-lg font-medium'>
-                    {this.comment}
-                </h2>
-                test
-            </div>
+        } else if (!this.bool) {
+            return (
+                <div className='my-1 py-2 px-4 bg-mandy-300 rounded-3xl bg-opacity-80'>
+                    <h2 className='antialiased text-sm font-medium'>
+                        {this.comment}
+                    </h2>
+                </div>
+            )
         }
     }
 
     render() {
         console.log(this.comment)
         console.log(this.bool)
-        return(
+        return (
             <div>
                 {this.componentDidMount()}
             </div>
-            )
+        )
 
     }
 }
