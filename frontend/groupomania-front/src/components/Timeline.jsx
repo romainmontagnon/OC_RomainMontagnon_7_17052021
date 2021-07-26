@@ -1,11 +1,11 @@
 import React from 'react';
 import Publish from './Publish';
 import Feeds from './Feeds';
-import { loadFromSessionStorage, storeToSessionStorage } from '../js/sesssion';
+import { loadFromSessionStorage } from '../js/sesssion';
 import { routes } from '../js/routes';
 
-import { user, UserContext } from './context/UserContext';
 import { TimelineContext } from './context/TimelineContext';
+import WrongWay from './WrongWay';
 
 class Timeline extends React.Component {
     state = {
@@ -14,6 +14,7 @@ class Timeline extends React.Component {
 
     constructor(props) {
         super(props)
+        this.isLoggedIn = this.props.isLoggedIn
         this.onLoadfunction = this.onLoadfunction.bind(this);
     }
 
@@ -32,9 +33,8 @@ class Timeline extends React.Component {
             .then(response => response.json())
             .then(result => result)
             .catch(error => console.log('error', error));
-        console.log(feeds)
         this.setState({
-            allFeeds:  [...feeds]
+            allFeeds: [...feeds]
         })
         console.log(this.state)
     }
@@ -58,7 +58,7 @@ class Timeline extends React.Component {
                 </div>
             )
         } else {
-            return null
+            return <WrongWay />
         }
     }
 }
