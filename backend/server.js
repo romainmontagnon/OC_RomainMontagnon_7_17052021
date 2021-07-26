@@ -19,8 +19,8 @@ const errorHandler = error => {
     if (error.syscall !== `listen`) {
         throw error;
     }
-    const adress = server.adress();
-    const binf = typeof adress === `string` ? `pipe` + address : `port : ` + port;
+    const address = server.address();
+    const binf = typeof address === `string` ? `pipe` + address : `port : ` + port;
     switch (error.code) {
         case `EACCES`:
             console.error(bind + ` requires elevated privileges.`);
