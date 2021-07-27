@@ -79,6 +79,7 @@ exports.userLogin = (req, res, next) => {
                         firstName: user.firstName,
                         lastName: user.lastName,
                         logged: true,
+                        isAdmin: user.isAdmin
                     });
                 })
                 .catch((error) => {
