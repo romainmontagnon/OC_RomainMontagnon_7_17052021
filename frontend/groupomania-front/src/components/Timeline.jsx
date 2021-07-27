@@ -66,14 +66,6 @@ class Timeline extends React.Component {
         if (this.props.isLoggedIn) {
             return (
                 <div>
-                    {/* <button
-                        className='mr-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 uppercase'
-                        onClick={this.onLoadfunction}
-                    >
-                        Cliquez ici
-                    </button> */}
-
-                    <p>This the begining of the timeline</p>
                     <Publish />
                     <TimelineContext.Provider allFeeds={this.state}>
                         <Feeds allFeeds={this.state} /*handler={this.onLoadfunction}*/ />

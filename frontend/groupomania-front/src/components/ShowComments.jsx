@@ -25,8 +25,8 @@ class ShowComments extends React.Component {
             
         } else {
             return (
-                <ul>
-                    <li>
+                <ul className='flex'>
+                    <li className='flex-row-reverse'>
                         <ShowComment key={999} oneComment={'Aucuns commentaires pour le moment'} comment={false} />
                     </li>
                 </ul>

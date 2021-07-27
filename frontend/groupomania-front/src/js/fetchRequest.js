@@ -116,36 +116,57 @@ const getAllPost = (token, url) => {
         .catch(error => console.log('error', error));
 }
 
+// const getFilename = (image) => {
+//     if (image !== null) {
+//         let name = (image).split("C:\\fakepath\\");
+//         console.log(name[1]);
+//         return name
+//     };
+//     return null
+// }
+// const getFile = (image) => {
+//     if (image !== null) {
+//         let name = (image).split("C:\\fakepath\\");
+//         console.log(name[1]);
+//         return name
+//     };
+//     return null
+// }
+
+
 const postAPost = (token, data, url) => {
     console.log(token)
     console.log(data.image)
     console.log(url)
-    if (data.image !== undefined) {
-        let filename = (data.image).split("C:\\fakepath\\");
-        console.log(filename[1]);
-    };
 
+    if (data.image === null && data.message === "") {
+        alert('Attention, votre post est vide')
+        return
+    }
     let myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
 
     let formdata = new FormData();
-    // formdata.append("file", fileInput.files[0], "m-4_M8uIfPEZw-unsplash.jpg");
+    // let filename = getFilename(data.image);
+    // let fileInput = getFile(data.image);
+
+    // formdata.append("file", data.image);
+    // formdata.append("file", fileInput.files[0], `${filename}`);
     formdata.append("post", `{"message": "${data.message}"}`);
+    console.log(formdata)
 
-
-    // formdata.append("file", fileInput.files[0], "m-4_M8uIfPEZw-unsplash.jpg");
-
-    //     let requestOptions = {
-    //         method: 'POST',
-    //         headers: myHeaders,
-    //         body: formdata,
-    //         redirect: 'follow'
-    //     };
-
-    //     fetch(url, requestOptions)
-    //         .then(response => response.text())
-    //         .then(result => console.log(result))
-    //         .catch(error => console.log('error', error));
+    let requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow'
+    };
+    console.log(requestOptions)
+    console.log('go fetch, normalement ;-)')
+        // fetch(url, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => console.log(result))
+        //     .catch(error => console.log('error', error));
 }
 
 export {

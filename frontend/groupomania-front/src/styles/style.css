@@ -1,3 +1,83 @@
 .hide {
     display: none;
 }
+
+
+/* Affichage des arialabel au survol */
+
+.arialabel {
+    position: relative;
+}
+
+.arialabel:after {
+    content: attr(aria-label);
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0.5rem;
+    z-index: 5000;
+    pointer-events: none;
+    padding: 0.5rem 0.625rem;
+    line-height: 0.938rem;
+    white-space: nowrap;
+    text-decoration: none;
+    text-indent: 0;
+    overflow: visible;
+    font-size: .9em;
+    font-weight: normal;
+    color: #fff;
+    background-color: #412917;
+    border-left: 0.375rem solid #d37092;
+    -webkit-border-radius: 0.125rem;
+    border-radius: 0.125rem;
+    -webkit-box-shadow: 0.063rem 0.125rem 0.375rem rgba(0, 0, 0, 0.3);
+    box-shadow: 0.063rem 0.125rem 0.375rem rgba(0, 0, 0, 0.3);
+}
+
+.arialabel:hover:after,
+.arialabel:focus:after {
+    display: block;
+}
+
+
+/* Affichage des arialabel au survol taille -sm (small) */
+
+.arialabel-sm {
+    position: relative;
+}
+
+.arialabel-sm:after {
+    content: attr(aria-label);
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0.5rem;
+    z-index: 5000;
+    pointer-events: none;
+    padding: 0.5rem 0.625rem;
+    white-space: nowrap;
+    text-decoration: none;
+    text-indent: 0;
+    overflow: visible;
+    font-size: .9em;
+    font-weight: normal;
+    color: #fff;
+    background-color: #412917;
+    border-left: 0.375rem solid #d37092;
+    -webkit-border-radius: 0.125rem;
+    border-radius: 0.125rem;
+    -webkit-box-shadow: 0.063rem 0.125rem 0.375rem rgba(0, 0, 0, 0.3);
+    box-shadow: 0.063rem 0.125rem 0.375rem rgba(0, 0, 0, 0.3);
+}
+
+.arialabel-sm:hover:after,
+.arialabel-sm:focus:after {
+    display: block;
+}
+
+
+/* Personalisation des input type=file */
+
+.inputFile::after {
+    background-color: aqua;
+}

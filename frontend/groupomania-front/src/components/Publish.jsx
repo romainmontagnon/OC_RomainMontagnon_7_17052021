@@ -2,8 +2,8 @@ import React, { useRef, fileInput } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCameraRetro, faPaperPlane, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+
 import { routes } from '../js/routes';
-import { postAPost } from '../js/fetchRequest';
 import { loadFromSessionStorage } from '../js/sesssion';
 
 class Publish extends React.Component {
@@ -18,35 +18,75 @@ class Publish extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.reset = this.reset.bind(this);
         this.fileInput = React.createRef();
+        this.showAria = this.showAria.bind(this)
     }
 
     handleInputChange(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        console.log(value)
+        // console.log(target)
+        // console.log(value)
+        // console.log(name)
         this.setState({
-            [name]: value
+            [name]: value, target
         });
     }
+
     reset(e) {
         this.state.image = null;
+        this.showAria()
     };
 
     handleSubmit(event) {
         event.preventDefault();
         let token = loadFromSessionStorage('token')
         console.log(this.state)
-        // postAPost(token, this.state, routes.urlPost)
+
+        if (this.state.image === null && this.state.message === "") {
+            alert('Attention, votre publication est vide')
+            return
+        }
+        let myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+
+        let formdata = new FormData();
+        let fileName = this.state.target.files[0].name
+        let fileInput = this.state.target.files[0]
+
+        console.log(fileInput)
+        console.log(fileName)
+
+        formdata.append("file", fileInput, fileName);
+        formdata.append("post", `{"message": "${this.state.message}"}`);
+        console.log(formdata)
+
+        let requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: formdata,
+            redirect: 'follow'
+        };
+        console.log('go fetch, normalement ;-)')
+        fetch(routes.urlPost, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
+
+    showAria() {
+        if (this.state.image !== null) {
+            return `image ${this.state.image}`
+        }
+        return `image non sélectionnée`
     }
 
     render() {
         return (
             <div
-                className='w-2/4 mx-auto bg-white bg-opacity-40 px-4 py-4 rounded-3xl flex flex-row justify-around items-center'
+                className='w-2/4 max-w-md mx-auto bg-white bg-opacity-40 px-4 py-4 rounded-3xl flex flex-row justify-around items-center'
             >
-                <form
-                    onClick={this.handleSubmit}>
+                <form>
                     <div>
                         <textarea
                             id="user-publication"
@@ -59,6 +99,7 @@ class Publish extends React.Component {
                     </div>
                     <div className="flex flex-col">
                         <button
+                            onClick={this.handleSubmit}
                             type="submit"
                             id="user-publication-publish"
                             name="publish"
@@ -68,15 +109,21 @@ class Publish extends React.Component {
                         </button>
                     </div>
                 </form>
-                <div className='mb-4 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100'>
-                    <label>
+                <div className='mb-4 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 inputFile'
+                >
+                    <label
+                        aria-label={this.showAria()}
+                        className='antialiased arialabel'
+                    >
                         < FontAwesomeIcon icon={faCameraRetro} />
                         <input
                             type="file"
+                            accept=".png, .jpg, .jpeg, .gif"
                             id="user-publication-image"
                             name="image"
                             ref={this.fileInput}
                             onChange={this.handleInputChange}
+                            aria-label={this.state.image}
                             className='hidden block'
                         />
                     </label>
@@ -84,7 +131,8 @@ class Publish extends React.Component {
                 <button
                     ref={this.fileInput}
                     onClick={this.reset}
-                    className='uppercase font-bold mb-4 hover:text-red-800'>
+                    aria-label="Supprimer la photo"
+                    className='antialiased font-bold mb-4 hover:text-red-800 arialabel-sm block'>
                     < FontAwesomeIcon icon={faMinusCircle} />
                 </button>
             </div>
