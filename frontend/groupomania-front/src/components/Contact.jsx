@@ -13,7 +13,7 @@ class Contact extends React.Component {
         return (
             <div className='w-2/4 text-midnight-600 mx-auto bg-white bg-opacity-40 rounded-lg px-2 py-2 contact'>
                 <div className='flex flex-row justify-between'>
-                    <h4 className='font-bold'>Contact</h4>
+                    <h4 className='font-bold antialiased'>Contact</h4>
                     <button
                         className='font-extrabold'
                         onClick={this.handleShowContact}
@@ -22,16 +22,16 @@ class Contact extends React.Component {
                 <article className='my-5'>
                     <div className='my-2 flex flex-row items-center'>
                         <FontAwesomeIcon className='text-2xl text-midnight-400' icon={faMapMarkerAlt} />
-                        <p className='ml-2'>
+                        <p className='ml-2 antialiased'>
                             Groupomania
                             <br />
                             Rue de la Bourse
                         </p>
                     </div>
-                    <p className='my-2'>
+                    <p className='my-2 antialiased'>
                         < FontAwesomeIcon className='text-2xl text-midnight-400' icon={faEnvelopeOpenText} />
                         <a
-                            className=' ml-2'
+                            className=' ml-2 antialiased'
                             href="mailto: john.doe@groupomania.eu">john.doe@groupomania.eu (lien)</a>
                     </p>
                 </article>

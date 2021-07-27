@@ -7,11 +7,11 @@ import React from 'react';
 import SearchBar from '../SearchBar';
 import NavMenu from './Nav_Menu';
 
-const Nav = () => {
+const Nav = (props) => {
     return (
         <div className='flex flex-row justify-between items-center'>
             <SearchBar />
-            <NavMenu />
+            <NavMenu isAdmin={props.isAdmin} />
         </div>
     )
 };

@@ -35,14 +35,14 @@ class NavFooterMenu extends React.Component {
                     </li>
                     <li>
                         <button type="submit"
-                            className='mx-2  text-center text-mandy-600 font-semibold hover:text-mandy-100'
+                            className='mx-2  text-center text-mandy-600 font-semibold hover:text-mandy-100 antialiased'
                             onClick={this.handleShowCGU}>
                             CGU
                         </button>
                     </li>
                     <li>
                         <button type="submit"
-                            className='mx-2  text-center text-mandy-600 font-semibold hover:text-mandy-100'
+                            className='mx-2  text-center text-mandy-600 font-semibold hover:text-mandy-100 antialiased'
                             onClick={this.handleShowContact}>
                             Contact
                         </button>

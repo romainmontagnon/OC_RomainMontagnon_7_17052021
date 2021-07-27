@@ -5,7 +5,6 @@ import { storeToSessionStorage } from '../../js/sesssion';
 class SignInForm extends React.Component {
     constructor(props) {
         super(props);
-
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -48,13 +47,13 @@ class SignInForm extends React.Component {
                     storeToSessionStorage('token', result.token)
                     storeToSessionStorage('firstName', result.firstName)
                     storeToSessionStorage('lastName', result.lastName)
-                    return result.logged
+                    return result
                 })
                 .catch((error) => {
                     console.log('error', error)
                 });
-            console.log(logged)
-            this.props.login(logged);
+            this.props.login(logged.logged, logged.isAdmin);
+            // this.props.admin(logged.isAdmin);
         }
     }
 
