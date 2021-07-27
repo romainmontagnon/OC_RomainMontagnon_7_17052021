@@ -4,7 +4,6 @@ import NavFooterMenu from './Nav/NavFooterMenu';
 
 import Navbar from './Navbar';
 import SignInUp from './Sign-in-up';
-import Timeline from './Timeline';
 
 import { user, UserContext } from './context/UserContext';
 import AfterLog from './AfterLog';
@@ -24,7 +23,6 @@ class App extends React.Component {
         }
     }
     render() {
-        console.log(this.state)
         return (
             <div>
                 <div className="mg:w-4/5 mg:mx-auto">

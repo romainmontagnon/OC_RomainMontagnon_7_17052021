@@ -35,8 +35,10 @@ class Comment extends React.Component {
     }
 
     reset(e) {
-        this.state.image = null;
-        this.showAria()
+        // this.state.image = null;
+        this.setState({
+            image: null
+        });
     };
 
     handleSubmit(event) {

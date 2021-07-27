@@ -1,4 +1,5 @@
-import React, { useRef, fileInput } from 'react';
+import React from 'react';
+// import React, { useRef, fileInput } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCameraRetro, faPaperPlane, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
@@ -34,8 +35,9 @@ class Publish extends React.Component {
     }
 
     reset(e) {
-        this.state.image = null;
-        this.showAria()
+        this.setState({
+            image: null
+        });
     };
 
     handleSubmit(event) {
@@ -51,8 +53,6 @@ class Publish extends React.Component {
         myHeaders.append("Authorization", `Bearer ${token}`);
 
         let formdata = new FormData();
-        let fileName = null;
-        let fileInput = null;
 
         if (this.state.image !== null) {
             let fileName = this.state.target.files[0].name;

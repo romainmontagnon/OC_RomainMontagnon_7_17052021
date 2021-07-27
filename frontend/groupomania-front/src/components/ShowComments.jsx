@@ -11,8 +11,8 @@ class ShowComments extends React.Component {
 
     componentRenderCall() {
         // let comment = this.props.allComments.allComments
-        console.log(this.comment)
-        if (this.comment.length != 0) {
+        // console.log(this.comment)
+        if (this.comment.length !== 0) {
             return (
                 <ul>
                     {this.comment.map((oneComment, index) =>

@@ -9,8 +9,8 @@ class ShowComment extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.comment)
-        console.log(typeof (this.comment))
+        // console.log(this.comment)
+        // console.log(typeof (this.comment))
 
         if (this.bool) {
             let date = new Date(this.comment.createdAt)
@@ -40,7 +40,7 @@ class ShowComment extends React.Component {
 
     showImage() {
         if (this.comment.image != null) {
-            console.log(this.comment.image)
+            // console.log(this.comment.image)
             return (
                 <a
                     href={this.comment.image}
@@ -59,14 +59,14 @@ class ShowComment extends React.Component {
                 </a>
             )
         } else {
-            console.log(this.comment.image)
+            // console.log(this.comment.image)
             return null
         }
     }
 
     render() {
-        console.log(this.comment)
-        console.log(this.bool)
+        // console.log(this.comment)
+        // console.log(this.bool)
         return (
             <div>
                 {this.componentDidMount()}

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Feed from './Feed';
-import WrongWay from './WrongWay';
 
 class Feeds extends React.Component {
     constructor(props) {
