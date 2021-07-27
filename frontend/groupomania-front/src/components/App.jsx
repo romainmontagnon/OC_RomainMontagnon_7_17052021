@@ -36,7 +36,6 @@ class App extends React.Component {
                             </UserContext.Provider>
                         </section>
                         <section>
-                            {/* <Timeline isLoggedIn={this.state.user.isLoggedIn} isAdmin={isAdmin} /> */}
                             <AfterLog isLoggedIn={this.state.user.isLoggedIn} />
                         </section>
                     </main>

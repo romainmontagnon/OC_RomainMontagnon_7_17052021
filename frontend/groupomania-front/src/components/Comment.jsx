@@ -52,10 +52,16 @@ class Comment extends React.Component {
         myHeaders.append("Authorization", `Bearer ${token}`);
 
         let formdata = new FormData();
-        let fileName = this.state.target.files[0].name
-        let fileInput = this.state.target.files[0]
 
-        formdata.append("file", fileInput, fileName);
+        let fileName = null;
+        let fileInput = null;
+        
+        if (this.state.image !== null) {
+            fileName = this.state.target.files[0].name
+            fileInput = this.state.target.files[0]
+            formdata.append("file", fileInput, fileName);
+        }
+ 
         formdata.append("com", `{"message": "${this.state.message}", "PostId": ${this.postId}}`);
 
 
@@ -80,8 +86,8 @@ class Comment extends React.Component {
 
     render() {
         return (
-            <div className='w-3/4 max-w-md bg-white bg-opacity-40 px-4 py-4 rounded-3xl'>
-                <h3>Laisser un commentaire</h3>
+            <div className='w-3/4 max-w-md bg-white bg-opacity-40 px-4 py-2 rounded-3xl shadow-xl'>
+                <h3 class="antialiased text-lg font-semibold my-auto mb-2 pl-2">Laisser un commentaire</h3>
                 <div className='flex flex-row justify-evenly items-center'>
                     <form>
                         <textarea

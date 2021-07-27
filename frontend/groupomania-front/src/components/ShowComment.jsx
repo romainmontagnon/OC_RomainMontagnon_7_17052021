@@ -51,7 +51,7 @@ class ShowComment extends React.Component {
                     <img
                         src={this.comment.image}
                         alt={this.comment.User.firstName}
-                        className="w-1/4 mt-4"
+                        className="w-1/4 mt-4 rounded-xl shadow-xl"
                         onclick={() => {
                             this.windows.open(`${this.comment.image}`)
                         }}

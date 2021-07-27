@@ -30,7 +30,7 @@ class Feed extends React.Component {
                     <img
                         src={this.feed.image}
                         alt={this.feed.User.firstName}
-                        className="w-1/2 mt-4"
+                        className="w-1/2 mt-4 rounded-xl shadow-2xl"
                         onclick={() => {
                         this.windows.open(`${this.feed.image}`)
                     }}

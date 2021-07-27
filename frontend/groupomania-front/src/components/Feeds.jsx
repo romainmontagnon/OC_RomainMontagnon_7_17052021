@@ -25,7 +25,7 @@ class Feeds extends React.Component {
 
     render() {
         return (
-            <div className='w-3/4 mx-auto my-10 bg-white bg-opacity-40 px-4 py-4 rounded-3xl'>
+            <div className='w-3/4 mx-auto my-10 bg-white bg-opacity-40 px-4 py-4 rounded-3xl shadow-xl'>
                 <div
                     className='flex flex-col justify-around items-center border-solid border-b-2 border-opacity-80'>
                     <div className='w-5/6'>

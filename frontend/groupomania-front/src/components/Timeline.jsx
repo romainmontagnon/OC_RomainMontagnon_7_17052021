@@ -18,8 +18,6 @@ class Timeline extends React.Component {
         this.componentDidMount = this.componentDidMount.bind(this)
     }
 
-
-
     async onLoadfunction() {
         console.log('hello onLoadfunction ')
         let myHeaders = new Headers();
@@ -42,7 +40,6 @@ class Timeline extends React.Component {
     }
 
     async componentDidMount() {
-        console.log('hello onLoadfunction ')
         let myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${loadFromSessionStorage('token')}`);
 
