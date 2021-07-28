@@ -73,7 +73,25 @@ exports.postUser = (req, res, next) => {
             UserId: req.token.userId
         })
         .then((post) => {
-            res.status(200).json(post)
+            // res.status(200).json(post)
+            Post.findOne({
+                    include: [
+                        User,
+                        {
+                            model: Com,
+                            include: User
+                        }
+                    ],
+                    where: {
+                        id: post.id
+                    }
+                })
+                .then((onePost) => {
+                    res.status(200).json(onePost)
+                })
+                .catch((error) => {
+                    res.status(404).json({ error: error })
+                });
         })
         .catch((error) => {
             res.status(404).json({ error: error })

@@ -7,6 +7,7 @@ class ShowComments extends React.Component {
         // this.isLoggedIn = this.state.user.isLoggedIn;
         this.componentRenderCall = this.componentRenderCall.bind(this)
         this.comment = this.props.allComments
+        this.idForNoComment = this.props.idForNoComment
     }
 
     componentRenderCall() {
@@ -17,7 +18,7 @@ class ShowComments extends React.Component {
                 <ul>
                     {this.comment.map((oneComment, index) =>
                         <li>
-                            <ShowComment key={`${index + 1000}`} oneComment={oneComment} comment={true} />
+                            <ShowComment key={`oneComment ${oneComment.id}`} oneComment={oneComment} comment={true} />
                         </li>
                     )}
                 </ul>
@@ -27,7 +28,7 @@ class ShowComments extends React.Component {
             return (
                 <ul className='flex'>
                     <li className='flex-row-reverse'>
-                        <ShowComment key={999} oneComment={'Aucuns commentaires pour le moment'} comment={false} />
+                        <ShowComment key={`noComment ${this.idForNoComment}`} oneComment={'Aucuns commentaires pour le moment'} comment={false} />
                     </li>
                 </ul>
             )

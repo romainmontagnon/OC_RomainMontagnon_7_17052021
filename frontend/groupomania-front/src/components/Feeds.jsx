@@ -5,21 +5,25 @@ import Feed from './Feed';
 class Feeds extends React.Component {
     constructor(props) {
         super(props);
-        this.allFeeds = this.props.allFeeds.allFeeds
+        this.allFeeds = this.props.allFeeds
         this.feedCallRender = this.feedCallRender.bind(this)
     }
 
     feedCallRender() {
-        var feed = this.props.allFeeds.allFeeds;
+        var feed = this.props.allFeeds;
         return (
             <ul className='flex flex-col-reverse'>
                 {feed.map((oneFeed, index) =>
                     <li className='bg-midnight-200 bg-opacity-80 mb-4 py-2 px-2 rounded-3xl'>
-                        <Feed key={`${index + 100}`} oneFeed={oneFeed} />
+                        <Feed key={`feed ${oneFeed.id}`} oneFeed={oneFeed} />
                     </li>
                 )}
             </ul>
         )
+    }
+    componentDidUpdate() {
+        console.log('feeds update')
+        this.render()
     }
 
     render() {

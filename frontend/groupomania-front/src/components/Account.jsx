@@ -9,10 +9,10 @@ class Account extends React.Component {
     constructor(props) {
         super(props)
         this.isAdmin = this.props.isAdmin
-        this.loadInfo = this.loadInfo.bind(this)
+        this.componentDidMount = this.componentDidMount.bind(this)
     }
 
-    loadInfo() {
+    componentDidMount() {
         let info = {
             firstName: loadFromSessionStorage('firstName'),
             lastName: loadFromSessionStorage('lastName'),
@@ -28,7 +28,7 @@ class Account extends React.Component {
         //let info = this.loadInfo()
         // console.log(info)
         return (
-            <div onLoad={this.loadInfo}>
+            <div>
                 <h1>Mon compte</h1>
                 <ul>
                     <li>{this.state.info.firstName}</li>

@@ -89,7 +89,7 @@ class Comment extends React.Component {
     render() {
         return (
             <div className='w-3/4 max-w-md bg-white bg-opacity-40 px-4 py-2 rounded-3xl shadow-xl'>
-                <h3 class="antialiased text-lg font-semibold my-auto mb-2 pl-2">Laisser un commentaire</h3>
+                <h3 className="antialiased text-lg font-semibold my-auto mb-2 pl-2">Laisser un commentaire</h3>
                 <div className='flex flex-row justify-evenly items-center'>
                     <form>
                         <textarea

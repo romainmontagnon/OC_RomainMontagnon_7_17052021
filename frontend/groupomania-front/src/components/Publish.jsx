@@ -15,6 +15,8 @@ class Publish extends React.Component {
 
     constructor(props) {
         super(props)
+        this.updateFeeds = this.props.updateFeeds
+        this.allFeeds = this.props.allFeeds
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.reset = this.reset.bind(this);
@@ -71,8 +73,12 @@ class Publish extends React.Component {
         };
         console.log('go fetch, normalement ;-)')
         fetch(routes.urlPost, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
+            .then(response => response.json())
+            .then(result => {
+                console.log(result)
+                this.allFeeds.push(result)
+                this.updateFeeds(this.allFeeds)
+            })
             .catch(error => console.log('error', error));
     }
 

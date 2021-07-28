@@ -31,7 +31,7 @@ class Feed extends React.Component {
                         src={this.feed.image}
                         alt={this.feed.User.firstName}
                         className="w-1/2 mt-4 rounded-xl shadow-2xl"
-                        onclick={() => {
+                        onClick={() => {
                         this.windows.open(`${this.feed.image}`)
                     }}
                     />
@@ -46,7 +46,8 @@ class Feed extends React.Component {
         let date = new Date(this.feed.createdAt)
         date = `le ${date.getDate()}/${date.getMonth()}/${date.getFullYear()} à ${date.getHours()}h${date.getMinutes()}`;
         return (
-            <div data-postId={this.feed.id}>
+            // <div data-postId={this.feed.id}>
+            <div>
                 <div>
                     <div className='my-1'>
                         <h4 className='antialiased text-lg font-semibold mb-4'>{`${this.feed.User.firstName} ${this.feed.User.lastName} a publié(e) :`}</h4>
@@ -57,11 +58,11 @@ class Feed extends React.Component {
                         <p className='text-sm underline text-mandy-900 mb-4'>{date}</p>
                     </div>
                     <div className='my-1'>
-                        <ShowComments allComments={[...this.props.oneFeed.Coms]} />
+                        <ShowComments allComments={[...this.props.oneFeed.Coms]} idForNoComment={this.feed.id} key={`allComments ${this.feed.id}`} />
                     </div>
                 </div>
                 <div className='my-1 divide-y-4 divide-mandy-700 divide-solid antialiased'>
-                    <Comment postId={this.feed.id} />
+                    <Comment key={`feedId ${this.feed.id}`} postId={this.feed.id} />
                 </div>
             </div>
         )

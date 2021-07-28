@@ -8,7 +8,6 @@ class WelcomeUser extends React.Component{
         return (
                 <h3
                     className="antialiased text-xl font-semibold mb-4 mr-5"
-                    data-userId={userId}
                 >
                     Bonjour, {user} !
                 </h3>
