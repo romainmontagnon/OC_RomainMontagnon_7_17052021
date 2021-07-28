@@ -10,6 +10,8 @@ class Account extends React.Component {
         super(props)
         this.isAdmin = this.props.isAdmin
         this.componentDidMount = this.componentDidMount.bind(this)
+        this.accountType = this.accountType.bind(this);
+        this.showAccountSection = this.props.handler
     }
 
     componentDidMount() {
@@ -18,24 +20,36 @@ class Account extends React.Component {
             lastName: loadFromSessionStorage('lastName'),
             userId: loadFromSessionStorage('userId'),
             token: loadFromSessionStorage('token'),
-            isAdmin: this.isAdmin
         }
         this.setState({
-            info: {...info}
+            info: { ...info }
         })
     }
+
+    accountType() {
+        if (this.isAmin) {
+            return `admin`
+        };
+        return `user`
+    };
+
     render() {
-        //let info = this.loadInfo()
-        // console.log(info)
+        console.log(this.isAdmin)
         return (
-            <div>
-                <h1>Mon compte</h1>
+            <div
+                className='mt-6 py-2 px-4 bg-white bg-opacity-40 rounded-3xl shadow-xl flex flex-col account-menu w-52'>
+                <div className='flex flex-row justify-between'>
+                    <h1 className='antialiased text-lg font-bold'>Mon compte</h1>
+                    <button 
+                    className='antialiased font-extrabold'
+                    onClick={this.showAccountSection}
+                    >X</button>
+                </div>
+
                 <ul>
-                    <li>{this.state.info.firstName}</li>
-                    <li>{this.state.info.lastName}</li>
-                    <li>{this.state.info.userId}</li>
-                    <li>{this.state.info.token}</li>
-                    <li>{this.state.info.isAdmin}</li>
+                    <li className='antialiased font-semibold'>Prénom : <span className='antialiased font-normal'>{this.state.info.firstName}</span></li>
+                    <li className='antialiased font-semibold'>Nom : <span className='antialiased font-normal'>{this.state.info.lastName}</span></li>
+                    <li className='antialiased font-semibold'>Utilisateur : <span className='antialiased font-normal'>{this.accountType()}</span></li>
                 </ul>
             </div>
         )

@@ -16,9 +16,10 @@ class App extends React.Component {
         }
         this.isLoggedIn = this.state.user.isLoggedIn;
         this.isAdmin = this.state.user.isAdmin;
-        this.login = (isLoggedIn, isAdmin) => {
+        this.userIdLogged = this.state.userIdLogged;
+        this.login = (isLoggedIn, isAdmin, userIdLogged) => {
             this.setState(state => ({
-                user: {isLoggedIn: isLoggedIn, isAdmin: isAdmin}
+                user: {isLoggedIn: isLoggedIn, isAdmin: isAdmin, userIdLogged: userIdLogged}
             }))
         }
     }
@@ -30,13 +31,13 @@ class App extends React.Component {
                         <Navbar isLoggedIn={this.state.user.isLoggedIn} isAdmin={this.state.user.isAdmin} />
                     </header>
                     <main>
-                        <section id="login" className="flex flex-row justify-end">
+                        <section id="login" className="flex flex-row lg:justify-end justify-center">
                             <UserContext.Provider value={this.state}>
                                 <SignInUp isLoggedIn={this.state.user.isLoggedIn} login={this.login} />
                             </UserContext.Provider>
                         </section>
                         <section>
-                            <AfterLog isLoggedIn={this.state.user.isLoggedIn} isAdmin={this.state.user.isAdmin}/>
+                            <AfterLog isLoggedIn={this.state.user.isLoggedIn} isAdmin={this.state.user.isAdmin} userIdLogged={this.state.user.userIdLogged}/>
                         </section>
                     </main>
                     <footer className="bg-white bg-opacity-40 flex flex-col pb-5 mt-10">

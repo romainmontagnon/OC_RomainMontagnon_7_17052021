@@ -8,11 +8,13 @@ const SearchBar = () => (
             <input
                 type="text"
                 id="header-search"
-                placeholder="Rechercher un membre"
+                placeholder="Rechercher..."
                 name="search"
-                className='bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl w-60 text-center antialiased'
+                className='bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl text-center antialiased
+                lg:w-60
+                w-3/4'
             />
-            <button type="submit" className='mx-1' onClick={ () => {console.log(('hello wolrd !'))}}>< FontAwesomeIcon icon={faSearch} /></button>
+            <button type="submit" className='ml-2' onClick={ () => {console.log(('hello wolrd !'))}}>< FontAwesomeIcon icon={faSearch} /></button>
         </label>
     </form>
 );

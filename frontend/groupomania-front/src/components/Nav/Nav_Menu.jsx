@@ -13,25 +13,14 @@ class NavMenu extends React.Component {
     constructor(props) {
         super(props)
         this.isAdmin = this.props.isAdmin;
-        this.accounType = this.accounType.bind(this);
         this.showAccountSection = this.showAccountSection.bind(this);
     }
 
-    async showAccountSection() {
-        console.log(this.state.showAccountSection)
-        await this.setState({ showAccountSection: !this.state.showAccountSection })
-        console.log(this.state.showAccountSection)
+    showAccountSection() {
+        this.setState({ showAccountSection: !this.state.showAccountSection })
     }
 
-    accounType() {
-        if (this.isAmin) {
-            return `admin`
-        };
-        return `user`
-    };
-
     render() {
-        const accountButton = 'Compte';
         return (
             <div className='mr-2'>
                 <button type="submit"
@@ -42,7 +31,7 @@ class NavMenu extends React.Component {
                 <button type="submit"
                     className='mx-2 rounded-2xl px-4 ring-2 ring-midnight-400 text-center bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 antialiased'
                     onClick={this.showAccountSection}>
-                    {accountButton} {this.accounType()}
+                    Mon Compte
                 </button>
                 <div className='my-auto'>
                     {this.state.showAccountSection && <Account handler={this.showAccountSection} {...this.props} />}

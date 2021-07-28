@@ -14,6 +14,8 @@ class Timeline extends React.Component {
     constructor(props) {
         super(props)
         this.isLoggedIn = this.props.isLoggedIn
+        this.isAdmin = this.props.isAdmin
+        this.userIdLogged = this.props.userIdLogged
         this.componentDidMount = this.componentDidMount.bind(this)
     }
 
@@ -46,8 +48,8 @@ class Timeline extends React.Component {
             return (
                 <div>
                     <TimelineContext.Provider value={this.state}>
-                        <Publish updateFeeds={this.updateFeeds} allFeeds={this.state.allFeeds} />
-                        <Feeds allFeeds={this.state.allFeeds} /*handler={this.onLoadfunction}*/ />
+                        <Publish updateFeeds={this.updateFeeds} allFeeds={this.state.allFeeds} isAdmin={this.isAdmin} userIdLogged={this.userIdLogged} />
+                        <Feeds allFeeds={this.state.allFeeds} isAdmin={this.isAdmin} userIdLogged={this.userIdLogged} /*handler={this.onLoadfunction}*/ />
                     </TimelineContext.Provider>
                 </div>
             )

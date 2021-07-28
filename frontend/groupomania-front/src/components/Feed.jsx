@@ -1,14 +1,19 @@
 import React from 'react';
 import ShowComments from './ShowComments';
 import Comment from './Comment';
+import ModifyPost from './modifier/ModifyPost';
+import SupprPost from './modifier/SupprPost';
 
 class Feed extends React.Component {
     constructor(props) {
         super(props)
         this.feed = this.props.oneFeed
         this.allComments = this.props.oneFeed.Coms
+        this.isAdmin = this.props.isAdmin
+        this.userIdLogged = this.props.userIdLogged
         this.componentDidMount = this.componentDidMount.bind(this)
         this.showImage = this.showImage.bind(this)
+        this.showPostModifier = this.showPostModifier.bind(this)
     }
 
     componentDidMount() {
@@ -32,8 +37,8 @@ class Feed extends React.Component {
                         alt={this.feed.User.firstName}
                         className="w-1/2 mt-4 rounded-xl shadow-2xl"
                         onClick={() => {
-                        this.windows.open(`${this.feed.image}`)
-                    }}
+                            this.windows.open(`${this.feed.image}`)
+                        }}
                     />
                 </a>
             )
@@ -42,15 +47,32 @@ class Feed extends React.Component {
             return null
         }
     }
+
+    showPostModifier(){
+        if(this.userIdLogged === this.feed.User.id){
+            return (
+                <div className='flex flex-row'>
+                    <div className='flex flex-col'>
+                        <SupprPost feedId={this.feed.id} />
+                        <ModifyPost feedId={this.feed.id} oneFeed={this.props.oneFeed} />
+                    </div>
+                </div>
+            )
+        }
+        return null
+    }
+
     render() {
         let date = new Date(this.feed.createdAt)
         date = `le ${date.getDate()}/${date.getMonth()}/${date.getFullYear()} à ${date.getHours()}h${date.getMinutes()}`;
         return (
-            // <div data-postId={this.feed.id}>
             <div>
                 <div>
                     <div className='my-1'>
-                        <h4 className='antialiased text-lg font-semibold mb-4'>{`${this.feed.User.firstName} ${this.feed.User.lastName} a publié(e) :`}</h4>
+                        <div className='flex-row flex justify-between'>
+                            <h4 className='antialiased text-lg font-semibold mb-4'>{`${this.feed.User.firstName} ${this.feed.User.lastName} a publié(e) :`}</h4>
+                            {this.showPostModifier()}
+                        </div>
                         <p className='antialiased text-base font-medium'>{this.feed.message}</p>
                         <div>
                             {this.showImage()}
@@ -58,11 +80,11 @@ class Feed extends React.Component {
                         <p className='text-sm underline text-mandy-900 mb-4'>{date}</p>
                     </div>
                     <div className='my-1'>
-                        <ShowComments allComments={[...this.props.oneFeed.Coms]} idForNoComment={this.feed.id} key={`allComments ${this.feed.id}`} />
+                        <ShowComments allComments={[...this.props.oneFeed.Coms]} idForNoComment={this.feed.id} key={`allComments ${this.feed.id}`} isAdmin={this.isAdmin} userIdLogged={this.userIdLogged} />
                     </div>
                 </div>
                 <div className='my-1 divide-y-4 divide-mandy-700 divide-solid antialiased'>
-                    <Comment key={`feedId ${this.feed.id}`} postId={this.feed.id} />
+                    <Comment key={`feedId ${this.feed.id}`} postId={this.feed.id} isAdmin={this.isAdmin} userIdLogged={this.userIdLogged} />
                 </div>
             </div>
         )

@@ -76,8 +76,11 @@
 }
 
 
-/* Personalisation des input type=file */
+/* Menu Mon Compte */
 
-.inputFile::after {
-    background-color: aqua;
+.account-menu {
+    position: absolute;
+    right: 15rem;
+    top: 10%;
+    z-index: 500;
 }
