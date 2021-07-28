@@ -56,7 +56,7 @@ class Timeline extends React.Component {
         this.setState({
             allFeeds: [...feeds]
         })
-        console.log(this.state)
+        // console.log(this.state)
     }
 
     render() {

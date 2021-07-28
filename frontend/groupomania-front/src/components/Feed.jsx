@@ -19,7 +19,7 @@ class Feed extends React.Component {
 
     showImage() {
         if (this.feed.image != null) {
-            console.log(this.feed.image)
+            // console.log(this.feed.image)
             return (
                 <a
                     href={this.feed.image}
@@ -38,7 +38,7 @@ class Feed extends React.Component {
                 </a>
             )
         } else {
-            console.log(this.feed.image)
+            // console.log(this.feed.image)
             return null
         }
     }

@@ -1,6 +1,6 @@
 const account = () => {
     return (
-        alert('Account')
+        alert(true)
     )
 };
 
