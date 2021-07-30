@@ -107,14 +107,13 @@ exports.modifyPost = (req, res, next) => {
         })
         .then(async(onePost) => {
             if (req.token.userId == onePost.UserId || req.token.isAdmin) {
-                // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
-                let modifyPostReq = JSON.parse(req.body.post);
-                if (req.file) {
-                    modifyPostReq.image = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-                } else {
-                    modifyPostReq.image = null;
-                    const filename = modifyPostReq.image.split('/uploads/')[1];
-                    await fs.unlink(`uploads/${filename}`);
+                let modifyPostReq = req.file ? {
+                    // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
+                    ...JSON.parse(req.body.post),
+                    image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+                } : {
+                    // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
+                    ...JSON.parse(req.body.post)
                 };
                 Post.update({
                         // on destrcuture postReq avec les ...
