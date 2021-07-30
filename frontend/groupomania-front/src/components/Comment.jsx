@@ -88,9 +88,13 @@ class Comment extends React.Component {
 
     render() {
         return (
-            <div className='w-3/4 max-w-md bg-white bg-opacity-40 px-4 py-2 rounded-3xl shadow-xl'>
-                <h3 className="antialiased text-lg font-semibold my-auto mb-2 pl-2">Laisser un commentaire</h3>
-                <div className='flex flex-row justify-evenly items-center'>
+            <div className='sm:w-3/4 sm:max-w-md bg-white bg-opacity-40 sm:px-4 px-1 py-4 rounded-3xl shadow-xl'>
+                <h3
+                className="antialiased text-lg font-semibold my-auto mb-2 pl-2 sm:block hidden"
+                aria-label="Laisser un commentaire">
+                    Laisser un commentaire
+                    </h3>
+                <div className='flex sm:flex-row flex-col sm:justify-evenly items-center'>
                     <form>
                         <textarea
                             id="user-publication"
@@ -98,10 +102,10 @@ class Comment extends React.Component {
                             onChange={this.handleInputChange}
                             rows={2}
                             name="message"
-                            className='w-60 h-16 bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl text-left px-2 py-1 resize-none'
+                            className='sm:w-60 sm:h-16 bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl text-left px-2 py-1 resize-none mb-1 sm:mb-0'
                         />
                     </form>
-                    <div className="flex flex-col">
+                    <div className="flex sm:flex-col flex-row">
                         <div
                             className='rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 inputFile'
                         >
@@ -127,7 +131,8 @@ class Comment extends React.Component {
                             ref={this.fileInput}
                             onClick={this.reset}
                             aria-label="Supprimer la photo"
-                            className='antialiased font-bold hover:text-red-800 arialabel-sm block'>
+                            className='antialiased font-bold hover:text-red-800 arialabel-sm block
+                            sm:mx-0 mx-2'>
                             < FontAwesomeIcon icon={faMinusCircle} />
                         </button>
                         <button
