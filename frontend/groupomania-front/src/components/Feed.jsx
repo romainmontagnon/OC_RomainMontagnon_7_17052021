@@ -1,8 +1,8 @@
 import React from 'react';
 import ShowComments from './ShowComments';
 import Comment from './Comment';
-import ModifyPost from './modifier/ModifyPost';
-import SupprPost from './modifier/SupprPost';
+import ModifyPost from './modifier/post/ModifyPost';
+import SupprPost from './modifier/post/SupprPost';
 
 class Feed extends React.Component {
     constructor(props) {
@@ -48,14 +48,18 @@ class Feed extends React.Component {
         }
     }
 
-    showPostModifier(){
-        if(this.userIdLogged === this.feed.User.id){
+    showPostModifier() {
+        if (this.userIdLogged === this.feed.User.id) {
             return (
-                <div className='flex flex-row'>
-                    <div className='flex flex-col'>
-                        <SupprPost feedId={this.feed.id} />
-                        <ModifyPost feedId={this.feed.id} oneFeed={this.props.oneFeed} />
-                    </div>
+                <div className='flex flex-col'>
+                    <SupprPost feedId={this.feed.id} />
+                    <ModifyPost feedId={this.feed.id} oneFeed={this.props.oneFeed} />
+                </div>
+            )
+        } else if (this.isAdmin){
+            return (
+                <div className='flex flex-col'>
+                    <SupprPost feedId={this.feed.id} />
                 </div>
             )
         }

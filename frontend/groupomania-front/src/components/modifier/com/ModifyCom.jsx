@@ -3,11 +3,11 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 
-import { loadFromSessionStorage } from '../../js/sesssion';
-import { routes } from '../../js/routes';
-import ModifyPostForm from './ModifyPostForm';
+import { loadFromSessionStorage } from '../../../js/sesssion';
+import { routes } from '../../../js/routes';
+import ModifyComForm from './ModifyComForm';
 
-class ModifyPost extends React.Component {
+class ModifyCom extends React.Component {
     state = {
         showMenu: false
     }
@@ -59,15 +59,16 @@ class ModifyPost extends React.Component {
         return (
             <div>
                 <div
-                    className='mx-2 mt-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center bg-midnight-100 font-semibold hover:bg-midnight-400 hover:text-midnight-50 antialiased md:py-0 py-1'
+                    className='mx-2 mt-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center bg-midnight-100 font-semibold hover:bg-midnight-400 hover:text-midnight-50 antialiased py-1 arialabel-sm'
+                    aria-label="Modifier"
                     onClick={this.showMenu}
                 >
-                    <h5 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faPen} /><span className='hidden md:block ml-2'>Modifier</span></h5>
+                    <h5 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faPen} /></h5>
                 </div>
-                {this.state.showMenu && <ModifyPostForm handler={this.showAccountSection} {...this.props} />}
+                {this.state.showMenu && <ModifyComForm handler={this.showAccountSection} {...this.props} />}
             </div>
         )
     }
 }
 
-export default ModifyPost;
+export default ModifyCom;

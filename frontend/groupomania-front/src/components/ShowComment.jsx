@@ -1,10 +1,16 @@
 import React from 'react';
+import ModifyCom from './modifier/com/ModifyCom';
+import SupprCom from './modifier/com/SupprCom';
 
 class ShowComment extends React.Component {
     constructor(props) {
         super(props)
         this.comment = this.props.oneComment
         this.bool = this.props.comment
+        this.isAdmin = this.props.isAdmin
+        this.userIdLogged = this.props.userIdLogged
+        this.componentDidMount = this.componentDidMount.bind(this)
+        this.showComModifier = this.showComModifier.bind(this)
         this.showImage = this.showImage.bind(this)
     }
 
@@ -17,9 +23,12 @@ class ShowComment extends React.Component {
             date = `le ${date.getDate()}/${date.getMonth()}/${date.getFullYear()} à ${date.getHours()}h${date.getMinutes()}`;
             return (
                 <div className='my-1 py-2 px-4 bg-mandy-300 rounded-3xl bg-opacity-80'>
-                    <h2 className='antialiased text-lg font-medium'>
-                        {`Commentaire de ${this.comment.User.firstName} ${this.comment.User.lastName} :`}
-                    </h2>
+                    <div className='flex-row flex justify-between border-red-500'>
+                        <h2 className='antialiased text-lg font-medium'>
+                            {`Commentaire de ${this.comment.User.firstName} ${this.comment.User.lastName} :`}
+                        </h2>
+                        {this.showComModifier()}
+                    </div>
                     <p className='antialiased text-base font-normal'>{this.comment.message}</p>
                     <div>
                         {this.showImage()}
@@ -62,6 +71,24 @@ class ShowComment extends React.Component {
             // console.log(this.comment.image)
             return null
         }
+    }
+
+    showComModifier() {
+        if (this.userIdLogged === this.comment.User.id) {
+            return (
+                <div className='flex flex-row'>
+                    <SupprCom commentId={this.comment.id} />
+                    <ModifyCom commentId={this.comment.id} oneComment={this.props.oneComment} />
+                </div>
+            )
+        } else if (this.isAdmin) {
+            return (
+                <div className='flex flex-row'>
+                    <SupprCom commentId={this.comment.id} />
+                </div>
+            )
+        }
+        return null
     }
 
     render() {

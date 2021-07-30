@@ -4,7 +4,8 @@ import ShowComment from './ShowComment';
 class ShowComments extends React.Component {
     constructor(props) {
         super(props)
-        // this.isLoggedIn = this.state.user.isLoggedIn;
+        this.isAdmin = this.props.isAdmin
+        this.userIdLogged = this.props.userIdLogged
         this.componentRenderCall = this.componentRenderCall.bind(this)
         this.comment = this.props.allComments
         this.idForNoComment = this.props.idForNoComment
@@ -18,12 +19,12 @@ class ShowComments extends React.Component {
                 <ul>
                     {this.comment.map((oneComment, index) =>
                         <li>
-                            <ShowComment key={`oneComment ${oneComment.id}`} oneComment={oneComment} comment={true} />
+                            <ShowComment key={`oneComment ${oneComment.id}`} oneComment={oneComment} comment={true} isAdmin={this.isAdmin} userIdLogged={this.userIdLogged} />
                         </li>
                     )}
                 </ul>
             )
-            
+
         } else {
             return (
                 <ul className='flex'>

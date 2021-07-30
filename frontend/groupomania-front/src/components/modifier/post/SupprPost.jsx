@@ -2,8 +2,9 @@ import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { loadFromSessionStorage } from '../../js/sesssion';
-import { routes } from '../../js/routes';
+
+import { loadFromSessionStorage } from '../../../js/sesssion';
+import { routes } from '../../../js/routes';
 
 class SupprPost extends React.Component {
     constructor(props) {
