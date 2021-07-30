@@ -79,7 +79,7 @@ class Feed extends React.Component {
                                 <span className='hidden sm:inline-block'>a publié(e)</span> :</h4>
                             {this.showPostModifier()}
                         </div>
-                        <p className='antialiased text-base font-medium'>{this.feed.message}</p>
+                        <p className='antialiased text-base font-medium mt-2'>{this.feed.message}</p>
                         <div>
                             {this.showImage()}
                         </div>

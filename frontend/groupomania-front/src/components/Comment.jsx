@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCameraRetro, faPaperPlane, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { routes } from '../js/routes';
-import { loadFromSessionStorage } from '../js/sesssion';
+import { loadFromSessionStorage } from '../js/session';
 
 class Comment extends React.Component {
     state = {

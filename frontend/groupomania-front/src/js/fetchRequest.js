@@ -1,4 +1,4 @@
-import { /*loadFromSessionStorage,*/ storeToSessionStorage } from "./sesssion";
+import { /*loadFromSessionStorage,*/ storeToSessionStorage } from "./session";
 
 const postSignUp = (data, url) => {
     let myHeaders = new Headers();

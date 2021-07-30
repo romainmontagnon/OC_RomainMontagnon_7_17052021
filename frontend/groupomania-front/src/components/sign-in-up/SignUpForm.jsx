@@ -1,6 +1,6 @@
 import React from 'react';
 import { routes } from '../../js/routes';
-import { storeToSessionStorage } from '../../js/sesssion';
+import { storeToSessionStorage } from '../../js/session';
 
 class SignUpForm extends React.Component {
     constructor(props) {

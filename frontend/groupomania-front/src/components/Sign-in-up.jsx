@@ -55,9 +55,7 @@ class SignInUp extends React.Component {
         if (!this.props.isLoggedIn || this.props.isLoggedIn === 'undefined') {
             return <SignInUpButton {...this.props} />
         } else if (this.props.isLoggedIn) {
-            return (
-                <WelcomeUser />
-            )
+            return null
         }
     }
 };

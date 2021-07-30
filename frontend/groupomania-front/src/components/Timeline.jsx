@@ -1,7 +1,7 @@
 import React from 'react';
 import Publish from './Publish';
 import Feeds from './Feeds';
-import { loadFromSessionStorage } from '../js/sesssion';
+import { loadFromSessionStorage } from '../js/session';
 import { routes } from '../js/routes';
 
 import { TimelineContext } from './context/TimelineContext';

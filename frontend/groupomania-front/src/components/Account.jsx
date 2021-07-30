@@ -1,5 +1,7 @@
 import React from 'react';
-import { loadFromSessionStorage } from '../js/sesssion';
+import { loadFromSessionStorage } from '../js/session';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 
 class Account extends React.Component {
     state = {
@@ -37,19 +39,30 @@ class Account extends React.Component {
         console.log(this.isAdmin)
         return (
             <div
-                className='mt-6 py-2 px-4 bg-white bg-opacity-40 rounded-3xl shadow-xl flex flex-col account-menu w-52'>
+                className='mt-6 py-2 px-4 bg-white bg-opacity-40 rounded-3xl shadow-xl flex flex-col w-52'>
                 <div className='flex flex-row justify-between'>
-                    <h1 className='antialiased text-lg font-bold'>Mon compte</h1>
-                    <button 
-                    className='antialiased font-extrabold'
-                    onClick={this.showAccountSection}
-                    >X</button>
+                    <h1 className='antialiased text-lg font-bold sm:inline-block hidden'>Mon compte</h1>
                 </div>
 
                 <ul>
-                    <li className='antialiased font-semibold'>Prénom : <span className='antialiased font-normal'>{this.state.info.firstName}</span></li>
-                    <li className='antialiased font-semibold'>Nom : <span className='antialiased font-normal'>{this.state.info.lastName}</span></li>
-                    <li className='antialiased font-semibold'>Utilisateur : <span className='antialiased font-normal'>{this.accountType()}</span></li>
+                    <li className='antialiased font-semibold'>
+                        <h3
+                            className="antialiased text-base font-semibold
+                            sm:inline-block hidden"
+                        >
+                            Bonjour, {`${this.state.info.firstName} ${this.state.info.lastName}`} !
+                        </h3>
+
+                    </li>
+                    <li className='antialiased font-semibold sm:inline-block hidden'>Utilisateur : <span className='antialiased font-normal'>{this.accountType()}</span></li>
+                    <li className='antialiased font-semibold'>
+                        <button type="submit"
+                            className='text-base mx-2 py-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 antialiased'
+                            onClick={() => { console.log('timeline') }}>
+                            < FontAwesomeIcon icon={faPowerOff} className='block lg:hidden' />
+                            <span className='hidden lg:block'>Se deconnecter</span>
+                        </button>
+                    </li>
                 </ul>
             </div>
         )

@@ -3,7 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 
-import { loadFromSessionStorage } from '../../../js/sesssion';
+import { loadFromSessionStorage } from '../../../js/session';
 import { routes } from '../../../js/routes';
 import ModifyPostForm from './ModifyPostForm'
 

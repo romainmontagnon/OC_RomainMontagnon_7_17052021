@@ -3,7 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCameraRetro, faPaperPlane, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { loadFromSessionStorage } from '../../../js/sesssion';
+import { loadFromSessionStorage } from '../../../js/session';
 import { routes } from '../../../js/routes';
 
 class ModifyPostForm extends React.Component {

@@ -11,7 +11,7 @@ const Nav = (props) => {
     return (
         <div className='flex flex-row justify-between items-center'>
             <SearchBar />
-            <NavMenu isAdmin={props.isAdmin} />
+            <NavMenu isLoggedIn={props.isLoggedIn} isAdmin={props.isAdmin} />
         </div>
     )
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { loadFromSessionStorage } from '../js/sesssion';
+import { loadFromSessionStorage } from '../js/session';
 
 class WelcomeUser extends React.Component{
     render(){

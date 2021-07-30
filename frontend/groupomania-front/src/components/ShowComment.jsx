@@ -25,7 +25,6 @@ class ShowComment extends React.Component {
                 <div className='my-1 py-2 px-4 bg-mandy-300 rounded-3xl bg-opacity-80'>
                     <div className='flex-row flex justify-between items-center border-red-500'>
                         <h2 className='antialiased text-lg font-medium'>
-                            <span className='hidden sm:inline-block'>Commentaire de</span>
                             {` ${this.comment.User.firstName} ${this.comment.User.lastName} :`}
                         </h2>
                         {this.showComModifier()}
