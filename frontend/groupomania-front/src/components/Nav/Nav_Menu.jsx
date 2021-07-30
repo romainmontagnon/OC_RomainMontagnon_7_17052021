@@ -1,9 +1,9 @@
 import React from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 // import { fa500px } from '@fortawesome/free-brands-svg-icons'
-// import { faPaperPlane } from '@fortawesome/free-regular-svg-icons'
-// import timeline from '../../js/timeline';
+import { faUser } from '@fortawesome/free-regular-svg-icons'
+
 import Account from '../Account';
 
 class NavMenu extends React.Component {
@@ -24,14 +24,16 @@ class NavMenu extends React.Component {
         return (
             <div className='mr-2'>
                 <button type="submit"
-                    className='mx-2 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 antialiased'
+                    className='text-base mx-2 py-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 antialiased'
                     onClick={() => { console.log('timeline') }}>
-                    Timeline
+                    < FontAwesomeIcon icon={faPowerOff} className='block lg:hidden' />
+                    <span className='hidden lg:block'>Se deconnecter</span>
                 </button>
                 <button type="submit"
-                    className='mx-2 rounded-2xl px-4 ring-2 ring-midnight-400 text-center bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 antialiased'
+                    className='text-base mx-2 py-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 antialiased'
                     onClick={this.showAccountSection}>
-                    Mon Compte
+                    < FontAwesomeIcon icon={faUser} className='block lg:hidden' />
+                    <span className='hidden lg:block'>Mon Compte</span>
                 </button>
                 <div className='my-auto'>
                     {this.state.showAccountSection && <Account handler={this.showAccountSection} {...this.props} />}

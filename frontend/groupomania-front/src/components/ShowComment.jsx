@@ -23,9 +23,10 @@ class ShowComment extends React.Component {
             date = `le ${date.getDate()}/${date.getMonth()}/${date.getFullYear()} à ${date.getHours()}h${date.getMinutes()}`;
             return (
                 <div className='my-1 py-2 px-4 bg-mandy-300 rounded-3xl bg-opacity-80'>
-                    <div className='flex-row flex justify-between border-red-500'>
+                    <div className='flex-row flex justify-between items-center border-red-500'>
                         <h2 className='antialiased text-lg font-medium'>
-                            {`Commentaire de ${this.comment.User.firstName} ${this.comment.User.lastName} :`}
+                            <span className='hidden sm:inline-block'>Commentaire de</span>
+                            {` ${this.comment.User.firstName} ${this.comment.User.lastName} :`}
                         </h2>
                         {this.showComModifier()}
                     </div>
@@ -76,7 +77,7 @@ class ShowComment extends React.Component {
     showComModifier() {
         if (this.userIdLogged === this.comment.User.id) {
             return (
-                <div className='flex flex-row'>
+                <div className='flex flex-col sm:flex-row'>
                     <SupprCom commentId={this.comment.id} />
                     <ModifyCom commentId={this.comment.id} oneComment={this.props.oneComment} />
                 </div>

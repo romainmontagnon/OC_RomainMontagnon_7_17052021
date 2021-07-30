@@ -74,7 +74,9 @@ class Feed extends React.Component {
                 <div>
                     <div className='my-1'>
                         <div className='flex-row flex justify-between'>
-                            <h4 className='antialiased text-lg font-semibold mb-4'>{`${this.feed.User.firstName} ${this.feed.User.lastName} a publié(e) :`}</h4>
+                            <h4 className='antialiased text-lg font-semibold mb-4'>
+                                {`${this.feed.User.firstName} ${this.feed.User.lastName} `}
+                                <span className='hidden sm:inline-block'>a publié(e)</span> :</h4>
                             {this.showPostModifier()}
                         </div>
                         <p className='antialiased text-base font-medium'>{this.feed.message}</p>
