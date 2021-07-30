@@ -113,7 +113,8 @@ exports.modifyPost = (req, res, next) => {
                     image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
                 } : {
                     // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
-                    ...JSON.parse(req.body.post)
+                    ...JSON.parse(req.body.post),
+                    image: null
                 };
                 Post.update({
                         // on destrcuture postReq avec les ...

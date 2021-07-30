@@ -36,15 +36,19 @@ exports.modifyCom = (req, res, next) => {
         })
         .then(async(modifyCom) => {
             if (req.token.userId == modifyCom.UserId || req.token.isAdmin) {
-                // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
-                let modifyComReq = JSON.parse(req.body.com);
-                if (req.file) {
-                    modifyComReq.image = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-                } else {
-                    modifyComReq.image = null;
-                    const filename = modifyComReq.image.split('/uploads/')[1];
-                    await fs.unlink(`uploads/${filename}`);
+
+
+
+                let modifyComReq = req.file ? {
+                    // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
+                    ...JSON.parse(req.body.com),
+                    image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+                } : {
+                    // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
+                    ...JSON.parse(req.body.com),
+                    image: null
                 };
+
                 Com.update({
                         // on destrcuture postReq avec les ...
                         ...modifyComReq
