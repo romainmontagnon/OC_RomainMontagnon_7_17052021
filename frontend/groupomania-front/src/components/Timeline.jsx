@@ -17,6 +17,7 @@ class Timeline extends React.Component {
         this.isAdmin = this.props.isAdmin
         this.userIdLogged = this.props.userIdLogged
         this.componentDidMount = this.componentDidMount.bind(this)
+        this.updateFeeds = this.updateFeeds.bind(this)
     }
 
     updateFeeds(value) {
@@ -40,16 +41,16 @@ class Timeline extends React.Component {
             .then(result => result)
             .catch(error => console.log('error', error));
         this.updateFeeds(feeds)
-        // console.log(this.state)
+        // console.log(this.state)  
     }
 
     render() {
-        if (this.props.isLoggedIn) {
+        if (this.isLoggedIn) {
             return (
                 <div>
                     <TimelineContext.Provider value={this.state}>
-                        <Publish updateFeeds={this.updateFeeds} allFeeds={this.state.allFeeds} isAdmin={this.isAdmin} userIdLogged={this.userIdLogged} />
-                        <Feeds allFeeds={this.state.allFeeds} isAdmin={this.isAdmin} userIdLogged={this.userIdLogged} /*handler={this.onLoadfunction}*/ />
+                        <Publish updateFeeds={this.updateFeeds} allFeeds={this.state.allFeeds} {...this.props} />
+                        <Feeds updateFeeds={this.updateFeeds} allFeeds={this.state.allFeeds} {...this.props} />
                     </TimelineContext.Provider>
                 </div>
             )

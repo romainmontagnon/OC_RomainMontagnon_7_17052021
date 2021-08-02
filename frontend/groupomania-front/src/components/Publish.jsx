@@ -19,9 +19,11 @@ class Publish extends React.Component {
         this.allFeeds = this.props.allFeeds
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.componentDidUpdate = this.componentDidUpdate.bind(this)
         this.reset = this.reset.bind(this);
         this.fileInput = React.createRef();
         this.showAria = this.showAria.bind(this)
+        console.log(this.allFeeds)
     }
 
     handleInputChange(event) {
@@ -32,8 +34,13 @@ class Publish extends React.Component {
         // console.log(value)
         // console.log(name)
         this.setState({
-            [name]: value, target
+            [name]: value, target,
         });
+    }
+
+    componentDidUpdate(){
+        this.allFeeds = this.props.allFeeds
+        console.log(this.allFeeds)
     }
 
     reset(e) {
@@ -42,10 +49,12 @@ class Publish extends React.Component {
         });
     };
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         let token = loadFromSessionStorage('token')
+
         console.log(this.state)
+        console.log(this.allFeeds)
 
         if (this.state.image === null && this.state.message === "") {
             alert('Attention, votre publication est vide')
@@ -71,15 +80,16 @@ class Publish extends React.Component {
             body: formdata,
             redirect: 'follow'
         };
-        console.log('go fetch, normalement ;-)')
-        fetch(routes.urlPost, requestOptions)
+
+        let publish = await fetch(routes.urlPost, requestOptions)
             .then(response => response.json())
             .then(result => {
                 console.log(result)
-                this.allFeeds.push(result)
-                this.updateFeeds(this.allFeeds)
+                return result
             })
             .catch(error => console.log('error', error));
+        this.allFeeds.push(publish)
+        this.updateFeeds(this.allFeeds)
     }
 
     showAria() {
@@ -113,7 +123,7 @@ class Publish extends React.Component {
                             name="publish"
                             className='rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 uppercase shadow-2xl'>
                             <span className="hidden sm:inline-block">Publier</span>
-                            < FontAwesomeIcon icon={faPaperPlane} className="ml-0 sm:ml-1"/>
+                            < FontAwesomeIcon icon={faPaperPlane} className="ml-0 sm:ml-1" />
                         </button>
                     </div>
                 </form>

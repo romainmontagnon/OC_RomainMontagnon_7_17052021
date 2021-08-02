@@ -52,14 +52,14 @@ class Feed extends React.Component {
         if (this.userIdLogged === this.feed.User.id) {
             return (
                 <div className='flex flex-col'>
-                    <SupprPost feedId={this.feed.id} />
+                    <SupprPost feedId={this.feed.id} {...this.props} />
                     <ModifyPost feedId={this.feed.id} oneFeed={this.props.oneFeed} />
                 </div>
             )
         } else if (this.isAdmin){
             return (
                 <div className='flex flex-col'>
-                    <SupprPost feedId={this.feed.id} />
+                    <SupprPost feedId={this.feed.id} {...this.props} />
                 </div>
             )
         }

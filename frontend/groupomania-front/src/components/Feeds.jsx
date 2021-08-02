@@ -17,14 +17,13 @@ class Feeds extends React.Component {
             <ul className='flex flex-col-reverse'>
                 {feed.map((oneFeed, index) =>
                     <li className='bg-midnight-200 bg-opacity-80 mb-4 py-2 px-2 rounded-3xl'>
-                        <Feed key={`feed ${oneFeed.id}`} oneFeed={oneFeed} isAdmin={this.isAdmin} userIdLogged={this.userIdLogged} />
+                        <Feed key={`feed ${oneFeed.id}`} oneFeed={oneFeed} indexArrray={index} {...this.props} />
                     </li>
                 )}
             </ul>
         )
     }
     componentDidUpdate() {
-        console.log('feeds update')
         this.render()
     }
 
