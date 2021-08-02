@@ -7,13 +7,23 @@ import React from 'react';
 import SearchBar from '../SearchBar';
 import NavMenu from './Nav_Menu';
 
-const Nav = (props) => {
-    return (
-        <div className='flex flex-row justify-between items-center'>
-            <SearchBar />
-            <NavMenu isLoggedIn={props.isLoggedIn} isAdmin={props.isAdmin} />
-        </div>
-    )
+class Nav extends React.Component {
+    constructor(props){
+        super(props)
+        this.isLoggedIn = this.props.isLoggedIn
+    }
+    render() {
+        if(this.isLoggedIn){
+        return (
+            <div className='flex flex-row justify-between items-center'>
+                <SearchBar />
+                <NavMenu {...this.props} />
+            </div>
+        )
+        } else {
+            return null
+        }
+    }
 };
 
 export default Nav;

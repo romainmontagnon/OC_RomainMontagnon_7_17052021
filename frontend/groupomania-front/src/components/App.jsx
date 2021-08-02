@@ -19,7 +19,7 @@ class App extends React.Component {
         this.userIdLogged = this.state.userIdLogged;
         this.login = (isLoggedIn, isAdmin, userIdLogged) => {
             this.setState(state => ({
-                user: {isLoggedIn: isLoggedIn, isAdmin: isAdmin, userIdLogged: userIdLogged}
+                user: { isLoggedIn: isLoggedIn, isAdmin: isAdmin, userIdLogged: userIdLogged }
             }))
         }
     }
@@ -28,7 +28,9 @@ class App extends React.Component {
             <div>
                 <div className="mg:w-4/5 mg:mx-auto">
                     <header id="landing">
-                        <Navbar isLoggedIn={this.state.user.isLoggedIn} isAdmin={this.state.user.isAdmin} />
+                        <UserContext.Provider value={this.state}>
+                            <Navbar isLoggedIn={this.state.user.isLoggedIn} isAdmin={this.state.user.isAdmin} login={this.login} />
+                        </UserContext.Provider>
                     </header>
                     <main>
                         <section id="login" className="flex flex-row lg:justify-end justify-center">
@@ -37,7 +39,7 @@ class App extends React.Component {
                             </UserContext.Provider>
                         </section>
                         <section>
-                            <AfterLog isLoggedIn={this.state.user.isLoggedIn} isAdmin={this.state.user.isAdmin} userIdLogged={this.state.user.userIdLogged}/>
+                            <AfterLog isLoggedIn={this.state.user.isLoggedIn} isAdmin={this.state.user.isAdmin} userIdLogged={this.state.user.userIdLogged} />
                         </section>
                     </main>
                     <footer className="bg-white bg-opacity-40 flex flex-col pb-5 mt-10">

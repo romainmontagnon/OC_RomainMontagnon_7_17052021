@@ -12,7 +12,6 @@ class SignInForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         if (this.state === null) {
-            console.log(this.state)
             alert(`Merci de saisir un identifiant et un mot de passe`)
         } else {
             console.log(this.state)

@@ -10,7 +10,6 @@ import Account from '../Account';
 
 class NavMenu extends React.Component {
     state = {
-        showAccountSection: false,
         info: {}
     }
 
@@ -21,7 +20,6 @@ class NavMenu extends React.Component {
         this.componentDidMount = this.componentDidMount.bind(this)
         this.accountType = this.accountType.bind(this);
         this.logout = this.logout.bind(this);
-        this.showAccountSection = this.props.handler
     }
 
     componentDidMount() {
@@ -38,9 +36,7 @@ class NavMenu extends React.Component {
 
     logout() {
         console.log('logout')
-        this.setState({
-            isLoggedIn: false
-        })
+        this.props.login(false, false, null)
         sessionStorage.clear();
     }
     accountType() {
@@ -51,7 +47,6 @@ class NavMenu extends React.Component {
     };
 
     render() {
-        console.log(this.isAdmin)
         return (
             <div className='mr-2 text-base mx-2 py-1 rounded-2xl px-4 text-center font-semibold antialiased'>
                 <div

@@ -1,7 +1,6 @@
 import React from 'react';
 import SignInForm from "./sign-in-up/SignInForm";
 import SignUpForm from "./sign-in-up/SignUpForm";
-import WelcomeUser from "./WelcomeUser";
 
 class SignInUpButton extends React.Component {
     state = {

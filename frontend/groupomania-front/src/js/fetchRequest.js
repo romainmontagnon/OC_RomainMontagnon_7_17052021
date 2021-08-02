@@ -170,10 +170,10 @@ const postAPost = (token, data, url) => {
 }
 
 export {
-    postLogin,
-    postSignUp,
-    getAllPost,
-    postAPost
+    // postLogin,
+    // postSignUp,
+    // getAllPost,
+    // postAPost
 };
 
 

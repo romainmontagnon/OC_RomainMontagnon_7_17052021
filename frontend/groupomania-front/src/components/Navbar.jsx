@@ -7,7 +7,7 @@ const Navbar = (props) => {
             <div className="flex flex-row lg:justify-between justify-evenly items-center" >
                 <NavLogo />
                 <nav>
-                    <NavGlobal isLoggedIn={props.isLoggedIn} isAdmin={props.isAdmin} />
+                    <NavGlobal isLoggedIn={props.isLoggedIn} isAdmin={props.isAdmin} login={props.login} />
                 </nav>
             </div>
         );
