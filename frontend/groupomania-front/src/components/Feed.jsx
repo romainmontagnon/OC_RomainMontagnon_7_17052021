@@ -14,6 +14,7 @@ class Feed extends React.Component {
         this.allComments = this.props.oneFeed.Coms
         this.isAdmin = this.props.isAdmin
         this.userIdLogged = this.props.userIdLogged
+        this.indexArrray = this.props.indexArrray
 
         // this.componentDidMount = this.componentDidMount.bind(this)
         this.showImage = this.showImage.bind(this)

@@ -8,11 +8,16 @@ import { routes } from '../../../js/routes';
 class SupprCom extends React.Component {
     constructor(props) {
         super(props)
-        this.supprPost = this.supprPost.bind(this)
+
         this.commentId = this.props.commentId
+        this.indexArrray = this.props.indexArrray
+        this.allComments = this.props.allComments
+        this.updateComments = this.props.updateComments
+
+        this.supprPost = this.supprPost.bind(this)
     }
 
-    supprPost() {
+    async supprPost() {
         let url = `${routes.urlCom}${this.commentId}`
         let myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${loadFromSessionStorage('token')}`);
@@ -23,10 +28,13 @@ class SupprCom extends React.Component {
             redirect: 'follow'
         };
 
-        fetch(url, requestOptions)
+        await fetch(url, requestOptions)
             .then(response => response.json())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
+
+        this.allComments.splice(this.indexArrray, 1)
+        this.updateComments(this.allComments)
     }
 
     render() {

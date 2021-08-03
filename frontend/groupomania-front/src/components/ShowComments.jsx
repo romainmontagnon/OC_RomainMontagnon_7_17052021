@@ -25,6 +25,7 @@ class ShowComments extends React.Component {
                                 updateComments={this.updateComments}
                                 allComments={this.props.allComments}
                                 key={`oneComment ${oneComment.id}`}
+                                indexArrray={index}
                                 oneComment={oneComment}
                                 comment={true}
                                 isAdmin={this.isAdmin}
