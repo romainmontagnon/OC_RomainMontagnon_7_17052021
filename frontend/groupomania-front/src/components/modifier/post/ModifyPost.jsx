@@ -13,12 +13,8 @@ class ModifyPost extends React.Component {
     }
     constructor(props) {
         super(props)
-        this.modifyPost = this.modifyPost.bind(this)
+        
         this.showMenu = this.showMenu.bind(this)
-    }
-
-    modifyPost() {
-
     }
 
     showMenu() {
@@ -64,7 +60,7 @@ class ModifyPost extends React.Component {
                 >
                     <h5 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faPen} /><span className='hidden md:block ml-2'>Modifier</span></h5>
                 </div>
-                {this.state.showMenu && <ModifyPostForm handler={this.showAccountSection} {...this.props} />}
+                {this.state.showMenu && <ModifyPostForm handler={this.showMenu} {...this.props} />}
             </div>
         )
     }

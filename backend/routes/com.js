@@ -8,6 +8,7 @@ const multer = require('../middleware/multer-config')
 // ----------------------------------------
 // ROUTES Post (publication)
 router.post('/', auth, multer, comCtrl.postCom);
+router.get('/:id', auth, multer, comCtrl.getOneCom);
 router.put('/:id', auth, multer, comCtrl.modifyCom);
 router.delete('/:id', auth, comCtrl.deleteCom);
 // ----------------------------------------

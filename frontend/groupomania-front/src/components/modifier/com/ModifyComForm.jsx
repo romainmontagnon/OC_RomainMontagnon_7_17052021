@@ -13,13 +13,20 @@ class ModifyComForm extends React.Component {
     }
     constructor(props) {
         super(props)
+
+        this.oneComment = this.props.oneComment;
+        this.commentId = this.props.commentId
+        this.updateComments = this.props.updateComments
+        this.indexArrray = this.props.indexArrray
+        this.allComments = this.props.allComments
+        this.showMenu = this.props.handler
+
         this.handleSubmit = this.handleSubmit.bind(this)
         this.showAria = this.showAria.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
         this.reset = this.reset.bind(this);
+
         this.fileInput = React.createRef();
-        this.comment = this.props.oneComment;
-        this.commentId = this.props.commentId
     }
 
     handleInputChange(event) {
@@ -42,8 +49,8 @@ class ModifyComForm extends React.Component {
         });
     };
 
-    handleSubmit() {
-        let url = `${routes.urlCom}${this.props.commentId}`
+    async handleSubmit() {
+        let url = `${routes.urlCom}${this.commentId}`
 
         let myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${loadFromSessionStorage('token')}`);
@@ -65,11 +72,36 @@ class ModifyComForm extends React.Component {
             redirect: 'follow'
         };
 
-        fetch(url, requestOptions)
+        let modifyCom = await fetch(url, requestOptions)
             .then(response => response.json())
-            .then(result => console.log(result))
+            .then(result => {
+                return result
+            })
             .catch(error => console.log('error', error));
+
+        if (modifyCom[0] === 1) {
+            let getRequestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            let modifyComReturn = await fetch(url, getRequestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    return result
+                })
+                .catch(error => console.log('error', error));
+            // this.allComments[this.indexArrray] = modifyComReturn
+            this.allComments.splice(this.indexArrray, 1)
+            this.updateComments(this.allComments)
+            this.allComments.push(modifyComReturn)
+            this.updateComments(this.allComments)
+
+            this.showMenu(false)
+        }
     }
+
     showAria() {
         if (this.state.image !== null) {
             return `image ${this.state.image}`
@@ -91,7 +123,7 @@ class ModifyComForm extends React.Component {
                                 rows={2}
                                 name="message"
                                 className='w-60 h-16 bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl text-left px-2 py-1 resize-none'
-                                defaultValue={this.comment.message}
+                                defaultValue={this.oneComment.message}
                             />
                         </form>
                         <div className="flex flex-col ml-2">

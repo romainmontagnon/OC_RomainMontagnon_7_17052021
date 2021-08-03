@@ -7,6 +7,9 @@ import SupprPost from './modifier/post/SupprPost';
 import { TimelineContext } from './context/TimelineContext';
 
 class Feed extends React.Component {
+    state = {
+        allComments: []
+    }
     constructor(props) {
         super(props)
 
@@ -16,7 +19,6 @@ class Feed extends React.Component {
         this.userIdLogged = this.props.userIdLogged
         this.indexArrray = this.props.indexArrray
 
-        // this.componentDidMount = this.componentDidMount.bind(this)
         this.showImage = this.showImage.bind(this)
         this.showPostModifier = this.showPostModifier.bind(this)
         this.updateComments = this.updateComments.bind(this)
@@ -29,14 +31,6 @@ class Feed extends React.Component {
         console.log(this.state)
         console.log(this.allComments)
     }
-
-    // componentDidUpdate() {
-    //     this.setState({
-    //         allComments: this.allComments
-    //     })
-    //     console.log(this.state)
-    //     console.log(this.allComments)
-    // }
 
     componentDidMount() {
         this.setState({
@@ -77,7 +71,7 @@ class Feed extends React.Component {
             return (
                 <div className='flex flex-col'>
                     <SupprPost feedId={this.feed.id} {...this.props} />
-                    <ModifyPost feedId={this.feed.id} oneFeed={this.props.oneFeed} />
+                    <ModifyPost feedId={this.feed.id} oneFeed={this.props.oneFeed} {...this.props} />
                 </div>
             )
         } else if (this.isAdmin) {

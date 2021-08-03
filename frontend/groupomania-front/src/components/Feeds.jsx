@@ -23,8 +23,15 @@ class Feeds extends React.Component {
             </ul>
         )
     }
+
+    // componentDidUpdate() {
+    //     console.log("feeds update")
+    //     this.render()
+    // }
+
     componentDidUpdate() {
-        this.render()
+        this.allFeeds = this.props.allFeeds
+        console.log(this.allFeeds)
     }
 
     render() {

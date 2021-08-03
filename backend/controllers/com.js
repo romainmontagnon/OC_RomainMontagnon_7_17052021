@@ -6,6 +6,27 @@ const { Post, User, Com } = require('../models/index');
 const { modifyPost } = require('./post');
 const fs = require('fs-extra');
 
+exports.getOneCom = (req, res, next) => {
+    Com.findOne({
+            include: [
+                User,
+                {
+                    model: Com,
+                    include: User
+                }
+            ],
+            where: {
+                id: req.params.id
+            }
+        })
+        .then((oneCom) => {
+            res.status(200).json(oneCom)
+        })
+        .catch((error) => {
+            res.status(404).json({ error: error })
+        });
+};
+
 exports.postCom = (req, res, next) => {
     let postComReq = req.file ? {
         // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string

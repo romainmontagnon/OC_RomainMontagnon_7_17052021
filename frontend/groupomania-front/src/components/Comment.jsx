@@ -41,7 +41,6 @@ class Comment extends React.Component {
 
     componentDidUpdate() {
         this.allComments = this.props.allComments
-        console.log(this.allComments)
     }
 
     reset(e) {

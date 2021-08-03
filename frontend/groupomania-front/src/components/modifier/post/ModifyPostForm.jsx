@@ -13,12 +13,18 @@ class ModifyPostForm extends React.Component {
     }
     constructor(props) {
         super(props)
+        this.showMenu = this.props.handler
+        this.feed = this.props.oneFeed;
+        this.allFeeds = this.props.allFeeds
+        this.updateFeeds = this.props.updateFeeds
+        this.indexArrray = this.props.indexArrray
+
         this.handleSubmit = this.handleSubmit.bind(this)
         this.showAria = this.showAria.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
         this.reset = this.reset.bind(this);
+
         this.fileInput = React.createRef();
-        this.feed = this.props.oneFeed;
         // this.postId = this.props.postId
     }
 
@@ -42,7 +48,7 @@ class ModifyPostForm extends React.Component {
         });
     };
 
-    handleSubmit() {
+    async handleSubmit() {
         let url = `${routes.urlPost}${this.feed.id}`
 
         let myHeaders = new Headers();
@@ -66,11 +72,37 @@ class ModifyPostForm extends React.Component {
             redirect: 'follow'
         };
 
-        fetch(url, requestOptions)
+        let modifyPost = await fetch(url, requestOptions)
             .then(response => response.json())
-            .then(result => console.log(result))
+            .then(result => {
+                return result
+            })
             .catch(error => console.log('error', error));
+
+        if (modifyPost[0] === 1) {
+            let getRequestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            let modifyPostReturn = await fetch(url, getRequestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    return result
+                })
+                .catch(error => console.log('error', error));
+            // this.allFeeds[this.indexArrray] = modifyPostReturn
+            this.allFeeds.splice(this.indexArrray, 1)
+            this.updateFeeds(this.allFeeds)
+            this.allFeeds.push(modifyPostReturn)
+            this.updateFeeds(this.allFeeds)
+
+            this.showMenu(false)
+        }
+        this.showMenu(false)
     }
+
     showAria() {
         if (this.state.image !== null) {
             return `image ${this.state.image}`

@@ -10,6 +10,7 @@ class ShowComment extends React.Component {
         this.bool = this.props.comment
         this.isAdmin = this.props.isAdmin
         this.userIdLogged = this.props.userIdLogged
+        this.updateComments=this.props.updateComments
 
         this.componentDidUpdate = this.componentDidUpdate.bind(this)
         this.showComModifier = this.showComModifier.bind(this)
@@ -17,9 +18,6 @@ class ShowComment extends React.Component {
     }
 
     componentDidUpdate() {
-        // console.log(this.comment)
-        // console.log(typeof (this.comment))
-
         if (this.bool) {
             let date = new Date(this.oneComment.createdAt)
             date = `le ${date.getDate()}/${date.getMonth()}/${date.getFullYear()} à ${date.getHours()}h${date.getMinutes()}`;
@@ -80,7 +78,7 @@ class ShowComment extends React.Component {
             return (
                 <div className='flex flex-col sm:flex-row'>
                     <SupprCom commentId={this.oneComment.id} {...this.props} />
-                    <ModifyCom commentId={this.oneComment.id} oneComment={this.oneComment} />
+                    <ModifyCom commentId={this.oneComment.id} {...this.props} />
                 </div>
             )
         } else if (this.isAdmin) {
