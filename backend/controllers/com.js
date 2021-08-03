@@ -21,7 +21,25 @@ exports.postCom = (req, res, next) => {
             UserId: req.token.userId
         })
         .then((com) => {
-            res.status(200).json(com)
+            // res.status(200).json(post)
+            Com.findOne({
+                    include: [
+                        User,
+                        {
+                            model: Com,
+                            include: User
+                        }
+                    ],
+                    where: {
+                        id: com.id
+                    }
+                })
+                .then((onePost) => {
+                    res.status(200).json(onePost)
+                })
+                .catch((error) => {
+                    res.status(404).json({ error: error.message })
+                });
         })
         .catch((error) => {
             res.status(404).json({ error })
@@ -36,9 +54,6 @@ exports.modifyCom = (req, res, next) => {
         })
         .then(async(modifyCom) => {
             if (req.token.userId == modifyCom.UserId || req.token.isAdmin) {
-
-
-
                 let modifyComReq = req.file ? {
                     // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
                     ...JSON.parse(req.body.com),
