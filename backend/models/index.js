@@ -17,7 +17,7 @@ Com.belongsTo(User, { onDelete: 'cascade' });
 // post creation de clef etrangere de com vers post
 Post.hasMany(Com, { onDelete: 'cascade' });
 
-// post creation de clef etrangere de com vers post
+// post creation de clef etrangere de com vers com
 Com.hasMany(Com, { onDelete: 'cascade' });
 
 User.sync( /*{ alter: true }*/ )
@@ -27,6 +27,7 @@ User.sync( /*{ alter: true }*/ )
     .catch((error) => {
         console.log(error)
     });
+
 Post.sync( /*{alter:true}*/ )
     .then((response) => {
         console.log(response)
@@ -34,6 +35,7 @@ Post.sync( /*{alter:true}*/ )
     .catch((error) => {
         console.log(error)
     });
+
 Com.sync( /*{alter:true}*/ )
     .then((response) => {
         console.log(response)
