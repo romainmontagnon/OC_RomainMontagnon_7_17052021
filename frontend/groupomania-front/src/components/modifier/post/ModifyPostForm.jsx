@@ -9,7 +9,8 @@ import { routes } from '../../../js/routes';
 class ModifyPostForm extends React.Component {
     state = {
         showMenu: false,
-        image: null
+        image: null,
+        message: null
     }
     constructor(props) {
         super(props)
@@ -27,6 +28,14 @@ class ModifyPostForm extends React.Component {
         this.fileInput = React.createRef();
         // this.postId = this.props.postId
     }
+
+    componentDidMount() {
+        this.setState({
+            message: this.feed.message,
+            image: this.feed.image
+        });
+    }
+
 
     handleInputChange(event) {
         const target = event.target;
@@ -110,6 +119,7 @@ class ModifyPostForm extends React.Component {
         return `image non sélectionnée`
     }
     render() {
+        console.log(this.state.message)
         return (
             <div
                 className='mt-2 text-center  font-semibold bg-none antialiased md:py-0 py-1 absolute'

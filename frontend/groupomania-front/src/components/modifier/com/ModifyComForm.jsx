@@ -9,7 +9,8 @@ import { routes } from '../../../js/routes';
 class ModifyComForm extends React.Component {
     state = {
         showMenu: false,
-        image: null
+        image: null,
+        message: null
     }
     constructor(props) {
         super(props)
@@ -27,6 +28,13 @@ class ModifyComForm extends React.Component {
         this.reset = this.reset.bind(this);
 
         this.fileInput = React.createRef();
+    }
+
+    componentDidMount() {
+        this.setState({
+            message: this.oneComment.message,
+            image: this.oneComment.image
+        });
     }
 
     handleInputChange(event) {
@@ -109,6 +117,7 @@ class ModifyComForm extends React.Component {
         return `image non sélectionnée`
     }
     render() {
+        console.log(this.state.message)
         return (
             <div
                 className='mt-2 text-center  font-semibold bg-none antialiased md:py-0 py-1 absolute'

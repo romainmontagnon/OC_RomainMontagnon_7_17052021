@@ -33,9 +33,9 @@ class Publish extends React.Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        // console.log(target)
-        // console.log(value)
-        // console.log(name)
+        console.log(target)
+        console.log(value)
+        console.log(name)
         this.setState({
             [name]: value, target,
         });
@@ -55,9 +55,6 @@ class Publish extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         let token = loadFromSessionStorage('token')
-
-        // console.log(this.state)
-        // console.log(this.allFeeds)
 
         if (this.state.image === null && this.state.message === "") {
             alert('Attention, votre publication est vide')
@@ -92,6 +89,8 @@ class Publish extends React.Component {
             .catch(error => console.log('error', error));
         this.allFeeds.push(publish)
         this.updateFeeds(this.allFeeds)
+        let userPublication = document.getElementById('user-publication')
+        userPublication.value = ''
     }
 
     showAria() {
