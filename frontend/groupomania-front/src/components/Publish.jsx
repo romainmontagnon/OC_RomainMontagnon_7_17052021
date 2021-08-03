@@ -123,7 +123,9 @@ class Publish extends React.Component {
                             type="submit"
                             id="user-publication-publish"
                             name="publish"
-                            className='rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 uppercase shadow-2xl'>
+                            className='rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 uppercase shadow-2xl
+                            transition transform motion-reduce:transition-none motion-reduce:transform-none 
+                                 duration-500 ease-in-out hover:scale-110'>
                             <span className="hidden sm:inline-block">Publier</span>
                             < FontAwesomeIcon icon={faPaperPlane} className="ml-0 sm:ml-1" />
                         </button>
@@ -134,7 +136,9 @@ class Publish extends React.Component {
                     >
                         <label
                             aria-label={this.showAria()}
-                            className='antialiased arialabel'
+                            className='antialiased arialabel block
+                                transition transform motion-reduce:transition-none motion-reduce:transform-none 
+                                 duration-500 ease-in-out hover:scale-110'
                         >
                             < FontAwesomeIcon icon={faCameraRetro} />
                             <input
@@ -145,7 +149,9 @@ class Publish extends React.Component {
                                 ref={this.fileInput}
                                 onChange={this.handleInputChange}
                                 aria-label={this.state.image}
-                                className='hidden block'
+                                className='hidden block
+                                transition transform motion-reduce:transition-none motion-reduce:transform-none 
+                                 duration-500 ease-in-out hover:scale-110'
                             />
                         </label>
                     </div>
@@ -153,7 +159,9 @@ class Publish extends React.Component {
                         ref={this.fileInput}
                         onClick={this.reset}
                         aria-label="Supprimer la photo"
-                        className='antialiased font-bold mb-4 hover:text-red-800 arialabel-sm block'>
+                        className='antialiased font-bold mb-4 hover:text-red-800 arialabel-sm block
+                        transition transform motion-reduce:transition-none motion-reduce:transform-none 
+                        duration-500 ease-in-out hover:scale-110'>
                         < FontAwesomeIcon icon={faMinusCircle} />
                     </button>
                 </div>

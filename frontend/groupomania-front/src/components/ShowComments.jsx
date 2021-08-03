@@ -18,7 +18,7 @@ class ShowComments extends React.Component {
     componentRenderCall() {
         if (this.allComments.length !== 0) {
             return (
-                <ul>
+                <ul className='animate__animated animate__fadeIn'>
                     {this.allComments.map((oneComment, index) =>
                         <li>
                             <ShowComment

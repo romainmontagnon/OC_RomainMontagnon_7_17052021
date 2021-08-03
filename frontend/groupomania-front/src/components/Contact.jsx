@@ -11,7 +11,8 @@ class Contact extends React.Component {
     }
     render() {
         return (
-            <div className='w-1/3 sm:w-80 text-midnight-600 mx-auto bg-white bg-opacity-40 rounded-lg px-2 py-2'>
+            <div className='w-1/3 sm:w-80 text-midnight-600 mx-auto bg-white bg-opacity-40 rounded-lg px-2 py-2
+            animate__animated animate__fadeInTopLeft'>
                 <div className='flex flex-row justify-between'>
                     <h4 className='font-bold antialiased'>Contact</h4>
                     <button

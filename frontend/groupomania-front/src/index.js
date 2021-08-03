@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 // import './styles/tailwind.css';
 import './styles/style_build.css';
 import './styles/style.css';
+import '../node_modules/animate.css/animate.css'
 
 import App from './components/App'
 

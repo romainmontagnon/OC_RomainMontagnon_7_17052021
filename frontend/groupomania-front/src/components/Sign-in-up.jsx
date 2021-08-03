@@ -30,12 +30,16 @@ class SignInUpButton extends React.Component {
             sm:mx-auto'>
                 <div className='flex flex-col justify-around'>
                     <button
-                        className='transform -rotate-90 mr-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 uppercase'
+                        className='transform -rotate-90 mr-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 uppercase
+                            transition motion-reduce:transition-none motion-reduce:transform-none 
+                            duration-500 ease-in-out'
                         onClick={this.handleShowSignUp}>
                         Inscription
                     </button>
                     <button
-                        className='transform -rotate-90 mr-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 uppercase'
+                        className='transform -rotate-90 mr-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 uppercase
+                            transition motion-reduce:transition-none motion-reduce:transform-none 
+                            duration-500 ease-in-out'
                         onClick={this.handleShowSignIn}>
                         Login
                     </button>

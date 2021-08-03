@@ -40,7 +40,9 @@ class SupprCom extends React.Component {
     render() {
         return (
             <div
-                className='mx-2 sm:mt-1 mb-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center bg-midnight-100 font-semibold hover:bg-midnight-400 hover:text-midnight-50 antialiased py-1 arialabel-sm'
+                className='mx-2 sm:mt-1 mb-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center bg-midnight-100 font-semibold hover:bg-midnight-400 hover:text-midnight-50 antialiased py-1 arialabel-sm
+                transition transform motion-reduce:transition-none motion-reduce:transform-none 
+                duration-500 ease-in-out hover:scale-110'
                 aria-label="Supprimer"
                 onClick={this.supprPost}>
                 <h5 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faTrash} /></h5>

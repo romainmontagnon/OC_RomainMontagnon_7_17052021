@@ -66,7 +66,9 @@ class NavMenu extends React.Component {
                         <li className='antialiased font-semibold sm:inline-block hidden'>Utilisateur : <span className='antialiased font-normal'>{this.accountType()}</span></li>
                         <li className='antialiased font-semibold mt-2'>
                             <button type="submit"
-                                className='text-base mx-2 py-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-100 font-semibold hover:bg-midnight-400 hover:text-midnight-50 antialiased shadow-md'
+                                className='text-base mx-2 py-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-100 font-semibold hover:bg-midnight-400 hover:text-midnight-50 antialiased shadow-md
+                                transition transform scale-90 motion-reduce:transition-none motion-reduce:transform-none 
+                                 duration-500 ease-in-out hover:scale-100'
                                 onClick={this.logout}>
                                 < FontAwesomeIcon icon={faPowerOff} className='block lg:hidden' />
                                 <span className='hidden lg:block'>Se deconnecter</span>

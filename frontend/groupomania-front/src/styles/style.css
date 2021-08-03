@@ -15,7 +15,7 @@
     position: absolute;
     top: 110%;
     left: 0.5rem;
-    z-index: 5000;
+    z-index: 500;
     pointer-events: none;
     padding: 0.5rem 0.625rem;
     line-height: 0.938rem;
@@ -52,7 +52,7 @@
     position: absolute;
     top: 110%;
     left: 0.5rem;
-    z-index: 5000;
+    z-index: 256;
     pointer-events: none;
     padding: 0.5rem 0.625rem;
     white-space: nowrap;

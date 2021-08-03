@@ -89,7 +89,7 @@ class Feed extends React.Component {
         date = `le ${date.getDate()}/${date.getMonth()}/${date.getFullYear()} à ${date.getHours()}h${date.getMinutes()}`;
         return (
             <TimelineContext.Provider value={this.state}>
-                <div>
+                <div className='animate__animated animate__fadeInDown'>
                     <div>
                         <div className='my-1'>
                             <div className='flex-row flex justify-between'>

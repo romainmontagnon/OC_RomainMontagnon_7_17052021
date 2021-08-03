@@ -95,7 +95,7 @@ class ShowComment extends React.Component {
         // console.log(this.comment)
         // console.log(this.bool)
         return (
-            <div>
+            <div className='animate__animated animate__fadeInUp'>
                 {this.componentDidUpdate()}
             </div>
         )

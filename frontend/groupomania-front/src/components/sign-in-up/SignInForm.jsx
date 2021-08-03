@@ -78,7 +78,9 @@ class SignInForm extends React.Component {
                         placeholder="john.doe@groupomania.eu"
                         name="emailAdress"
                         onChange={this.handleInputChange}
-                        className='bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl w-60 text-center my-2'
+                        className='bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl w-60 text-center my-2
+                            transition motion-reduce:transition-none motion-reduce:transform-none 
+                            duration-300 ease-in-out'
                     />
                     <input
                         type="password"
@@ -86,12 +88,16 @@ class SignInForm extends React.Component {
                         placeholder="Mot de passe"
                         name="password"
                         onChange={this.handleInputChange}
-                        className='bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl w-60 text-center  my-2'
+                        className='bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl w-60 text-center my-2
+                            transition motion-reduce:transition-none motion-reduce:transform-none 
+                            duration-300 ease-in-out'
                     />
                     <input
                         type="submit"
                         value="Envoyer"
-                        className='mr-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 uppercase my-2'
+                        className='mr-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 uppercase my-2
+                            transition transform motion-reduce:transition-none motion-reduce:transform-none 
+                            duration-500 ease-in-out hover:scale-110'
                     />
                 </form>
             </div>

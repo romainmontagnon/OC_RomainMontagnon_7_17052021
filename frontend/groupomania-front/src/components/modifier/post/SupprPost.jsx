@@ -39,7 +39,9 @@ class SupprPost extends React.Component {
     render() {
         return (
             <div
-                className='mx-2 mb-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center bg-midnight-100 font-semibold hover:bg-midnight-400 hover:text-midnight-50 antialiased md:py-0 py-1'
+                className='mx-2 mb-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center bg-midnight-100 font-semibold hover:bg-midnight-400 hover:text-midnight-50 antialiased md:py-0 py-1
+                transition transform motion-reduce:transition-none motion-reduce:transform-none 
+                duration-500 ease-in-out hover:scale-110'
                 onClick={this.supprPost}>
                 <h5 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faTrash} /><span className='hidden md:block ml-2'>Supprimer</span></h5>
             </div>

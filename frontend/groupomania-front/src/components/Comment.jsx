@@ -128,7 +128,9 @@ class Comment extends React.Component {
                         >
                             <label
                                 aria-label={this.showAria()}
-                                className='antialiased arialabel'
+                                className='antialiased arialabel block
+                                transition transform motion-reduce:transition-none motion-reduce:transform-none 
+                    duration-500 ease-in-out hover:scale-110'
                             >
                                 < FontAwesomeIcon icon={faCameraRetro} />
                                 <input
@@ -149,7 +151,9 @@ class Comment extends React.Component {
                             onClick={this.reset}
                             aria-label="Supprimer la photo"
                             className='antialiased font-bold hover:text-red-800 arialabel-sm block
-                            sm:mx-0 mx-2'>
+                            sm:mx-0 mx-2
+                            transition transform motion-reduce:transition-none motion-reduce:transform-none 
+                    duration-500 ease-in-out hover:scale-110'>
                             < FontAwesomeIcon icon={faMinusCircle} />
                         </button>
                         <button
@@ -158,7 +162,9 @@ class Comment extends React.Component {
                             id="user-comment-publish"
                             name="comment"
                             aria-label="Publier commentaire"
-                            className='rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 antialiased arialabel-sm'
+                            className='rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 antialiased arialabel-sm
+                            transition transform motion-reduce:transition-none motion-reduce:transform-none 
+                                 duration-500 ease-in-out hover:scale-110'
                         >
                             < FontAwesomeIcon icon={faPaperPlane} />
                         </button>
