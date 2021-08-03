@@ -6,7 +6,9 @@ import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 
 const NavFooterLogo = () => {
     return (
-        <p className='text-4xl text-mandy-600 font-semi-bold m-2'>
+        <p className='text-4xl text-mandy-500 font-semi-bold m-2 hover:text-mandy-800
+            transition transform motion-reduce:transition-none motion-reduce:transform-none 
+            duration-500 ease-in-out'>
             < FontAwesomeIcon icon={faGlobe} />
         </p>)
 };
