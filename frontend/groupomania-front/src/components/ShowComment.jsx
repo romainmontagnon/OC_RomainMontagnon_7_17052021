@@ -5,31 +5,33 @@ import SupprCom from './modifier/com/SupprCom';
 class ShowComment extends React.Component {
     constructor(props) {
         super(props)
-        this.comment = this.props.oneComment
+        
+        this.oneComment = this.props.oneComment
         this.bool = this.props.comment
         this.isAdmin = this.props.isAdmin
         this.userIdLogged = this.props.userIdLogged
-        this.componentDidMount = this.componentDidMount.bind(this)
+
+        this.componentDidUpdate = this.componentDidUpdate.bind(this)
         this.showComModifier = this.showComModifier.bind(this)
         this.showImage = this.showImage.bind(this)
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
         // console.log(this.comment)
         // console.log(typeof (this.comment))
 
         if (this.bool) {
-            let date = new Date(this.comment.createdAt)
+            let date = new Date(this.oneComment.createdAt)
             date = `le ${date.getDate()}/${date.getMonth()}/${date.getFullYear()} à ${date.getHours()}h${date.getMinutes()}`;
             return (
                 <div className='my-1 py-2 px-4 bg-mandy-300 rounded-3xl bg-opacity-80'>
                     <div className='flex-row flex justify-between items-center border-red-500'>
                         <h2 className='antialiased text-lg font-medium'>
-                            {` ${this.comment.User.firstName} ${this.comment.User.lastName} :`}
+                            {` ${this.oneComment.User.firstName} ${this.oneComment.User.lastName} :`}
                         </h2>
                         {this.showComModifier()}
                     </div>
-                    <p className='antialiased text-base font-normal'>{this.comment.message}</p>
+                    <p className='antialiased text-base font-normal'>{this.oneComment.message}</p>
                     <div>
                         {this.showImage()}
                     </div>
@@ -40,7 +42,7 @@ class ShowComment extends React.Component {
             return (
                 <div className='my-1 py-2 px-4 bg-mandy-300 rounded-3xl bg-opacity-80'>
                     <h2 className='antialiased text-sm font-medium'>
-                        {this.comment}
+                        {this.oneComment}
                     </h2>
                 </div>
             )
@@ -48,21 +50,21 @@ class ShowComment extends React.Component {
     }
 
     showImage() {
-        if (this.comment.image != null) {
+        if (this.oneComment.image != null) {
             // console.log(this.comment.image)
             return (
                 <a
-                    href={this.comment.image}
+                    href={this.oneComment.image}
                     target="_blank"
                     aria-label="Ouvrir dans un nouvel onglet"
                     className='antialiased arialabel'
                 >
                     <img
-                        src={this.comment.image}
-                        alt={this.comment.User.firstName}
+                        src={this.oneComment.image}
+                        alt={this.oneComment.User.firstName}
                         className="w-1/4 mt-4 rounded-xl shadow-xl"
                         onClick={() => {
-                            this.windows.open(`${this.comment.image}`)
+                            this.windows.open(`${this.oneComment.image}`)
                         }}
                     />
                 </a>
@@ -74,17 +76,17 @@ class ShowComment extends React.Component {
     }
 
     showComModifier() {
-        if (this.userIdLogged === this.comment.User.id) {
+        if (this.userIdLogged === this.oneComment.User.id) {
             return (
                 <div className='flex flex-col sm:flex-row'>
-                    <SupprCom commentId={this.comment.id} />
-                    <ModifyCom commentId={this.comment.id} oneComment={this.props.oneComment} />
+                    <SupprCom commentId={this.oneComment.id} />
+                    <ModifyCom commentId={this.oneComment.id} oneComment={this.oneComment} />
                 </div>
             )
         } else if (this.isAdmin) {
             return (
                 <div className='flex flex-row'>
-                    <SupprCom commentId={this.comment.id} />
+                    <SupprCom commentId={this.oneComment.id} />
                 </div>
             )
         }
@@ -96,7 +98,7 @@ class ShowComment extends React.Component {
         // console.log(this.bool)
         return (
             <div>
-                {this.componentDidMount()}
+                {this.componentDidUpdate()}
             </div>
         )
 

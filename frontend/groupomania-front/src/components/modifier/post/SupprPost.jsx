@@ -17,27 +17,23 @@ class SupprPost extends React.Component {
     }
 
     async supprPost() {
-        // let url = `${routes.urlPost}${this.feedId}`
-        // let myHeaders = new Headers();
-        // myHeaders.append("Authorization", `Bearer ${loadFromSessionStorage('token')}`);
+        let url = `${routes.urlPost}${this.feedId}`
+        let myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${loadFromSessionStorage('token')}`);
 
-        // let requestOptions = {
-        //     method: 'DELETE',
-        //     headers: myHeaders,
-        //     redirect: 'follow'
-        // };
+        let requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
 
-        // await fetch(url, requestOptions)
-        //     .then(response => response.json())
-        //     .then(result => console.log(result))
-        //     .catch(error => console.log('error', error));
-        console.log(this.allFeeds)
-        console.log(this.indexArrray)
+        await fetch(url, requestOptions)
+            .then(response => response.json())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
         this.allFeeds.splice(this.indexArrray, 1)
-        console.log(this.allFeeds)
-
         this.updateFeeds(this.allFeeds)
-
     }
 
     render() {

@@ -15,15 +15,18 @@ class Publish extends React.Component {
 
     constructor(props) {
         super(props)
+
         this.updateFeeds = this.props.updateFeeds
         this.allFeeds = this.props.allFeeds
+
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.componentDidUpdate = this.componentDidUpdate.bind(this)
+        // this.componentDidUpdate = this.componentDidUpdate.bind(this)
         this.reset = this.reset.bind(this);
-        this.fileInput = React.createRef();
         this.showAria = this.showAria.bind(this)
-        console.log(this.allFeeds)
+
+        this.fileInput = React.createRef();
+
     }
 
     handleInputChange(event) {
@@ -38,7 +41,7 @@ class Publish extends React.Component {
         });
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         this.allFeeds = this.props.allFeeds
         console.log(this.allFeeds)
     }
@@ -53,8 +56,8 @@ class Publish extends React.Component {
         event.preventDefault();
         let token = loadFromSessionStorage('token')
 
-        console.log(this.state)
-        console.log(this.allFeeds)
+        // console.log(this.state)
+        // console.log(this.allFeeds)
 
         if (this.state.image === null && this.state.message === "") {
             alert('Attention, votre publication est vide')
@@ -72,7 +75,6 @@ class Publish extends React.Component {
         }
 
         formdata.append("post", `{"message": "${this.state.message}"}`);
-        console.log(formdata)
 
         let requestOptions = {
             method: 'POST',

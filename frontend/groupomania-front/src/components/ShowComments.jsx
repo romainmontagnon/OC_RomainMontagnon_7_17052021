@@ -4,22 +4,32 @@ import ShowComment from './ShowComment';
 class ShowComments extends React.Component {
     constructor(props) {
         super(props)
+
         this.isAdmin = this.props.isAdmin
         this.userIdLogged = this.props.userIdLogged
-        this.componentRenderCall = this.componentRenderCall.bind(this)
-        this.comment = this.props.allComments
+        this.allComments = this.props.allComments
         this.idForNoComment = this.props.idForNoComment
+        this.updateComments = this.props.updateComments
+
+        this.componentRenderCall = this.componentRenderCall.bind(this)
+        this.updateComments = this.updateComments.bind(this)
     }
 
     componentRenderCall() {
-        // let comment = this.props.allComments.allComments
-        // console.log(this.comment)
-        if (this.comment.length !== 0) {
+        if (this.allComments.length !== 0) {
             return (
                 <ul>
-                    {this.comment.map((oneComment, index) =>
+                    {this.allComments.map((oneComment, index) =>
                         <li>
-                            <ShowComment key={`oneComment ${oneComment.id}`} oneComment={oneComment} comment={true} isAdmin={this.isAdmin} userIdLogged={this.userIdLogged} />
+                            <ShowComment
+                                updateComments={this.updateComments}
+                                allComments={this.props.allComments}
+                                key={`oneComment ${oneComment.id}`}
+                                oneComment={oneComment}
+                                comment={true}
+                                isAdmin={this.isAdmin}
+                                userIdLogged={this.userIdLogged}
+                                updateComments={this.updateComments} />
                         </li>
                     )}
                 </ul>

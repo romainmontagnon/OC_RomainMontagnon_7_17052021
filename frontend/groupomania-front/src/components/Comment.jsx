@@ -14,12 +14,17 @@ class Comment extends React.Component {
 
     constructor(props) {
         super(props)
+
+        this.allComments = this.props.allComments
+        this.postId = this.props.postId
+        this.updateComments = this.props.updateComments
+
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.reset = this.reset.bind(this);
-        this.fileInput = React.createRef();
         this.showAria = this.showAria.bind(this)
-        this.postId = this.props.postId
+
+        this.fileInput = React.createRef();
     }
 
     handleInputChange(event) {
@@ -34,6 +39,11 @@ class Comment extends React.Component {
         });
     }
 
+    componentDidUpdate() {
+        this.allComments = this.props.allComments
+        console.log(this.allComments)
+    }
+
     reset(e) {
         // this.state.image = null;
         this.setState({
@@ -41,10 +51,12 @@ class Comment extends React.Component {
         });
     };
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         let token = loadFromSessionStorage('token')
+
         // console.log(this.state)
+        console.log(this.allComments)
 
         if (this.state.image === null && this.state.message === "") {
             alert('Attention, votre commentaire est vide')
@@ -57,15 +69,14 @@ class Comment extends React.Component {
 
         let fileName = null;
         let fileInput = null;
-        
+
         if (this.state.image !== null) {
             fileName = this.state.target.files[0].name
             fileInput = this.state.target.files[0]
             formdata.append("file", fileInput, fileName);
         }
- 
-        formdata.append("com", `{"message": "${this.state.message}", "PostId": ${this.postId}}`);
 
+        formdata.append("com", `{"message": "${this.state.message}", "PostId": ${this.postId}}`);
 
         let requestOptions = {
             method: 'POST',
@@ -73,10 +84,17 @@ class Comment extends React.Component {
             body: formdata,
             redirect: 'follow'
         };
-        fetch(routes.urlCom, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
+
+        let publish = await fetch(routes.urlCom, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result)
+                return result
+            })
             .catch(error => console.log('error', error));
+        this.allComments.push(publish)
+        console.log(this.allComments)
+        this.updateComments(this.allComments)
     }
 
     showAria() {
@@ -90,10 +108,10 @@ class Comment extends React.Component {
         return (
             <div className='sm:w-3/4 sm:max-w-md bg-white bg-opacity-40 sm:px-4 px-1 py-4 rounded-3xl shadow-xl'>
                 <h3
-                className="antialiased text-lg font-semibold my-auto mb-2 pl-2 sm:block hidden"
-                aria-label="Laisser un commentaire">
+                    className="antialiased text-lg font-semibold my-auto mb-2 pl-2 sm:block hidden"
+                    aria-label="Laisser un commentaire">
                     Laisser un commentaire
-                    </h3>
+                </h3>
                 <div className='flex sm:flex-row flex-col sm:justify-evenly items-center'>
                     <form>
                         <textarea
