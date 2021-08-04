@@ -43,7 +43,7 @@ class Publish extends React.Component {
 
     componentDidUpdate() {
         this.allFeeds = this.props.allFeeds
-        console.log(this.allFeeds)
+        // console.log(this.allFeeds)
     }
 
     reset(e) {

@@ -25,6 +25,7 @@ class ShowComments extends React.Component {
                                 allComments={this.props.allComments}
                                 key={`oneComment ${oneComment.id}`}
                                 indexArrray={index}
+                                commentId={oneComment.id}
                                 oneComment={oneComment}
                                 comment={true}
                                 isAdmin={this.isAdmin}
@@ -39,7 +40,7 @@ class ShowComments extends React.Component {
             return (
                 <ul className='flex'>
                     <li className='flex-row-reverse'>
-                        <ShowComment key={`noComment ${this.idForNoComment}`} oneComment={'Aucuns commentaires pour le moment'} comment={false} />
+                        <ShowComment key={`noComment ${this.idForNoComment}`} commentId={this.idForNoComment} oneComment={'Aucuns commentaires pour le moment'} comment={false} />
                     </li>
                 </ul>
             )

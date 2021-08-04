@@ -40,10 +40,7 @@ class AccountSuppr extends React.Component {
             if(this.state.emailAdress === null || this.state.userId === null){
                 alert(`Merci de saisir un identifiant et un ID d'utilisateur`)
             } else {
-                console.log(this.state)
-
-                let url = `${routes.urlSuppr}${this.state.info.userId}`
-                console.log(url)
+                let url = `${routes.urlSuppr}${this.state.userId}`
 
                 let myHeaders = new Headers();
                 myHeaders.append("Authorization", `Bearer ${loadFromSessionStorage('token')}`);
@@ -74,13 +71,15 @@ class AccountSuppr extends React.Component {
                         console.log('error', error)
                     });
                 console.log(logged)
+                let emailAdressSuppr = document.getElementById('emailAdress-suppr')
+                let userIdSuppr = document.getElementById('userId-suppr')
+                emailAdressSuppr.value = ''
+                userIdSuppr.value = ''
             }
         } else {
             if (this.state.emailAdress === null || this.state.password === null) {
                 alert(`Merci de saisir un identifiant et un mot de passe`)
             } else {
-                console.log(this.state)
-
                 let url = `${routes.urlSuppr}${this.state.info.userId}`
                 console.log(url)
 

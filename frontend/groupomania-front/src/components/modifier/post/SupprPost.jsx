@@ -43,7 +43,7 @@ class SupprPost extends React.Component {
                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
                 duration-500 ease-in-out hover:scale-110'
                 onClick={this.supprPost}>
-                <h5 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faTrash} /><span className='hidden md:block ml-2'>Supprimer</span></h5>
+                <h5 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faTrash} key={`faTrash-${this.feedId}`} /><span className='hidden md:block ml-2'>Supprimer</span></h5>
             </div>
         )
     }

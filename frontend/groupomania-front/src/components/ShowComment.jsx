@@ -9,6 +9,7 @@ class ShowComment extends React.Component {
         this.oneComment = this.props.oneComment
         this.bool = this.props.comment
         this.isAdmin = this.props.isAdmin
+        this.commentId = this.props.commentId
         this.userIdLogged = this.props.userIdLogged
         this.updateComments=this.props.updateComments
 
@@ -77,14 +78,14 @@ class ShowComment extends React.Component {
         if (this.userIdLogged === this.oneComment.User.id) {
             return (
                 <div className='flex flex-col sm:flex-row'>
-                    <SupprCom commentId={this.oneComment.id} {...this.props} />
-                    <ModifyCom commentId={this.oneComment.id} {...this.props} />
+                    <SupprCom commentId={this.oneComment.id} {...this.props} key={`SupprPost-${this.commentId}`} />
+                    <ModifyCom commentId={this.oneComment.id} {...this.props} key={`ModifyCom-${this.commentId}`} />
                 </div>
             )
         } else if (this.isAdmin) {
             return (
                 <div className='flex flex-row'>
-                    <SupprCom commentId={this.oneComment.id} {...this.props} />
+                    <SupprCom commentId={this.oneComment.id} {...this.props} key={`SupprPost-${this.commentId}`} />
                 </div>
             )
         }

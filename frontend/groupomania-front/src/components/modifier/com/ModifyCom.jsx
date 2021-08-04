@@ -11,6 +11,7 @@ class ModifyCom extends React.Component {
     }
     constructor(props) {
         super(props)
+        this.commentId = this.props.commentId
         this.showMenu = this.showMenu.bind(this)
     }
 
@@ -28,9 +29,9 @@ class ModifyCom extends React.Component {
                     aria-label="Modifier"
                     onClick={this.showMenu}
                 >
-                    <h5 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faPen} /></h5>
+                    <h5 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faPen} key={`faPen-${this.commentId}`} /></h5>
                 </div>
-                {this.state.showMenu && <ModifyComForm handler={this.showMenu} {...this.props} />}
+                {this.state.showMenu && <ModifyComForm handler={this.showMenu} {...this.props} key={`ModifyComForm-${this.commentId}`} />}
             </div>
         )
     }

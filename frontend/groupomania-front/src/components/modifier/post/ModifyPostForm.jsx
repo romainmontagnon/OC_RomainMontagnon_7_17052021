@@ -15,6 +15,7 @@ class ModifyPostForm extends React.Component {
     constructor(props) {
         super(props)
         this.showMenu = this.props.handler
+        this.feedId = this.props.feedId
         this.feed = this.props.oneFeed;
         this.allFeeds = this.props.allFeeds
         this.updateFeeds = this.props.updateFeeds
@@ -147,7 +148,7 @@ class ModifyPostForm extends React.Component {
                                     transition transform motion-reduce:transition-none motion-reduce:transform-none 
                                     duration-500 ease-in-out hover:scale-110'
                                 >
-                                    < FontAwesomeIcon icon={faCameraRetro} />
+                                    < FontAwesomeIcon icon={faCameraRetro} key={`faCameraRetro-${this.feedId}`} />
                                     <input
                                         type="file"
                                         accept=".png, .jpg, .jpeg, .gif"
@@ -168,7 +169,7 @@ class ModifyPostForm extends React.Component {
                                 className='antialiased font-bold hover:text-red-800 arialabel-sm block
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
                                     duration-500 ease-in-out hover:scale-110'>
-                                < FontAwesomeIcon icon={faMinusCircle} />
+                                < FontAwesomeIcon icon={faMinusCircle} key={`faMinusCircle-${this.feedId}`} />
                             </button>
                             <button
                                 onClick={this.handleSubmit}
@@ -180,7 +181,7 @@ class ModifyPostForm extends React.Component {
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
                                     duration-500 ease-in-out hover:scale-110'
                             >
-                                < FontAwesomeIcon icon={faPaperPlane} />
+                                < FontAwesomeIcon icon={faPaperPlane} key={`faPaperPlane-${this.feedId}`} />
                             </button>
                         </div>
                     </div>

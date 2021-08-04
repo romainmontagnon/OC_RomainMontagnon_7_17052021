@@ -28,16 +28,16 @@ class Feed extends React.Component {
         this.setState({
             allComments: value
         })
-        console.log(this.state)
-        console.log(this.allComments)
+        // console.log(this.state)
+        // console.log(this.allComments)
     }
 
     componentDidMount() {
         this.setState({
             allComments: this.allComments
         })
-        console.log(this.state)
-        console.log(this.allComments)
+        // console.log(this.state)
+        // console.log(this.allComments)
     }
 
     showImage() {
@@ -70,14 +70,14 @@ class Feed extends React.Component {
         if (this.userIdLogged === this.feed.User.id) {
             return (
                 <div className='flex flex-col'>
-                    <SupprPost feedId={this.feed.id} {...this.props} />
-                    <ModifyPost feedId={this.feed.id} oneFeed={this.props.oneFeed} {...this.props} />
+                    <SupprPost feedId={this.feed.id} {...this.props} key={`SupprPost-${this.postId}`} />
+                    <ModifyPost feedId={this.feed.id} oneFeed={this.props.oneFeed} {...this.props} key={`ModifyPost-${this.postId}`} />
                 </div>
             )
         } else if (this.isAdmin) {
             return (
                 <div className='flex flex-col'>
-                    <SupprPost feedId={this.feed.id} {...this.props} />
+                    <SupprPost feedId={this.feed.id} {...this.props} key={`SupprPost-${this.postId}`} />
                 </div>
             )
         }

@@ -24,14 +24,9 @@ class Feeds extends React.Component {
         )
     }
 
-    // componentDidUpdate() {
-    //     console.log("feeds update")
-    //     this.render()
-    // }
-
     componentDidUpdate() {
         this.allFeeds = this.props.allFeeds
-        console.log(this.allFeeds)
+        // console.log(this.allFeeds)
     }
 
     render() {

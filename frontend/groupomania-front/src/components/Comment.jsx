@@ -132,7 +132,7 @@ class Comment extends React.Component {
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
                     duration-500 ease-in-out hover:scale-110'
                             >
-                                < FontAwesomeIcon icon={faCameraRetro} />
+                                < FontAwesomeIcon icon={faCameraRetro} key={`faCameraRetro-${this.postId}`}/>
                                 <input
                                     type="file"
                                     accept=".png, .jpg, .jpeg, .gif"
@@ -154,7 +154,7 @@ class Comment extends React.Component {
                             sm:mx-0 mx-2
                             transition transform motion-reduce:transition-none motion-reduce:transform-none 
                     duration-500 ease-in-out hover:scale-110'>
-                            < FontAwesomeIcon icon={faMinusCircle} />
+                            < FontAwesomeIcon icon={faMinusCircle} key={`faMinusCircle-${this.postId}`} />
                         </button>
                         <button
                             onClick={this.handleSubmit}
@@ -166,7 +166,7 @@ class Comment extends React.Component {
                             transition transform motion-reduce:transition-none motion-reduce:transform-none 
                                  duration-500 ease-in-out hover:scale-110'
                         >
-                            < FontAwesomeIcon icon={faPaperPlane} />
+                            < FontAwesomeIcon icon={faPaperPlane} key={`faPaperPlane-${this.postId}`} />
                         </button>
                     </div>
                 </div>
