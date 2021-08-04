@@ -114,7 +114,7 @@ class Comment extends React.Component {
                 <div className='flex sm:flex-row flex-col sm:justify-evenly items-center'>
                     <form>
                         <textarea
-                            id="user-publication"
+                            id={`user-publication-${this.postId}`}
                             placeholder="I have something to say..."
                             onChange={this.handleInputChange}
                             rows={2}
@@ -136,7 +136,7 @@ class Comment extends React.Component {
                                 <input
                                     type="file"
                                     accept=".png, .jpg, .jpeg, .gif"
-                                    id="user-publication-image"
+                                    id={`user-publication-image-${this.postId}`}
                                     name="image"
                                     ref={this.fileInput}
                                     onChange={this.handleInputChange}

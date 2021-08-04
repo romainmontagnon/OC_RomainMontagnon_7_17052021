@@ -78,9 +78,11 @@
 
 /* Menu Mon Compte */
 
-.account-menu {
+.suppr-account-menu {
     position: absolute;
-    right: 15rem;
-    top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    right: 0;
+    left: 0;
     z-index: 500;
 }

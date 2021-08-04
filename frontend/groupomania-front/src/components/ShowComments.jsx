@@ -22,7 +22,6 @@ class ShowComments extends React.Component {
                     {this.allComments.map((oneComment, index) =>
                         <li>
                             <ShowComment
-                                updateComments={this.updateComments}
                                 allComments={this.props.allComments}
                                 key={`oneComment ${oneComment.id}`}
                                 indexArrray={index}

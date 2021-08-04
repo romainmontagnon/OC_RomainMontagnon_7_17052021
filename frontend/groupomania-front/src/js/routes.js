@@ -11,6 +11,7 @@ export const routes = {
     // user
     urlLogin: `${baseUrl}:${port}/api/user/login`,
     urlSignUp: `${baseUrl}:${port}/api/user/signup`,
+    urlSuppr: `${baseUrl}:${port}/api/user/delete/`,
 
     // post
     urlPost: `${baseUrl}:${port}/api/post/`,
