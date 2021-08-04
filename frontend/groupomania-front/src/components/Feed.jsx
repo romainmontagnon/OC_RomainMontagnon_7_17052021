@@ -14,6 +14,7 @@ class Feed extends React.Component {
         super(props)
 
         this.feed = this.props.oneFeed
+        this.feedId = this.props.oneFeed.id
         this.allComments = this.props.oneFeed.Coms
         this.isAdmin = this.props.isAdmin
         this.userIdLogged = this.props.userIdLogged
@@ -52,7 +53,7 @@ class Feed extends React.Component {
                 >
                     <img
                         src={this.feed.image}
-                        alt={this.feed.User.firstName}
+                        alt={`image de ${this.feed.User.firstName} ${this.feed.User.lastName} ${this.feedId}`}
                         className="w-1/2 mt-4 rounded-xl shadow-2xl"
                         onClick={() => {
                             this.windows.open(`${this.feed.image}`)
@@ -93,16 +94,16 @@ class Feed extends React.Component {
                     <div>
                         <div className='my-1'>
                             <div className='flex-row flex justify-between'>
-                                <h4 className='antialiased text-lg font-semibold mb-4'>
+                                <h2 className='antialiased text-lg font-semibold mb-4'>
                                     {`${this.feed.User.firstName} ${this.feed.User.lastName} `}
-                                    <span className='hidden sm:inline-block'>a publié(e)</span> :</h4>
+                                    <span className='hidden sm:inline-block'>a publié(e)</span> :</h2>
                                 {this.showPostModifier()}
                             </div>
                             <p className='antialiased text-base font-medium mt-2'>{this.feed.message}</p>
                             <div>
                                 {this.showImage()}
                             </div>
-                            <p className='text-sm underline text-mandy-900 mb-4'>{date}</p>
+                            <p className='text-sm italic text-mandy-900 mt-2  mb-4'>{date}</p>
                         </div>
                         <div className='my-1'>
                             <ShowComments

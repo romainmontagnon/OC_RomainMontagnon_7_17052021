@@ -29,7 +29,7 @@ class ModifyCom extends React.Component {
                     aria-label="Modifier"
                     onClick={this.showMenu}
                 >
-                    <h5 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faPen} key={`faPen-${this.commentId}`} /></h5>
+                    <span className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faPen} key={`faPen-${this.commentId}`} /></span>
                 </div>
                 {this.state.showMenu && <ModifyComForm handler={this.showMenu} {...this.props} key={`ModifyComForm-${this.commentId}`} />}
             </div>

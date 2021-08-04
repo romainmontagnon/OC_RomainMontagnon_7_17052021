@@ -6,11 +6,12 @@ import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 
 const NavFooterLogo = () => {
     return (
-        <p className='text-4xl text-mandy-500 font-semi-bold m-2 hover:text-mandy-800
+        <span className='text-4xl text-mandy-500 font-semi-bold m-2 hover:text-mandy-800
             transition transform motion-reduce:transition-none motion-reduce:transform-none 
-            duration-500 ease-in-out'>
+            duration-500 ease-in-out'
+            aria-label='logo groupomania'>
             < FontAwesomeIcon icon={faGlobe} />
-        </p>)
+        </span>)
 };
 
 export default NavFooterLogo;

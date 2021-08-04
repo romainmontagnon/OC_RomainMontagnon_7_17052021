@@ -157,7 +157,7 @@ class ModifyPostForm extends React.Component {
                                         ref={this.fileInput}
                                         onChange={this.handleInputChange}
                                         aria-label={this.state.image}
-                                        className='hidden block'
+                                        className='hidden'
                                     />
                                 </label>
 

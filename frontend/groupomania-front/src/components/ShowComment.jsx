@@ -34,7 +34,7 @@ class ShowComment extends React.Component {
                     <div>
                         {this.showImage()}
                     </div>
-                    <p className='text-sm underline text-mandy-900 mb-4'>{date}</p>
+                    <p className='text-sm italic text-mandy-900 mt-2 mb-4'>{date}</p>
                 </div>
             )
         } else if (!this.bool) {
@@ -60,7 +60,7 @@ class ShowComment extends React.Component {
                 >
                     <img
                         src={this.oneComment.image}
-                        alt={this.oneComment.User.firstName}
+                        alt={`image de ${this.oneComment.User.firstName} ${this.oneComment.User.lastName} ${this.commentId}`}
                         className="w-1/4 mt-4 rounded-xl shadow-xl"
                         onClick={() => {
                             this.windows.open(`${this.oneComment.image}`)

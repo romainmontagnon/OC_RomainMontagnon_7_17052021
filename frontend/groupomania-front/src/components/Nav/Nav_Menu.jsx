@@ -70,12 +70,12 @@ class NavMenu extends React.Component {
                     </div>
                     <ul>
                         <li className='antialiased font-semibold'>
-                            <h3
+                            <h2
                                 className="antialiased text-base font-semibold
                                 sm:inline-block hidden"
                             >
                                 Bonjour, {`${this.state.info.firstName} ${this.state.info.lastName}`} !
-                            </h3>
+                            </h2>
                         </li>
                         <li className='antialiased font-semibold sm:inline-block hidden'>Utilisateur : <span className='antialiased font-normal'>{this.accountType()}</span></li>
                         <li>

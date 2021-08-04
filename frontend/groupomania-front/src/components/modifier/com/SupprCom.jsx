@@ -45,7 +45,7 @@ class SupprCom extends React.Component {
                 duration-500 ease-in-out hover:scale-110'
                 aria-label="Supprimer"
                 onClick={this.supprPost}>
-                <h5 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faTrash} key={`faTrash-${this.commentId}`} /></h5>
+                <span className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faTrash} key={`faTrash-${this.commentId}`} /></span>
             </div>
         )
     }

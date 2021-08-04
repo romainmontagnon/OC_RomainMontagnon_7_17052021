@@ -95,9 +95,9 @@ class Publish extends React.Component {
 
     showAria() {
         if (this.state.image !== null) {
-            return `image ${this.state.image}`
+            return ` ${this.state.image}`
         }
-        return `image non sélectionnée`
+        return ` non sélectionnée`
     }
 
     render() {
@@ -105,7 +105,7 @@ class Publish extends React.Component {
             <div
                 className='sm:w-2/4 mx-2 sm:max-w-md sm:mx-auto bg-white bg-opacity-40 px-2 py-2 sm:px-4 sm:py-4 rounded-3xl flex flex-row justify-around items-center shadow-xl'
             >
-                <form>
+                <form aria-label='formulaire de publication'>
                     <div>
                         <textarea
                             id="user-publication"
@@ -113,6 +113,7 @@ class Publish extends React.Component {
                             name="message"
                             onChange={this.handleInputChange}
                             rows={4}
+                            aria-label='saisir votre message'
                             className='md:w-72 lg:w-80 h-20 bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl text-left px-2 py-1 my-2 resize-none'
                         />
                     </div>
@@ -122,6 +123,7 @@ class Publish extends React.Component {
                             type="submit"
                             id="user-publication-publish"
                             name="publish"
+                            aria-label="Publier"
                             className='rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 uppercase shadow-2xl
                             transition transform motion-reduce:transition-none motion-reduce:transform-none 
                                  duration-500 ease-in-out hover:scale-110'>
@@ -133,8 +135,8 @@ class Publish extends React.Component {
                 <div className='flex flex-col justify-center'>
                     <div className='mb-4 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 inputFile'
                     >
-                        <label
-                            aria-label={this.showAria()}
+                        <div
+                            aria-label={`image ${this.showAria()}`}
                             className='antialiased arialabel block
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
                                  duration-500 ease-in-out hover:scale-110'
@@ -147,17 +149,17 @@ class Publish extends React.Component {
                                 name="image"
                                 ref={this.fileInput}
                                 onChange={this.handleInputChange}
-                                aria-label={this.state.image}
-                                className='hidden block
+                                aria-label={`image ${this.state.image}`}
+                                className='hidden
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
                                  duration-500 ease-in-out hover:scale-110'
                             />
-                        </label>
+                        </div>
                     </div>
                     <button
                         ref={this.fileInput}
                         onClick={this.reset}
-                        aria-label="Supprimer la photo"
+                        aria-label="Supprimer l'image"
                         className='antialiased font-bold mb-4 hover:text-red-800 arialabel-sm block
                         transition transform motion-reduce:transition-none motion-reduce:transform-none 
                         duration-500 ease-in-out hover:scale-110'>

@@ -98,9 +98,9 @@ class Comment extends React.Component {
 
     showAria() {
         if (this.state.image !== null) {
-            return `image ${this.state.image}`
+            return ` ${this.state.image}`
         }
-        return `image non sélectionnée`
+        return ` non sélectionnée`
     }
 
     render() {
@@ -112,13 +112,14 @@ class Comment extends React.Component {
                     Laisser un commentaire
                 </h3>
                 <div className='flex sm:flex-row flex-col sm:justify-evenly items-center'>
-                    <form>
+                    <form aria-label='formulaire de commentaire'>
                         <textarea
                             id={`user-publication-${this.postId}`}
                             placeholder="I have something to say..."
                             onChange={this.handleInputChange}
                             rows={2}
                             name="message"
+                            aria-label='saisir message'
                             className='sm:w-60 sm:h-16 bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl text-left px-2 py-1 resize-none mb-1 sm:mb-0'
                         />
                     </form>
@@ -126,11 +127,11 @@ class Comment extends React.Component {
                         <div
                             className='rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 inputFile'
                         >
-                            <label
-                                aria-label={this.showAria()}
+                            <div
+                                aria-label={`image ${this.showAria()}`}
                                 className='antialiased arialabel block
-                                transition transform motion-reduce:transition-none motion-reduce:transform-none 
-                    duration-500 ease-in-out hover:scale-110'
+                                    transition transform motion-reduce:transition-none motion-reduce:transform-none 
+                                    duration-500 ease-in-out hover:scale-110'
                             >
                                 < FontAwesomeIcon icon={faCameraRetro} key={`faCameraRetro-${this.postId}`}/>
                                 <input
@@ -140,16 +141,17 @@ class Comment extends React.Component {
                                     name="image"
                                     ref={this.fileInput}
                                     onChange={this.handleInputChange}
-                                    aria-label={this.state.image}
-                                    className='hidden block'
+                                    aria-label={`image ${this.state.image}`}
+                                    className='hidden'
                                 />
-                            </label>
+                                <span className='hidden'>Recherche</span>
+                            </div>
 
                         </div>
                         <button
                             ref={this.fileInput}
                             onClick={this.reset}
-                            aria-label="Supprimer la photo"
+                            aria-label="Supprimer l'image"
                             className='antialiased font-bold hover:text-red-800 arialabel-sm block
                             sm:mx-0 mx-2
                             transition transform motion-reduce:transition-none motion-reduce:transform-none 

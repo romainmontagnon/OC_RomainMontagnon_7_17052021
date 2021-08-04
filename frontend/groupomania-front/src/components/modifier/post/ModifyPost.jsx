@@ -61,7 +61,7 @@ class ModifyPost extends React.Component {
                 duration-500 ease-in-out hover:scale-110'
                     onClick={this.showMenu}
                 >
-                    <h5 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faPen} key={`faPen-${this.feedId}`} /><span className='hidden md:block ml-2'>Modifier</span></h5>
+                    <h3 className='antialiased font-medium flex flex-row items-center'>< FontAwesomeIcon icon={faPen} key={`faPen-${this.feedId}`} /><span className='hidden md:block ml-2'>Modifier</span></h3>
                 </div>
                 {this.state.showMenu && <ModifyPostForm handler={this.showMenu} {...this.props} key={`faPen-${this.feedId}`} />}
             </div>
