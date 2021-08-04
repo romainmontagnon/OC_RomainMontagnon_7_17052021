@@ -30,7 +30,7 @@ class NavFooterMenu extends React.Component {
         return (
             <div>
                 <ul className='mr-2 flex flex-row items-center'>
-                    <li>
+                    <li aria-label='Logo Groupomania'>
                         <NavFooterLogo />
                     </li>
                     <li>

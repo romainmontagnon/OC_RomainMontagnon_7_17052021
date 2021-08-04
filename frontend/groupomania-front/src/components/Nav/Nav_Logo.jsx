@@ -6,7 +6,9 @@ import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 
 const NavLogo = () => {
     return (
-        <h1 className='text-5xl text-midnight-500 font-semi-bold m-2 flex flex-row'>
+        <h1
+            className='text-5xl text-midnight-500 font-semi-bold m-2 flex flex-row'
+            aria-label='Logo Groupomania'>
             < FontAwesomeIcon icon={faGlobe} />
             <span className='ml-6 hidden lg:block'>
                 Groupomania

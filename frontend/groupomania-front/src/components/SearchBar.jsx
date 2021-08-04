@@ -13,6 +13,7 @@ const SearchBar = () => (
                 className='bg-midnight-100 ring-2 ring-midnight-400 hover:bg-midnight-50 focus:outline-none focus:ring-2 focus:bg-midnight-50 focus:ring-opacity-50 rounded-2xl text-center antialiased
                 lg:w-60
                 w-3/4'
+                aria-label='Rechercher une publication ou un utilisateur'
             />
             <button type="submit" className='ml-2' onClick={ () => {console.log(('hello wolrd !'))}}>< FontAwesomeIcon icon={faSearch} /></button>
         </label>
