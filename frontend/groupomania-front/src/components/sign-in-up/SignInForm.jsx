@@ -5,6 +5,7 @@ import { storeToSessionStorage } from '../../js/session';
 class SignInForm extends React.Component {
     constructor(props) {
         super(props);
+
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -14,8 +15,6 @@ class SignInForm extends React.Component {
         if (this.state === null) {
             alert(`Merci de saisir un identifiant et un mot de passe`)
         } else {
-            console.log(this.state)
-            console.log(routes.urlLogin);
 
             let myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -26,8 +25,6 @@ class SignInForm extends React.Component {
                     password: this.state.password
                 }
             };
-            console.log(JSON.stringify(dataToRaw));
-            console.log(routes.urlLogin);
 
             let raw = JSON.stringify(dataToRaw);
 
@@ -41,7 +38,6 @@ class SignInForm extends React.Component {
             let logged = await fetch(routes.urlLogin, requestOptions)
                 .then(response => response.json())
                 .then((result) => {
-                    console.log(result);
                     storeToSessionStorage('userId', result.userId);
                     storeToSessionStorage('token', result.token)
                     storeToSessionStorage('firstName', result.firstName)
@@ -52,7 +48,6 @@ class SignInForm extends React.Component {
                     console.log('error', error)
                 });
             this.props.login(logged.logged, logged.isAdmin, logged.userId);
-            // this.props.admin(logged.isAdmin);
         }
     }
 
