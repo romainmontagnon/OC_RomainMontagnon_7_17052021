@@ -324,5 +324,5 @@ nodemon start
 
 ## 5. Compte Admin et variable `isAdmin`
 
-Une variable `isAdmin` est initialisé a `false` pour chaque création de nouveau user et ne peut être modifié via l'API.
+Une variable `isAdmin` est initialisé a `false` pour chaque création de nouveau user et ne peut pas être modifié via l'API.
 La modification de la variable  est possible uniquement en manipulant la variable dans la base de données via un compte `admin` de la base de donnée.
