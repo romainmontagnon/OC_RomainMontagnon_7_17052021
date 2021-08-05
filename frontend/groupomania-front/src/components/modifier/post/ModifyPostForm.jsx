@@ -33,7 +33,6 @@ class ModifyPostForm extends React.Component {
         this.resetImage = this.resetImage.bind(this);
 
         this.fileInput = React.createRef();
-        // this.postId = this.props.postId
     }
 
     componentDidMount() {
@@ -60,7 +59,6 @@ class ModifyPostForm extends React.Component {
                 value, target
             }
         });
-        console.log(this.state)
     }
 
     resetImage(e) {

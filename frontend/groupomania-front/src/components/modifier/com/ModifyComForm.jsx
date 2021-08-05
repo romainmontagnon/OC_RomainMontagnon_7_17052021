@@ -153,7 +153,7 @@ class ModifyComForm extends React.Component {
                                     aria-label={this.showAria()}
                                     className='antialiased arialabel block
                                     transition transform motion-reduce:transition-none motion-reduce:transform-none 
-                                    duration-500 ease-in-out hover:scale-110'
+                                    duration-500 ease-in-out hover:scale-110 z-30'
                                 >
                                     < FontAwesomeIcon icon={faCameraRetro} key={`faCameraRetro-${this.commentId}`} />
                                     <input
@@ -175,7 +175,7 @@ class ModifyComForm extends React.Component {
                                 aria-label="Supprimer la photo"
                                 className='antialiased font-bold hover:text-red-800 arialabel-sm block
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
-                duration-500 ease-in-out hover:scale-110'>
+                duration-500 ease-in-out hover:scale-110 z-20'>
                                 < FontAwesomeIcon icon={faMinusCircle} key={`faMinusCircle-${this.commentId}`} />
                             </button>
                             <button
@@ -186,7 +186,7 @@ class ModifyComForm extends React.Component {
                                 aria-label="Publier commentaire"
                                 className='rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 antialiased arialabel-sm
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
-                duration-500 ease-in-out hover:scale-110'
+                duration-500 ease-in-out hover:scale-110 z-10'
                             >
                                 < FontAwesomeIcon icon={faPaperPlane} key={`faPaperPlane-${this.commentId}`} />
                             </button>
