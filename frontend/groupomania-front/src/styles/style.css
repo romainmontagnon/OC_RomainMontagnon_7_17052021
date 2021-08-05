@@ -52,7 +52,7 @@
     position: absolute;
     top: 110%;
     left: 0.5rem;
-    z-index: 256;
+    z-index: 5000;
     pointer-events: none;
     padding: 0.5rem 0.625rem;
     white-space: nowrap;

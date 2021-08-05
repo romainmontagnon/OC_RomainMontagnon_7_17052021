@@ -20,7 +20,7 @@ class ShowComments extends React.Component {
             return (
                 <ul className='animate__animated animate__fadeIn'>
                     {this.allComments.map((oneComment, index) =>
-                        <li>
+                        <li key={`li-oneComment ${oneComment.id}`}>
                             <ShowComment
                                 allComments={this.props.allComments}
                                 key={`oneComment ${oneComment.id}`}

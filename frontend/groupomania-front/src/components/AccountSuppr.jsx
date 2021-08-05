@@ -62,7 +62,7 @@ class AccountSuppr extends React.Component {
                     redirect: 'follow'
                 };
 
-                let logged = await fetch(url, requestOptions)
+                await fetch(url, requestOptions)
                     .then(response => response.json())
                     .then((result) => {
                         return result
@@ -101,7 +101,7 @@ class AccountSuppr extends React.Component {
                     redirect: 'follow'
                 };
 
-                let logged = await fetch(url, requestOptions)
+                await fetch(url, requestOptions)
                     .then(response => response.json())
                     .then((result) => {
                         return result

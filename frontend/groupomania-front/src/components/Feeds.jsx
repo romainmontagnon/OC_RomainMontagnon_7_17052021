@@ -16,7 +16,7 @@ class Feeds extends React.Component {
         return (
             <ul className='flex flex-col-reverse'>
                 {feed.map((oneFeed, index) =>
-                    <li className='bg-midnight-200 bg-opacity-80 mb-4 py-2 px-2 rounded-3xl'>
+                    <li className='bg-midnight-200 bg-opacity-80 mb-4 py-2 px-2 rounded-3xl' key={`li-feed ${oneFeed.id}`}>
                         <Feed key={`feed ${oneFeed.id}`} oneFeed={oneFeed} indexArrray={index} {...this.props} />
                     </li>
                 )}

@@ -135,7 +135,7 @@ class Publish extends React.Component {
                             aria-label={`image ${this.showAria()}`}
                             className='antialiased arialabel block
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
-                                 duration-500 ease-in-out hover:scale-110'
+                                duration-500 ease-in-out hover:scale-110 z-20'
                         >
                             < FontAwesomeIcon icon={faCameraRetro} />
                             <input
@@ -146,9 +146,7 @@ class Publish extends React.Component {
                                 ref={this.fileInput}
                                 onChange={this.handleInputChange}
                                 aria-label={`image ${this.state.image}`}
-                                className='hidden
-                                transition transform motion-reduce:transition-none motion-reduce:transform-none 
-                                 duration-500 ease-in-out hover:scale-110'
+                                className='hidden'
                             />
                         </div>
                     </div>
@@ -158,7 +156,7 @@ class Publish extends React.Component {
                         aria-label="Supprimer l'image"
                         className='antialiased font-bold mb-4 hover:text-red-800 arialabel-sm block
                         transition transform motion-reduce:transition-none motion-reduce:transform-none 
-                        duration-500 ease-in-out hover:scale-110'>
+                        duration-500 ease-in-out hover:scale-110 z-10'>
                         < FontAwesomeIcon icon={faMinusCircle} />
                     </button>
                 </div>
