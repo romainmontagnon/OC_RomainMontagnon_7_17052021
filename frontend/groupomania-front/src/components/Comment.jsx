@@ -8,8 +8,14 @@ import { loadFromSessionStorage } from '../js/session';
 
 class Comment extends React.Component {
     state = {
-        message: '',
-        image: null
+        message: {
+            value: '',
+            target: null
+        },
+        image: {
+            value: null,
+            target: null
+        }
     }
 
     constructor(props) {
@@ -34,7 +40,9 @@ class Comment extends React.Component {
         const name = target.name;
 
         this.setState({
-            [name]: value, target
+            [name]: {
+                value, target
+            }
         });
     }
 
@@ -44,13 +52,19 @@ class Comment extends React.Component {
 
     resetImage(e) {
         this.setState({
-            image: null
+            image: {
+                value: null,
+                target: null
+            }
         });
     };
 
     resetText(e) {
         this.setState({
-            message: null
+            message: {
+                value: '',
+                target: null
+            }
         });
     };
 
@@ -58,10 +72,10 @@ class Comment extends React.Component {
         event.preventDefault();
         let token = loadFromSessionStorage('token')
 
-        if (this.state.image === null && this.state.message === "") {
+        if (this.state.image.target === null && this.state.message.value === "") {
             alert('Attention, votre commentaire est vide')
             return
-        } else if (this.state.message === null) {
+        } else if (this.state.message.value === null) {
             this.state.message = ''
         }
 
@@ -73,13 +87,13 @@ class Comment extends React.Component {
         let fileName = null;
         let fileInput = null;
 
-        if (this.state.image !== null) {
-            fileName = this.state.target.files[0].name
-            fileInput = this.state.target.files[0]
+        if (this.state.image.target !== null) {
+            fileName = this.state.image.target.files[0].name
+            fileInput = this.state.image.target.files[0]
             formdata.append("file", fileInput, fileName);
         }
 
-        formdata.append("com", `{"message": "${this.state.message}", "PostId": ${this.postId}}`);
+        formdata.append("com", `{"message": "${this.state.message.value}", "PostId": ${this.postId}}`);
 
         let requestOptions = {
             method: 'POST',
@@ -102,8 +116,8 @@ class Comment extends React.Component {
     }
 
     showAria() {
-        if (this.state.image !== null) {
-            return ` ${this.state.image}`
+        if (this.state.image.value !== null) {
+            return ` ${this.state.image.value}`
         }
         return ` non sélectionnée`
     }

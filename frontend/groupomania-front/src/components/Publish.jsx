@@ -9,8 +9,14 @@ import { loadFromSessionStorage } from '../js/session';
 
 class Publish extends React.Component {
     state = {
-        message: '',
-        image: null
+        message: {
+            value: '',
+            target: null
+        },
+        image: {
+            value: null,
+            target: null
+        }
     }
 
     constructor(props) {
@@ -35,8 +41,11 @@ class Publish extends React.Component {
         const name = target.name;
 
         this.setState({
-            [name]: value, target,
+            [name]: {
+                value, target
+            }
         });
+        console.log(this.state)
     }
 
     componentDidUpdate() {
@@ -45,13 +54,19 @@ class Publish extends React.Component {
 
     resetImage(e) {
         this.setState({
-            image: null
+            image: {
+                value: null,
+                target: null
+            }
         });
     };
 
     resetText(e) {
         this.setState({
-            message: null
+            message: {
+                value: '',
+                target: null
+            }
         });
     };
 
@@ -59,25 +74,25 @@ class Publish extends React.Component {
         event.preventDefault();
         let token = loadFromSessionStorage('token')
 
-        if (this.state.image === null && this.state.message === "") {
+        if (this.state.image.target === null && this.state.message.value === "") {
             alert('Attention, votre publication est vide')
             return
-        } else if (this.state.message === null) {
+        } else if (this.state.message.value === null) {
             this.state.message = ''
         }
-        
+
         let myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
 
         let formdata = new FormData();
 
-        if (this.state.image !== null) {
-            let fileName = this.state.target.files[0].name;
-            let fileInput = this.state.target.files[0];
+        if (this.state.image.target !== null) {
+            let fileName = this.state.image.target.files[0].name;
+            let fileInput = this.state.image.target.files[0];
             formdata.append("file", fileInput, fileName);
         }
 
-        formdata.append("post", `{"message": "${this.state.message}"}`);
+        formdata.append("post", `{"message": "${this.state.message.value}"}`);
 
         let requestOptions = {
             method: 'POST',
@@ -100,8 +115,8 @@ class Publish extends React.Component {
     }
 
     showAria() {
-        if (this.state.image !== null) {
-            return ` ${this.state.image}`
+        if (this.state.image.value !== null) {
+            return ` ${this.state.image.value}`
         }
         return ` non sélectionnée`
     }
