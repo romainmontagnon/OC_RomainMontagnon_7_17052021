@@ -21,8 +21,8 @@ class Publish extends React.Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.componentDidUpdate = this.componentDidUpdate.bind(this)
-        this.reset = this.reset.bind(this);
+        this.resetImage = this.resetImage.bind(this);
+        this.resetText = this.resetText.bind(this);
         this.showAria = this.showAria.bind(this)
 
         this.fileInput = React.createRef();
@@ -43,9 +43,15 @@ class Publish extends React.Component {
         this.allFeeds = this.props.allFeeds
     }
 
-    reset(e) {
+    resetImage(e) {
         this.setState({
             image: null
+        });
+    };
+
+    resetText(e) {
+        this.setState({
+            message: null
         });
     };
 
@@ -56,7 +62,10 @@ class Publish extends React.Component {
         if (this.state.image === null && this.state.message === "") {
             alert('Attention, votre publication est vide')
             return
+        } else if (this.state.message === null) {
+            this.state.message = ''
         }
+        
         let myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
 
@@ -85,8 +94,9 @@ class Publish extends React.Component {
             .catch(error => console.log('error', error));
         this.allFeeds.push(publish)
         this.updateFeeds(this.allFeeds)
-        let userPublication = document.getElementById('user-publication')
-        userPublication.value = ''
+        document.getElementById('user-publication').value = ''
+        this.resetText()
+        this.resetImage()
     }
 
     showAria() {
@@ -153,7 +163,7 @@ class Publish extends React.Component {
                     </div>
                     <button
                         ref={this.fileInput}
-                        onClick={this.reset}
+                        onClick={this.resetImage}
                         aria-label="Supprimer l'image"
                         className='antialiased font-bold mb-4 hover:text-red-800 arialabel-sm block
                         transition transform motion-reduce:transition-none motion-reduce:transform-none 

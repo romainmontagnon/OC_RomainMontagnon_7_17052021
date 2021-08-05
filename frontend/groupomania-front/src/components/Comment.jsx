@@ -21,7 +21,8 @@ class Comment extends React.Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.reset = this.reset.bind(this);
+        this.resetImage = this.resetImage.bind(this);
+        this.resetText = this.resetText.bind(this);
         this.showAria = this.showAria.bind(this)
 
         this.fileInput = React.createRef();
@@ -31,9 +32,7 @@ class Comment extends React.Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        // console.log(target)
-        // console.log(value)
-        // console.log(name)
+
         this.setState({
             [name]: value, target
         });
@@ -43,10 +42,15 @@ class Comment extends React.Component {
         this.allComments = this.props.allComments
     }
 
-    reset(e) {
-        // this.state.image = null;
+    resetImage(e) {
         this.setState({
             image: null
+        });
+    };
+
+    resetText(e) {
+        this.setState({
+            message: null
         });
     };
 
@@ -57,7 +61,10 @@ class Comment extends React.Component {
         if (this.state.image === null && this.state.message === "") {
             alert('Attention, votre commentaire est vide')
             return
+        } else if (this.state.message === null) {
+            this.state.message = ''
         }
+
         let myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
 
@@ -89,6 +96,9 @@ class Comment extends React.Component {
             .catch(error => console.log('error', error));
         this.allComments.push(publish)
         this.updateComments(this.allComments)
+        document.getElementById(`user-publication-${this.postId}`).value = ''
+        this.resetText()
+        this.resetImage()
     }
 
     showAria() {
@@ -128,7 +138,7 @@ class Comment extends React.Component {
                                     transition transform motion-reduce:transition-none motion-reduce:transform-none 
                                     duration-500 ease-in-out hover:scale-110 z-30'
                             >
-                                < FontAwesomeIcon icon={faCameraRetro} key={`faCameraRetro-${this.postId}`}/>
+                                < FontAwesomeIcon icon={faCameraRetro} key={`faCameraRetro-${this.postId}`} />
                                 <input
                                     type="file"
                                     accept=".png, .jpg, .jpeg, .gif"
@@ -145,7 +155,7 @@ class Comment extends React.Component {
                         </div>
                         <button
                             ref={this.fileInput}
-                            onClick={this.reset}
+                            onClick={this.resetImage}
                             aria-label="Supprimer l'image"
                             className='antialiased font-bold hover:text-red-800 arialabel-sm block
                             sm:mx-0 mx-2
