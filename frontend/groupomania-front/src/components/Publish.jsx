@@ -45,7 +45,6 @@ class Publish extends React.Component {
                 value, target
             }
         });
-        console.log(this.state)
     }
 
     componentDidUpdate() {
