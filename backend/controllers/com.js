@@ -82,7 +82,6 @@ exports.modifyCom = (req, res, next) => {
                 } : {
                     // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
                     ...JSON.parse(req.body.com),
-                    image: null
                 };
 
                 Com.update({

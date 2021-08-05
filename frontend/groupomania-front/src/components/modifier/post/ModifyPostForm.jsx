@@ -9,8 +9,14 @@ import { routes } from '../../../js/routes';
 class ModifyPostForm extends React.Component {
     state = {
         showMenu: false,
-        image: null,
-        message: null
+        message: {
+            value: '',
+            target: null
+        },
+        image: {
+            value: null,
+            target: null
+        }
     }
     constructor(props) {
         super(props)
@@ -24,7 +30,7 @@ class ModifyPostForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.showAria = this.showAria.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.reset = this.reset.bind(this);
+        this.resetImage = this.resetImage.bind(this);
 
         this.fileInput = React.createRef();
         // this.postId = this.props.postId
@@ -32,8 +38,14 @@ class ModifyPostForm extends React.Component {
 
     componentDidMount() {
         this.setState({
-            message: this.feed.message,
-            image: this.feed.image
+            message: {
+                value: this.feed.message,
+                target: null
+            },
+            image: {
+                value: this.feed.image,
+                target: null
+            }
         });
     }
 
@@ -44,13 +56,19 @@ class ModifyPostForm extends React.Component {
         const name = target.name;
 
         this.setState({
-            [name]: value, target
+            [name]: {
+                value, target
+            }
         });
+        console.log(this.state)
     }
 
-    reset(e) {
+    resetImage(e) {
         this.setState({
-            image: null
+            image: {
+                value: null,
+                target: null
+            }
         });
     };
 
@@ -62,13 +80,13 @@ class ModifyPostForm extends React.Component {
 
         let formdata = new FormData();
 
-        if (this.state.image !== null) {
-            let fileName = this.state.target.files[0].name;
-            let fileInput = this.state.target.files[0];
+        if (this.state.image.target !== null) {
+            let fileName = this.state.image.target.files[0].name;
+            let fileInput = this.state.image.target.files[0];
             formdata.append("file", fileInput, fileName);
         }
 
-        formdata.append("post", `{"message": "${this.state.message}"}`);
+        formdata.append("post", `{"message": "${this.state.message.value}"}`);
         console.log(formdata)
 
         var requestOptions = {
@@ -98,7 +116,6 @@ class ModifyPostForm extends React.Component {
                     return result
                 })
                 .catch(error => console.log('error', error));
-            // this.allFeeds[this.indexArrray] = modifyPostReturn
             this.allFeeds.splice(this.indexArrray, 1)
             this.updateFeeds(this.allFeeds)
             this.allFeeds.push(modifyPostReturn)
@@ -106,12 +123,11 @@ class ModifyPostForm extends React.Component {
 
             this.showMenu(false)
         }
-        this.showMenu(false)
     }
 
     showAria() {
-        if (this.state.image !== null) {
-            return `image ${this.state.image}`
+        if (this.state.image.value !== null) {
+            return `image ${this.state.image.value}`
         }
         return `image non sélectionnée`
     }
@@ -141,7 +157,7 @@ class ModifyPostForm extends React.Component {
                                     aria-label={this.showAria()}
                                     className='antialiased arialabel block
                                     transition transform motion-reduce:transition-none motion-reduce:transform-none 
-                                    duration-500 ease-in-out hover:scale-110'
+                                    duration-500 ease-in-out hover:scale-110 z-30'
                                 >
                                     < FontAwesomeIcon icon={faCameraRetro} key={`faCameraRetro-${this.feedId}`} />
                                     <input
@@ -159,11 +175,11 @@ class ModifyPostForm extends React.Component {
                             </div>
                             <button
                                 ref={this.fileInput}
-                                onClick={this.reset}
+                                onClick={this.resetImage}
                                 aria-label="Supprimer la photo"
                                 className='antialiased font-bold hover:text-red-800 arialabel-sm block
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
-                                    duration-500 ease-in-out hover:scale-110'>
+                                    duration-500 ease-in-out hover:scale-110 z-20'>
                                 < FontAwesomeIcon icon={faMinusCircle} key={`faMinusCircle-${this.feedId}`} />
                             </button>
                             <button
@@ -174,7 +190,7 @@ class ModifyPostForm extends React.Component {
                                 aria-label="Publier commentaire"
                                 className='rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 antialiased arialabel-sm
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
-                                    duration-500 ease-in-out hover:scale-110'
+                                    duration-500 ease-in-out hover:scale-110 z-10'
                             >
                                 < FontAwesomeIcon icon={faPaperPlane} key={`faPaperPlane-${this.feedId}`} />
                             </button>
