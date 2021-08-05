@@ -61,11 +61,11 @@ exports.getUserPost = (req, res, next) => {
 exports.postUser = (req, res, next) => {
     let postUserReq = req.file ? {
         // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
-        ...JSON.parse(req.body.post),
+        ...JSON.parse(req.body.post.replace(/(?:\r\n|\r|\n)/g, ' ')),
         image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
     } : {
         // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
-        ...JSON.parse(req.body.post)
+        ...JSON.parse(req.body.post.replace(/(?:\r\n|\r|\n)/g, ' '))
     };
     Post.create({
             // on destrcuture postReq avec les ...
@@ -109,11 +109,11 @@ exports.modifyPost = (req, res, next) => {
             if (req.token.userId == onePost.UserId || req.token.isAdmin) {
                 let modifyPostReq = req.file ? {
                     // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
-                    ...JSON.parse(req.body.post),
+                    ...JSON.parse(req.body.post.replace(/(?:\r\n|\r|\n)/g, ' ')),
                     image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
                 } : {
                     // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
-                    ...JSON.parse(req.body.post),
+                    ...JSON.parse(req.body.post.replace(/(?:\r\n|\r|\n)/g, ' ')),
                 };
                 Post.update({
                         // on destrcuture postReq avec les ...

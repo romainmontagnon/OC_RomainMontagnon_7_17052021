@@ -30,11 +30,11 @@ exports.getOneCom = (req, res, next) => {
 exports.postCom = (req, res, next) => {
     let postComReq = req.file ? {
         // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
-        ...JSON.parse(req.body.com),
+        ...JSON.parse(req.body.com.replace(/(?:\r\n|\r|\n)/g, ' ')),
         image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
     } : {
         // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
-        ...JSON.parse(req.body.com)
+        ...JSON.parse(req.body.com.replace(/(?:\r\n|\r|\n)/g, ' '))
     };
     Com.create({
             // on destrcuture postReq avec les ...
@@ -77,11 +77,11 @@ exports.modifyCom = (req, res, next) => {
             if (req.token.userId == modifyCom.UserId || req.token.isAdmin) {
                 let modifyComReq = req.file ? {
                     // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
-                    ...JSON.parse(req.body.com),
+                    ...JSON.parse(req.body.com.replace(/(?:\r\n|\r|\n)/g, ' ')),
                     image: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
                 } : {
                     // PARSER la chaine de caractere pour la convertir en objet car elle arrive comme string
-                    ...JSON.parse(req.body.com),
+                    ...JSON.parse(req.body.com).replace(/(?:\r\n|\r|\n)/g, ' '),
                 };
 
                 Com.update({
