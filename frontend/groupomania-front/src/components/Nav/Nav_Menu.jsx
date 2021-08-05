@@ -22,7 +22,6 @@ class NavMenu extends React.Component {
         this.componentDidMount = this.componentDidMount.bind(this)
         this.accountType = this.accountType.bind(this);
         this.logout = this.logout.bind(this);
-        this.accountSuppr = this.accountSuppr.bind(this);
         this.showMenu = this.showMenu.bind(this)
 
     }
@@ -47,10 +46,6 @@ class NavMenu extends React.Component {
 
     showMenu() {
         this.setState({ showMenu: !this.state.showMenu })
-    }
-
-    accountSuppr() {
-        console.log('logout')
     }
 
     accountType() {

@@ -26,7 +26,6 @@ class Feeds extends React.Component {
 
     componentDidUpdate() {
         this.allFeeds = this.props.allFeeds
-        // console.log(this.allFeeds)
     }
 
     render() {

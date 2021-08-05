@@ -37,13 +37,10 @@ class Feed extends React.Component {
         this.setState({
             allComments: this.allComments
         })
-        // console.log(this.state)
-        // console.log(this.allComments)
     }
 
     showImage() {
         if (this.feed.image != null) {
-            // console.log(this.feed.image)
             return (
                 <a
                     href={this.feed.image}

@@ -36,7 +36,6 @@ class Account extends React.Component {
     };
 
     render() {
-        console.log(this.isAdmin)
         return (
             <div
                 className='mt-6 py-2 px-4 bg-white bg-opacity-40 rounded-3xl shadow-xl flex flex-col w-52'>
@@ -58,7 +57,7 @@ class Account extends React.Component {
                     <li className='antialiased font-semibold'>
                         <button type="submit"
                             className='text-base mx-2 py-1 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 antialiased'
-                            onClick={() => { console.log('timeline') }}>
+                        >
                             < FontAwesomeIcon icon={faPowerOff} className='block lg:hidden' />
                             <span className='hidden lg:block'>Se deconnecter</span>
                         </button>

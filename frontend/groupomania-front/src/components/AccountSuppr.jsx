@@ -70,7 +70,6 @@ class AccountSuppr extends React.Component {
                     .catch((error) => {
                         console.log('error', error)
                     });
-                console.log(logged)
                 let emailAdressSuppr = document.getElementById('emailAdress-suppr')
                 let userIdSuppr = document.getElementById('userId-suppr')
                 emailAdressSuppr.value = ''
@@ -81,7 +80,6 @@ class AccountSuppr extends React.Component {
                 alert(`Merci de saisir un identifiant et un mot de passe`)
             } else {
                 let url = `${routes.urlSuppr}${this.state.info.userId}`
-                console.log(url)
 
                 let myHeaders = new Headers();
                 myHeaders.append("Authorization", `Bearer ${loadFromSessionStorage('token')}`);
@@ -111,7 +109,6 @@ class AccountSuppr extends React.Component {
                     .catch((error) => {
                         console.log('error', error)
                     });
-                console.log(logged)
                 sessionStorage.clear()
                 this.props.login(false, false, null);
             }

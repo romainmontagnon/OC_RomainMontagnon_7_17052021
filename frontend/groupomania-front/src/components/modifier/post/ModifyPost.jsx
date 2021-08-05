@@ -37,7 +37,6 @@ class ModifyPost extends React.Component {
         }
 
         formdata.append("post", `{"message": "${this.state.message}"}`);
-        console.log(formdata)
 
         var requestOptions = {
             method: 'PUT',

@@ -54,9 +54,6 @@ class Comment extends React.Component {
         event.preventDefault();
         let token = loadFromSessionStorage('token')
 
-        // console.log(this.state)
-        console.log(this.allComments)
-
         if (this.state.image === null && this.state.message === "") {
             alert('Attention, votre commentaire est vide')
             return
@@ -87,12 +84,10 @@ class Comment extends React.Component {
         let publish = await fetch(routes.urlCom, requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result)
                 return result
             })
             .catch(error => console.log('error', error));
         this.allComments.push(publish)
-        console.log(this.allComments)
         this.updateComments(this.allComments)
     }
 

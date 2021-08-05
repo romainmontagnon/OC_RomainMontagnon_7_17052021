@@ -41,11 +41,6 @@ class ModifyComForm extends React.Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-
-        console.log(target)
-        console.log(value)
-        console.log(name)
-
         this.setState({
             [name]: value, target
         });

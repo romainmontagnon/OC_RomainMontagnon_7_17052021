@@ -33,9 +33,7 @@ class Publish extends React.Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        console.log(target)
-        console.log(value)
-        console.log(name)
+
         this.setState({
             [name]: value, target,
         });
@@ -43,7 +41,6 @@ class Publish extends React.Component {
 
     componentDidUpdate() {
         this.allFeeds = this.props.allFeeds
-        // console.log(this.allFeeds)
     }
 
     reset(e) {
@@ -83,7 +80,6 @@ class Publish extends React.Component {
         let publish = await fetch(routes.urlPost, requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result)
                 return result
             })
             .catch(error => console.log('error', error));

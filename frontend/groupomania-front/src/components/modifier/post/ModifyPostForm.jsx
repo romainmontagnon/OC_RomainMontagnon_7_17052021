@@ -43,10 +43,6 @@ class ModifyPostForm extends React.Component {
         const value = target.value;
         const name = target.name;
 
-        console.log(target)
-        console.log(value)
-        console.log(name)
-
         this.setState({
             [name]: value, target
         });
@@ -120,7 +116,6 @@ class ModifyPostForm extends React.Component {
         return `image non sélectionnée`
     }
     render() {
-        console.log(this.state.message)
         return (
             <div
                 className='mt-2 text-center  font-semibold bg-none antialiased md:py-0 py-1 absolute'
