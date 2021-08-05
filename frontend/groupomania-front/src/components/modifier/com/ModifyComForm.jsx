@@ -9,8 +9,14 @@ import { routes } from '../../../js/routes';
 class ModifyComForm extends React.Component {
     state = {
         showMenu: false,
-        image: null,
-        message: null
+        message: {
+            value: '',
+            target: null
+        },
+        image: {
+            value: null,
+            target: null
+        }
     }
     constructor(props) {
         super(props)
@@ -25,15 +31,21 @@ class ModifyComForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.showAria = this.showAria.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.reset = this.reset.bind(this);
+        this.resetImage = this.resetImage.bind(this);
 
         this.fileInput = React.createRef();
     }
 
     componentDidMount() {
         this.setState({
-            message: this.oneComment.message,
-            image: this.oneComment.image
+            message: {
+                value: this.oneComment.message,
+                target: null
+            },
+            image: {
+                value: this.oneComment.image,
+                target: null
+            }
         });
     }
 
@@ -42,13 +54,18 @@ class ModifyComForm extends React.Component {
         const value = target.value;
         const name = target.name;
         this.setState({
-            [name]: value, target
+            [name]: {
+                value, target
+            }
         });
     }
 
-    reset(e) {
+    resetImage(e) {
         this.setState({
-            image: null
+            image: {
+                value: null,
+                target: null
+            }
         });
     };
 
@@ -60,13 +77,13 @@ class ModifyComForm extends React.Component {
 
         let formdata = new FormData();
 
-        if (this.state.image !== null) {
-            let fileName = this.state.target.files[0].name;
-            let fileInput = this.state.target.files[0];
+        if (this.state.image.target !== null) {
+            let fileName = this.state.image.target.files[0].name;
+            let fileInput = this.state.image.target.files[0];
             formdata.append("file", fileInput, fileName);
         }
 
-        formdata.append("com", `{"message": "${this.state.message}"}`);
+        formdata.append("com", `{"message": "${this.state.message.value}"}`);
 
         var requestOptions = {
             method: 'PUT',
@@ -95,7 +112,6 @@ class ModifyComForm extends React.Component {
                     return result
                 })
                 .catch(error => console.log('error', error));
-            // this.allComments[this.indexArrray] = modifyComReturn
             this.allComments.splice(this.indexArrray, 1)
             this.updateComments(this.allComments)
             this.allComments.push(modifyComReturn)
@@ -106,13 +122,12 @@ class ModifyComForm extends React.Component {
     }
 
     showAria() {
-        if (this.state.image !== null) {
-            return `image ${this.state.image}`
+        if (this.state.image.value !== null) {
+            return `image ${this.state.image.value}`
         }
         return `image non sélectionnée`
     }
     render() {
-        console.log(this.state.message)
         return (
             <div
                 className='mt-2 text-center  font-semibold bg-none antialiased md:py-0 py-1 absolute'
@@ -156,7 +171,7 @@ class ModifyComForm extends React.Component {
                             </div>
                             <button
                                 ref={this.fileInput}
-                                onClick={this.reset}
+                                onClick={this.resetImage}
                                 aria-label="Supprimer la photo"
                                 className='antialiased font-bold hover:text-red-800 arialabel-sm block
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
