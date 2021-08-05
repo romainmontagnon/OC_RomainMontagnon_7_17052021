@@ -131,7 +131,7 @@ class Publish extends React.Component {
                 <div className='flex flex-col justify-center'>
                     <div className='mb-4 rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 inputFile'
                     >
-                        <div
+                        <label
                             aria-label={`image ${this.showAria()}`}
                             className='antialiased arialabel block
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
@@ -146,9 +146,10 @@ class Publish extends React.Component {
                                 ref={this.fileInput}
                                 onChange={this.handleInputChange}
                                 aria-label={`image ${this.state.image}`}
-                                className='hidden'
+                                className='hidden block'
                             />
-                        </div>
+                            <span className='hidden'>Charger une image : </span>
+                        </label>
                     </div>
                     <button
                         ref={this.fileInput}
