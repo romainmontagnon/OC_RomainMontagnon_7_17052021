@@ -23,6 +23,10 @@ node server.js
 nodemon start
 ```
 
+```bash
+listening on port 3001
+```
+
 ### Chemin et port de l'api
 
 [http://localhost:3001/api/](http://localhost:3001/api/)
