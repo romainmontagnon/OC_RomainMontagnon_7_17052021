@@ -49,7 +49,7 @@ class NavMenu extends React.Component {
     }
 
     accountType() {
-        if (this.isAmin) {
+        if (this.isAdmin) {
             return `admin`
         };
         return `user`
