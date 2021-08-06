@@ -9,12 +9,15 @@
 ## 1. Installation/Lancement
 
 ```bash
+# Depuis le dossier root du repo git
 cd backend
 
 # Installation:
 npm install
 
 # Lancer le server:
+npm start
+#ou
 node server.js
 # ou
 nodemon start
@@ -22,17 +25,36 @@ nodemon start
 
 ### Chemin et port de l'api
 
-`http://localhost:3001/api/`
+[http://localhost:3001/api/](http://localhost:3001/api/)
 
-## 2. Variable d'environnement
+## 2. Variable d'environnement `dotenv`
 
-| Variables       | Description                 |
-| --------------- | --------------------------- |
-| DB_HOST         | Base de donnée HOST         |
-| DB_DIALECT      | Type de base de donnée      |
-| DB_DATABASE     | Nom de la base de donnée    |
-| DB_USERNAME     | Utilisateur                 |
-| DB_PASSWORD     | Mot de passe                |
+L'application utilise des variables d'environement pour :
+- la connexion à la base de donées,
+- la sécurisation de l'application.
+  
+Ses variables sont stockées dans le fichier `.env` dans le racine du dossier `backend`
+
+| Variables   | Description                        |
+| ----------- | ---------------------------------- |
+| DB_HOST     | Base de donnée HOST                |
+| DB_DIALECT  | Type de base de donnée             |
+| DB_DATABASE | Nom de la base de donnée           |
+| DB_USERNAME | Utilisateur                        |
+| DB_PASSWORD | Mot de passe                       |
+| HASH_ROUND  | Nombre de hash d'encryptage du mdp |
+| TOKEN_KEY   | Clef d'encryptage du token         |
+
+```env
+DB_HOST     = [value]
+DB_DIALECT  = ['mysql' | 'mariadb' | 'sqlite' | 'postgres']
+DB_DATABASE = [value]
+DB_USERNAME = [value]
+DB_PASSWORD = [value]
+
+HASH_ROUND = [value]
+TOKEN_KEY = [value]
+```
 
 ## 3. Routes
 
