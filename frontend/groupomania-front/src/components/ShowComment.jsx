@@ -55,12 +55,13 @@ class ShowComment extends React.Component {
                 <a
                     href={this.oneComment.image}
                     target="_blank"
+                    rel="noreferrer"
                     aria-label="Ouvrir dans un nouvel onglet"
                     className='antialiased arialabel'
                 >
                     <img
                         src={this.oneComment.image}
-                        alt={`image de ${this.oneComment.User.firstName} ${this.oneComment.User.lastName} ${this.commentId}`}
+                        alt={`${this.oneComment.User.firstName} ${this.oneComment.User.lastName} ${this.commentId}`}
                         className="w-1/4 mt-4 rounded-xl shadow-xl"
                         onClick={() => {
                             this.windows.open(`${this.oneComment.image}`)

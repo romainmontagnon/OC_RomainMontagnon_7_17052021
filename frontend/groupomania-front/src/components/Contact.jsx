@@ -34,6 +34,7 @@ class Contact extends React.Component {
                         </div>
                         <a href="https://www.google.com/maps/place/11+Wall+St,+New+York,+NY+10005,+États-Unis/@40.7068661,-74.0135076,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25a1721b556e9:0x326f0128a0f35c86!8m2!3d40.7068661!4d-74.0113189"
                         target="_blank"
+                        rel="noreferrer"
                         className=' ml-2 antialiased sm:hidden'>Lien</a>
                     </div>
                     <p className='my-2 antialiased'>

@@ -45,12 +45,13 @@ class Feed extends React.Component {
                 <a
                     href={this.feed.image}
                     target="_blank"
+                    rel="noreferrer"
                     aria-label="Ouvrir dans un nouvel onglet"
                     className='antialiased arialabel'
                 >
                     <img
                         src={this.feed.image}
-                        alt={`image de ${this.feed.User.firstName} ${this.feed.User.lastName} ${this.feedId}`}
+                        alt={`${this.feed.User.firstName} ${this.feed.User.lastName} ${this.feedId}`}
                         className="w-1/2 mt-4 rounded-xl shadow-2xl"
                         onClick={() => {
                             this.windows.open(`${this.feed.image}`)
