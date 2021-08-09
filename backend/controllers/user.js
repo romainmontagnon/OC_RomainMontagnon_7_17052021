@@ -100,7 +100,8 @@ exports.userLogin = (req, res, next) => {
 exports.userDelete = (req, res, next) => {
     User.findOne({
             where: {
-                id: req.body.user.userId
+                // id: req.body.user.userId
+                id: req.params.id
             }
         })
         .then((userToDelete) => {
