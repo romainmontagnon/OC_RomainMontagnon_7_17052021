@@ -183,7 +183,7 @@ class ModifyComForm extends React.Component {
                                 type="submit"
                                 id="user-comment-publish"
                                 name="comment"
-                                aria-label="Publier commentaire"
+                                aria-label="Modifier le commentaire"
                                 className='rounded-2xl px-4 ring-2 ring-midnight-400 text-center text-midnight-500 bg-midnight-200 font-semibold hover:bg-midnight-400 hover:text-midnight-100 antialiased arialabel-sm
                                 transition transform motion-reduce:transition-none motion-reduce:transform-none 
                 duration-500 ease-in-out hover:scale-110 z-10'
