@@ -62,7 +62,7 @@ class AccountSuppr extends React.Component {
                     redirect: 'follow'
                 };
 
-                await fetch(url, requestOptions)
+                let accountSuppr = await fetch(url, requestOptions)
                     .then(response => response.json())
                     .then((result) => {
                         return result
@@ -70,6 +70,7 @@ class AccountSuppr extends React.Component {
                     .catch((error) => {
                         console.log('error', error)
                     });
+                alert(accountSuppr.message)
                 let emailAdressSuppr = document.getElementById('emailAdress-suppr')
                 let userIdSuppr = document.getElementById('userId-suppr')
                 emailAdressSuppr.value = ''
@@ -101,7 +102,7 @@ class AccountSuppr extends React.Component {
                     redirect: 'follow'
                 };
 
-                await fetch(url, requestOptions)
+                let accountSuppr = await fetch(url, requestOptions)
                     .then(response => response.json())
                     .then((result) => {
                         return result
@@ -111,6 +112,7 @@ class AccountSuppr extends React.Component {
                     });
                 sessionStorage.clear()
                 this.props.login(false, false, null);
+                alert(accountSuppr.message)
             }
         }
     }

@@ -61,6 +61,7 @@ class SignUpForm extends React.Component {
                         console.log('error', error)
                     });
                 this.props.login(logged.logged, logged.isAdmin, logged.userId);
+                alert(`Bienvenue ${logged.firstName} ${logged.lastName}`)
             } else {
                 alert('Erreur lors de la creation de votre compte')
             }

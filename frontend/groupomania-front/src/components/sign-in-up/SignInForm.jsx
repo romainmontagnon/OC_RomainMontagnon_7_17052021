@@ -47,7 +47,11 @@ class SignInForm extends React.Component {
                 .catch((error) => {
                     console.log('error', error)
                 });
-            this.props.login(logged.logged, logged.isAdmin, logged.userId);
+            if (logged.logged) {
+                this.props.login(logged.logged, logged.isAdmin, logged.userId);
+            } else {
+                alert(logged.error)
+            }
         }
     }
 
